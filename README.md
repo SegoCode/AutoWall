@@ -16,5 +16,7 @@ Turn videos into windows wallpapers, the easiest way to use a program like weebp
 
 ## Download
 
+https://github.com/SegoCode/AutoWall/releases/download/1.0/AutoWall.zip
+
 
 
