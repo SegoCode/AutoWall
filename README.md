@@ -7,11 +7,11 @@
 
 ## About
 
-Turn videos into windows wallpapers, the easiest way to use a program like weebp for the average user with some additions. Written in the classic Autoit to make it as simple possible, just create one file out of the folder, a bat file in "shell:startup" for lauch in windows startup, is deleted if you press the reset button.
+Turn videos and gifs into windows wallpapers, the easiest way to use a weebp with some cool additions. Written in Autoit to make it as simple possible, just create one file out of the folder, batch file in "shell:startup" for lauch in windows startup (deleted if you press the reset button).
 
 ## Features
 - Browse your video/gif files
-- Reset button to reverse all
+- Reset button to reverse all and delete config files
 - Set your wallpaper on windows startup
 
 ## Download
