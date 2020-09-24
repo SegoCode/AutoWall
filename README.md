@@ -16,7 +16,7 @@ Turn gifs into windows live wallpapers. The most simple and useful [Weebp](src/w
 
 ## Download
 
-https://github.com/SegoCode/AutoWall/releases/download/1.0/AutoWall.zip
+https://github.com/SegoCode/AutoWall/releases/download/1.1/AutoWall.zip
 
 
 
