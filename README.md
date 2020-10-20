@@ -10,6 +10,7 @@
 Turn gifs into windows live wallpapers. The most simple and useful [Weebp](src/weebp) implementation in autoit. Autowall Support others video formats but CPU usage increases, only recommend gifs files.
 
 ## Features
+- Portable
 - Browse your gif files
 - Reset button to reverse all and delete config files
 - Set your wallpaper on windows startup
