@@ -20,4 +20,12 @@ Turn gifs into windows live wallpapers. The most simple and useful [Weebp](src/w
 https://github.com/SegoCode/AutoWall/releases/download/1.1/AutoWall.zip
 
 
+## Articles about Autowall
+
+[ghaks](https://www.ghacks.net/2020/10/19/autowall-is-an-open-source-program-that-can-display-animated-gifs-and-videos-as-your-wallpaper/)
+
+[Genbeta](https://www.genbeta.com/deskmod/esta-aplicacion-gratuita-puedes-poner-gif-video-como-fondo-pantalla-windows-10)
+
+
+
 
