@@ -99,6 +99,11 @@ Func reset()
 	Do
 		ProcessClose('mpv.exe')
 	Until Not ProcessExists('mpv.exe')
+	
+	Do
+		ProcessClose('wp.exe')
+	Until Not ProcessExists('wp.exe')
+	
 	FileDelete(@AppDataDir & "\Microsoft\Windows\Start Menu\Programs\Startup\livewallpaper.bat")
 	GUICtrlSetState($winStart, $GUI_UNCHECKED)
 	GUICtrlSetData($inputPath, "")
