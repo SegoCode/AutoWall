@@ -22,9 +22,9 @@ https://github.com/SegoCode/AutoWall/releases/download/1.1/AutoWall.zip
 
 ## Articles about Autowall
 
-[https://www.ghacks.net/2020/10/19/autowall-is-an-open-source....](https://www.ghacks.net/2020/10/19/autowall-is-an-open-source-program-that-can-display-animated-gifs-and-videos-as-your-wallpaper/)
+[https://www.ghacks.net/2020/10/19/autowall-is-an-open-source . . . ](https://www.ghacks.net/2020/10/19/autowall-is-an-open-source-program-that-can-display-animated-gifs-and-videos-as-your-wallpaper/)
 
-[https://www.genbeta.com/deskmod/esta-aplicacion-gratuita....](https://www.genbeta.com/deskmod/esta-aplicacion-gratuita-puedes-poner-gif-video-como-fondo-pantalla-windows-10)
+[https://www.genbeta.com/deskmod/esta-aplicacion-gratuita . . . ](https://www.genbeta.com/deskmod/esta-aplicacion-gratuita-puedes-poner-gif-video-como-fondo-pantalla-windows-10)
 
 
 
