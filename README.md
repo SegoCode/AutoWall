@@ -14,7 +14,6 @@ Turn gifs into windows live wallpapers. The most simple and useful [Weebp](src/w
 - Browse your gif files (Or write web URL example: http://www.example.com)
 - Reset button to reverse all and delete config files
 - Set your wallpaper on windows startup
-
  *Set youtube video as a wallpaper using this url format;*
  
  *https://www.youtube.com/embed/(IDVIDEO)?rel=0&autoplay=1&mute=1*
