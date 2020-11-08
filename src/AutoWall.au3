@@ -49,15 +49,23 @@ Func onWinStart()
 	If GUICtrlRead($winStart) = $GUI_CHECKED Then
 		FileDelete(@AppDataDir & "\Microsoft\Windows\Start Menu\Programs\Startup\livewallpaper.bat")
 		$file = FileOpen(@AppDataDir & "\Microsoft\Windows\Start Menu\Programs\Startup\livewallpaper.bat", 1)
-		ConsoleWrite(@WorkingDir)
-		FileWrite($file, "@echo off" & @CRLF)
-		FileWrite($file, "cd " & '"' & @WorkingDir & "\weebp\" & '"' & @CRLF)
-		FileWrite($file, "wp id > tmpFile" & @CRLF)
-		FileWrite($file, "set /p wId= < tmpFile" & @CRLF)
-		FileWrite($file, "del tmpFile" & @CRLF)
-		FileWrite($file, "cd " & '"' & @WorkingDir & "\mpv\" & '"' & @CRLF)
-		FileWrite($file, '"' & @WorkingDir & "\weebp\wp.exe" & '"' & " run mpv --wid=%wId% " & '"' & GUICtrlRead($inputPath) & '"' & " --loop=inf --player-operation-mode=pseudo-gui --force-window=yes --no-audio")
-		FileClose($file)
+		$inputUdf = GUICtrlRead($inputPath)
+		InetGetSize($inputUdf)
+		If @error Then
+			FileWrite($file, "@echo off" & @CRLF)
+			FileWrite($file, "cd " & '"' & @WorkingDir & "\mpv\" & '"' & @CRLF)
+			FileWrite($file, '"' & @WorkingDir & "\weebp\wp.exe" & '"' & " run mpv " & '"' & GUICtrlRead($inputPath) & '"' & " --loop=inf --player-operation-mode=pseudo-gui --force-window=yes --no-audio" & @CRLF)
+			FileWrite($file, "cd " & '"' & @WorkingDir & "\weebp\" & '"' & @CRLF)
+			FileWrite($file, "wp add --wait --fullscreen --class mpv")
+			FileClose($file)
+		Else
+			FileWrite($file, "@echo off" & @CRLF)
+			FileWrite($file, "cd " & '"' & @WorkingDir & "\WebView\" & '"' & @CRLF)
+			FileWrite($file, '"' & @WorkingDir & "\weebp\wp.exe" & '"' & " run " & "GoWebView.exe " & '"' & GUICtrlRead($inputPath) & '"' & @CRLF)
+			FileWrite($file, "cd " & '"' & @WorkingDir & "\weebp\" & '"' & @CRLF)
+			FileWrite($file, "wp add --wait --fullscreen --class webview")
+			FileClose($file)
+		EndIf
 	Else
 		FileDelete(@AppDataDir & "\Microsoft\Windows\Start Menu\Programs\Startup\livewallpaper.bat")
 	EndIf
@@ -65,27 +73,37 @@ Func onWinStart()
 EndFunc   ;==>onWinStart
 
 Func setwallpaper()
-	Do
-		ProcessClose('mpv.exe')
-	Until Not ProcessExists('mpv.exe')
-	$weebp = @WorkingDir & "\weebp\wp.exe "
-	$pid = Run($weebp & "id", "", @SW_HIDE, $STDERR_CHILD + $STDOUT_CHILD)
-	ProcessWait($pid)
+	killAll()
+
 	$oldwork = @WorkingDir
-	FileChangeDir(@WorkingDir & "\mpv\")
-	Run($weebp & "run mpv --wid=" & StdoutRead($pid) & " " & '"' & GUICtrlRead($inputPath) & '"' & " --loop=inf --player-operation-mode=pseudo-gui --force-window=yes --no-audio")
+	$weebp = @WorkingDir & "\weebp\wp.exe "
+	$webview = @WorkingDir & "\WebView\GoWebView.exe"
+
+	$inputUdf = GUICtrlRead($inputPath)
+	InetGetSize($inputUdf)
+	If @error Then
+		FileChangeDir(@WorkingDir & "\mpv\")
+		Run($weebp & "run mpv " & '"' & GUICtrlRead($inputPath) & '"' & " --loop=inf --player-operation-mode=pseudo-gui --force-window=yes --no-audio")
+		Run($weebp & "add --wait --fullscreen --class mpv")
+	Else
+		Run($weebp & "run " & '"' & $webview & '"' & " " & GUICtrlRead($inputPath))
+		Run($weebp & "add --wait --fullscreen --class webview")
+		GUICtrlSetState($winStart, $GUI_ENABLE)
+		GUICtrlSetState($winStart, $GUI_UNCHECKED)
+	EndIf
 	FileChangeDir($oldwork)
 EndFunc   ;==>setwallpaper
 
-Func browsefiles()
 
+
+
+Func browsefiles()
 	Local Const $sMessage = "Select the video for wallpaper"
 	Local $sFileOpenDialog = FileOpenDialog($sMessage, @WorkingDir & "\VideosHere" & "\", "Videos (*.avi;*.mp4;*.gif;*.mov)", BitOR($FD_FILEMUSTEXIST, $FD_PATHMUSTEXIST))
 	If @error Then
-		MsgBox($MB_SYSTEMMODAL, "", "No file were selected.")
+		MsgBox($MB_SYSTEMMODAL, "", "No file was selected.")
 		FileChangeDir(@ScriptDir)
 	Else
-
 		FileChangeDir(@ScriptDir)
 		$sFileOpenDialog = StringReplace($sFileOpenDialog, "|", @CRLF)
 		GUICtrlSetData($inputPath, $sFileOpenDialog)
@@ -96,19 +114,37 @@ Func browsefiles()
 EndFunc   ;==>browsefiles
 
 Func reset()
-	Do
-		ProcessClose('mpv.exe')
-	Until Not ProcessExists('mpv.exe')
-	
-	Do
-		ProcessClose('wp.exe')
-	Until Not ProcessExists('wp.exe')
-	
+	killAll()
 	FileDelete(@AppDataDir & "\Microsoft\Windows\Start Menu\Programs\Startup\livewallpaper.bat")
 	GUICtrlSetState($winStart, $GUI_UNCHECKED)
 	GUICtrlSetData($inputPath, "")
 
 EndFunc   ;==>reset
+
+
+Func killAll()
+
+	Do
+		ProcessClose('mpv.exe')
+	Until Not ProcessExists('mpv.exe')
+
+	Do
+		ProcessClose('wp.exe')
+	Until Not ProcessExists('wp.exe')
+
+	Do
+		ProcessClose('GoWebView.exe')
+	Until Not ProcessExists('GoWebView.exe')
+
+	Do
+		ProcessClose('Win32WebViewHost.exe')
+	Until Not ProcessExists('Win32WebViewHost.exe')
+
+	;Refresh
+	Run(@WorkingDir & "\weebp\wp.exe ls")
+
+EndFunc   ;==>killAll
+
 
 
 
