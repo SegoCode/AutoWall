@@ -15,7 +15,7 @@
 #include <FileConstants.au3>
 #include <MsgBoxConstants.au3>
 #include <AutoItConstants.au3>
-#Region ### START Koda GUI section ### Form=
+#region ### START Koda GUI section ### Form=
 $form = GUICreate("github.com/SegoCode", 513, 72, 183, 124)
 $applyb = GUICtrlCreateButton("Apply", 432, 8, 75, 25)
 $resetb = GUICtrlCreateButton("Reset", 432, 40, 75, 25)
@@ -25,7 +25,7 @@ $winStart = GUICtrlCreateCheckbox("Set on windows startup", 8, 40, 137, 25)
 Opt("TrayMenuMode", 1)
 Opt("TrayOnEventMode", 1)
 GUISetState(@SW_SHOW)
-#EndRegion ### END Koda GUI section ###
+#endregion ### END Koda GUI section ###
 GUICtrlSetState($winStart, $GUI_DISABLE)
 
 While 1
@@ -60,7 +60,7 @@ Func onWinStart()
 			FileClose($file)
 		Else
 			FileWrite($file, "@echo off" & @CRLF)
-			FileWrite($file, "cd " & '"' & @WorkingDir & "\WebView\" & '"' & @CRLF)
+			FileWrite($file, "cd " & '"' & @WorkingDir & "\tools\" & '"' & @CRLF)
 			FileWrite($file, '"' & @WorkingDir & "\weebp\wp.exe" & '"' & " run " & "GoWebView.exe " & '"' & GUICtrlRead($inputPath) & '"' & @CRLF)
 			FileWrite($file, "cd " & '"' & @WorkingDir & "\weebp\" & '"' & @CRLF)
 			FileWrite($file, "wp add --wait --fullscreen --class webview")
@@ -77,7 +77,7 @@ Func setwallpaper()
 
 	$oldwork = @WorkingDir
 	$weebp = @WorkingDir & "\weebp\wp.exe "
-	$webview = @WorkingDir & "\WebView\GoWebView.exe"
+	$webview = @WorkingDir & "\tools\GoWebView.exe"
 
 	$inputUdf = GUICtrlRead($inputPath)
 	InetGetSize($inputUdf)
@@ -86,10 +86,17 @@ Func setwallpaper()
 		Run($weebp & "run mpv " & '"' & GUICtrlRead($inputPath) & '"' & " --loop=inf --player-operation-mode=pseudo-gui --force-window=yes --no-audio")
 		Run($weebp & "add --wait --fullscreen --class mpv")
 	Else
-		Run($weebp & "run " & '"' & $webview & '"' & " " & GUICtrlRead($inputPath))
-		Run($weebp & "add --wait --fullscreen --class webview")
-		GUICtrlSetState($winStart, $GUI_ENABLE)
-		GUICtrlSetState($winStart, $GUI_UNCHECKED)
+		If StringInStr(GUICtrlRead($inputPath), "steamcommunity.com") Then
+			$idSteam = StringSplit(GUICtrlRead($inputPath), "?id=", 1)
+			ShellExecute("https://steamworkshopdownloader.io/extension/embedded/" & $idSteam[2])
+			GUICtrlSetData($inputPath, "")
+			MsgBox($MB_TOPMOST, "Download from workshop", "The download has been started in your browser, if the downloaded zip contains an .mp4 file, extract it in 'VideosHere' folder.")
+		Else
+			Run($weebp & "run " & '"' & $webview & '"' & " " & GUICtrlRead($inputPath))
+			Run($weebp & "add --wait --fullscreen --class webview")
+			GUICtrlSetState($winStart, $GUI_ENABLE)
+			GUICtrlSetState($winStart, $GUI_UNCHECKED)
+		EndIf
 	EndIf
 	FileChangeDir($oldwork)
 EndFunc   ;==>setwallpaper
