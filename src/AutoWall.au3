@@ -89,7 +89,7 @@ Func setwallpaper()
 		If StringInStr(GUICtrlRead($inputPath), "steamcommunity.com") Then
 			$idSteam = StringSplit(GUICtrlRead($inputPath), "?id=", 1)
 			ShellExecute("https://steamworkshopdownloader.io/extension/embedded/" & $idSteam[2])
-			GUICtrlSetData($inputPath, "")
+			reset()
 			MsgBox($MB_TOPMOST, "Download from workshop", "The download has been started in your browser, if the downloaded zip contains an .mp4 file, extract it in 'VideosHere' folder.")
 		Else
 			Run($weebp & "run " & '"' & $webview & '"' & " " & GUICtrlRead($inputPath))
