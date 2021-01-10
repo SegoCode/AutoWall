@@ -25,7 +25,7 @@ Turn gifs into windows live wallpapers. The most simple and useful [Weebp](src/w
  
  
 ## Features (1.3v+)
-- Direct download from steam workshop url on the path text field.
+- Direct download from steam workshop url in the path text field.
  
  *In steam launcher, right button on the article page, copy url. Example;*
  
