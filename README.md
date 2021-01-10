@@ -14,11 +14,20 @@ Turn gifs into windows live wallpapers. The most simple and useful [Weebp](src/w
 - Browse your gif files.
 - Reset button to reverse all and delete config files.
 - Set your wallpaper on windows startup.
-- (1.2v) Support web as wallpaper, try http://www.example.com/ in the path text field.
 
+
+## Features (1.2v+)
+- Support web as wallpaper, try http://www.example.com/ in the path text field.
+ 
  *Set youtube video as a wallpaper using this url format;*
  
  *https://www.youtube.com/embed/(VIDEO_ID)?autoplay=1&loop=1&mute=1&playlist=(VIDEO_ID)*
+ 
+ 
+## Features (1.3v+)
+- Direct download from steam workshop url on the path text field.
+ 
+ *In steam launcher, right button on the article page, copy url. Example; https://steamcommunity.com/sharedfiles/filedetails/?id=827148653.*
 
 ## Download
 
