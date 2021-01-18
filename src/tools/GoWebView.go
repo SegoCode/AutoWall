@@ -13,7 +13,7 @@ func main() {
 
 	//Usage validation
 	if len(os.Args) <= 1 {
-		fmt.Println("[!] USAGE: GoWebView.exe http://example.com")
+		fmt.Println("[ERR] USAGE: GoWebView.exe http://example.com")
 		os.Exit(1)
 	}
 
@@ -21,7 +21,7 @@ func main() {
 	inputUrl = os.Args[1]
 	_, errParse := url.ParseRequestURI(inputUrl)
 	if errParse != nil {
-		fmt.Println("[!] URL NOT VALID (Example: http://example.com)")
+		fmt.Println("[ERR] URL NOT VALID (Example: http://example.com)")
 		os.Exit(1)
 	}
 
