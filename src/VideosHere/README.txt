@@ -3,6 +3,7 @@ Videos here, supported formats;
 			- .mp4
 			- .mov
 			- .gif
+			- .mkv
 
 *You can insert absolute file paths in to the text area and try
 new video formats (Set on windows startup work for others formats)
