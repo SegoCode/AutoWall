@@ -28,6 +28,8 @@ GUISetState(@SW_SHOW)
 #endregion ### END Koda GUI section ###
 GUICtrlSetState($winStart, $GUI_DISABLE)
 
+Run(@WorkingDir & "\tools\updater.exe","",@SW_HIDE)
+
 While 1
 	$nMsg = GUIGetMsg()
 	Switch $nMsg
