@@ -63,7 +63,7 @@ Func onWinStart()
 		Else
 			FileWrite($file, "@echo off" & @CRLF)
 			FileWrite($file, "cd " & '"' & @WorkingDir & "\tools\" & '"' & @CRLF)
-			FileWrite($file, '"' & @WorkingDir & "\weebp\wp.exe" & '"' & " run " & "GoWebView.exe " & '"' & GUICtrlRead($inputPath) & '"' & @CRLF)
+			FileWrite($file, '"' & @WorkingDir & "\weebp\wp.exe" & '"' & " run " & "webView.exe " & '"' & GUICtrlRead($inputPath) & '"' & @CRLF)
 			FileWrite($file, "cd " & '"' & @WorkingDir & "\weebp\" & '"' & @CRLF)
 			FileWrite($file, "wp add --wait --fullscreen --class webview")
 			FileClose($file)
@@ -79,7 +79,7 @@ Func setwallpaper()
 
 	$oldwork = @WorkingDir
 	$weebp = @WorkingDir & "\weebp\wp.exe "
-	$webview = @WorkingDir & "\tools\GoWebView.exe"
+	$webview = @WorkingDir & "\tools\webView.exe"
 
 	$inputUdf = GUICtrlRead($inputPath)
 	If _WinAPI_UrlIs ($inputUdf)==0 Then
@@ -141,8 +141,8 @@ Func killAll()
 	Until Not ProcessExists('wp.exe')
 
 	Do
-		ProcessClose('GoWebView.exe')
-	Until Not ProcessExists('GoWebView.exe')
+		ProcessClose('webView.exe')
+	Until Not ProcessExists('webView.exe')
 
 	Do
 		ProcessClose('Win32WebViewHost.exe')
@@ -152,7 +152,3 @@ Func killAll()
 	Run(@WorkingDir & "\weebp\wp.exe ls")
 
 EndFunc   ;==>killAll
-
-
-
-
