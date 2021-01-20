@@ -53,8 +53,7 @@ Func onWinStart()
 		FileDelete(@AppDataDir & "\Microsoft\Windows\Start Menu\Programs\Startup\livewallpaper.bat")
 		$file = FileOpen(@AppDataDir & "\Microsoft\Windows\Start Menu\Programs\Startup\livewallpaper.bat", 1)
 		$inputUdf = GUICtrlRead($inputPath)
-		InetGetSize($inputUdf)
-		If @error Then
+		If _WinAPI_UrlIs ($inputUdf)==0 Then
 			FileWrite($file, "@echo off" & @CRLF)
 			FileWrite($file, "cd " & '"' & @WorkingDir & "\mpv\" & '"' & @CRLF)
 			FileWrite($file, '"' & @WorkingDir & "\weebp\wp.exe" & '"' & " run mpv " & '"' & GUICtrlRead($inputPath) & '"' & " --loop=inf --player-operation-mode=pseudo-gui --force-window=yes --no-audio" & @CRLF)
@@ -83,7 +82,7 @@ Func setwallpaper()
 	$webview = @WorkingDir & "\tools\GoWebView.exe"
 
 	$inputUdf = GUICtrlRead($inputPath)
-	If _WinAPI_UrlIs ($inputUdf)==1 Then
+	If _WinAPI_UrlIs ($inputUdf)==0 Then
 		FileChangeDir(@WorkingDir & "\mpv\")
 		Run($weebp & "run mpv " & '"' & GUICtrlRead($inputPath) & '"' & " --loop=inf --player-operation-mode=pseudo-gui --force-window=yes --no-audio")
 		Run($weebp & "add --wait --fullscreen --class mpv")
