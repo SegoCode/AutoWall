@@ -15,6 +15,7 @@
 #include <FileConstants.au3>
 #include <MsgBoxConstants.au3>
 #include <AutoItConstants.au3>
+#include <WinAPIShPath.au3>
 #region ### START Koda GUI section ### Form=
 $form = GUICreate("github.com/SegoCode", 513, 72, 183, 124)
 $applyb = GUICtrlCreateButton("Apply", 432, 8, 75, 25)
@@ -82,8 +83,7 @@ Func setwallpaper()
 	$webview = @WorkingDir & "\tools\GoWebView.exe"
 
 	$inputUdf = GUICtrlRead($inputPath)
-	InetGetSize($inputUdf)
-	If @error Then
+	If _WinAPI_UrlIs ($inputUdf)==1 Then
 		FileChangeDir(@WorkingDir & "\mpv\")
 		Run($weebp & "run mpv " & '"' & GUICtrlRead($inputPath) & '"' & " --loop=inf --player-operation-mode=pseudo-gui --force-window=yes --no-audio")
 		Run($weebp & "add --wait --fullscreen --class mpv")
