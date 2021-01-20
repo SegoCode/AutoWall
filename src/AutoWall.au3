@@ -108,7 +108,7 @@ EndFunc   ;==>setwallpaper
 
 Func browsefiles()
 	Local Const $sMessage = "Select the video for wallpaper"
-	Local $sFileOpenDialog = FileOpenDialog($sMessage, @WorkingDir & "\VideosHere" & "\", "Videos (*.avi;*.mp4;*.gif;*.mov)", BitOR($FD_FILEMUSTEXIST, $FD_PATHMUSTEXIST))
+	Local $sFileOpenDialog = FileOpenDialog($sMessage, @WorkingDir & "\VideosHere" & "\", "Videos (*.avi;*.mp4;*.gif;*.mkv;*.mov)", BitOR($FD_FILEMUSTEXIST, $FD_PATHMUSTEXIST))
 	If @error Then
 		MsgBox($MB_SYSTEMMODAL, "", "No file was selected.")
 		FileChangeDir(@ScriptDir)
