@@ -23,10 +23,6 @@ Turn videos, gifs and webs into windows live wallpapers. The most simple and use
 
 - [Direct download from steam workshop.](#steam-workshop)
 
-(1.4+)
-
-- New version checker.
-
 ## Web wallpaper
  Set any web to wallpaper, copy url and paste on text field, also youtube videos.
  
