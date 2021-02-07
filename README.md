@@ -7,27 +7,39 @@
 
 ## About
 
-Turn gifs and webs into windows live wallpapers. The most simple and useful [Weebp](src/weebp) implementation in autoit. Autowall Support others video formats but CPU usage increases, only recommend gifs files or webs.
+Turn videos, gifs and webs into windows live wallpapers. The most simple and useful [Weebp](src/weebp) implementation in autoit. 
 
 ## Features
 - Portable.
-- Browse your gif files.
+- Browse your gif or video files.
 - Reset button to reverse all and delete config files.
 - Set your wallpaper on windows startup.
 
+(1.2+)
 
-## Features (1.2v+)
-- Support web as wallpaper, try http://www.example.com/ in the path text field.
+- [Set web as wallpaper.](#web-wallpaper)
+
+(1.3+)
+
+- [Direct download from steam workshop.](#steam-workshop)
+
+(1.4+)
+
+- New version checker.
+
+## Web wallpaper
+ Set any web to wallpaper, copy url and paste on text field, also youtube videos.
  
- *Set youtube video as a wallpaper using this url format;*
- 
+ Set youtube video as a wallpaper using this url format;
  *https://www.youtube.com/embed/(VIDEO_ID)?autoplay=1&loop=1&mute=1&playlist=(VIDEO_ID)*
  
+ *For add sound change the mute value (&mute=1) to zero (&mute=0)*
+
+
+## Steam workshop
+ Direct download files from steam workshop.
  
-## Features (1.3v+)
-- Direct download from steam workshop url in the path text field.
- 
- *In steam launcher, right button on the article page, copy url. Example;*
+ In steam launcher, right button on the article page, copy url and paste on text field, example url;
  
  *https://steamcommunity.com/sharedfiles/filedetails/?id=827148653*
 
