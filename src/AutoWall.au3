@@ -21,12 +21,14 @@ $form = GUICreate("github.com/SegoCode", 513, 72, 183, 124)
 $applyb = GUICtrlCreateButton("Apply", 432, 8, 75, 25)
 $resetb = GUICtrlCreateButton("Reset", 432, 40, 75, 25)
 $browseb = GUICtrlCreateButton("Browse", 352, 40, 75, 25)
-$inputPath = GUICtrlCreateInput("Browse and select video", 8, 8, 417, 25)
+$inputPath = GUICtrlCreateInput("", 8, 8, 417, 25)
 $winStart = GUICtrlCreateCheckbox("Set on windows startup", 8, 40, 137, 25)
 Opt("TrayMenuMode", 1)
 Opt("TrayOnEventMode", 1)
 GUISetState(@SW_SHOW)
 #endregion ### END Koda GUI section ###
+
+GUICtrlSendMsg($inputPath, $EM_SETCUEBANNER, False, "Browse and select video")
 GUICtrlSetState($winStart, $GUI_DISABLE)
 
 Run(@WorkingDir & "\tools\updater.exe","",@SW_HIDE)
