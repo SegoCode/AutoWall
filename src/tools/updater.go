@@ -10,7 +10,7 @@ func main() {
 		Owner:      "SegoCode",
 		Repository: "AutoWall",
 	}
-	res, _ := latest.Check(githubTag, "1.4.0")
+	res, _ := latest.Check(githubTag, "1.5.0")
 	if res.Outdated {
 		notification := toast.Notification{
 			AppID:               "AutoWall",
