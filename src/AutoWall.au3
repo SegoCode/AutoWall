@@ -77,7 +77,6 @@ Func onWinStart()
 EndFunc   ;==>onWinStart
 
 Func setwallpaper()
-   	GUICtrlSetState($winStart, $GUI_UNCHECKED)
 	$oldwork = @WorkingDir
 	$weebp = @WorkingDir & "\weebp\wp.exe "
 	$webview = @WorkingDir & "\tools\webView.exe"
@@ -88,10 +87,11 @@ Func setwallpaper()
 		FileChangeDir(@WorkingDir & "\mpv\")
 		Run($weebp & "run mpv " & '"' & GUICtrlRead($inputPath) & '"' & " --loop=inf --player-operation-mode=pseudo-gui --force-window=yes --no-audio")
 		Run($weebp & "add --wait --fullscreen --class mpv")
-	Else
+	 Else
 		If StringInStr(GUICtrlRead($inputPath), "steamcommunity.com") Then
 			$idSteam = StringSplit(GUICtrlRead($inputPath), "?id=", 1)
 			ShellExecute("https://steamworkshopdownloader.io/extension/embedded/" & $idSteam[2])
+			GUICtrlSetState($winStart, $GUI_UNCHECKED)
 			GUICtrlSetState($winStart, $GUI_DISABLE)
 			GUICtrlSetData($inputPath, "")
 			MsgBox($MB_TOPMOST, "Download from workshop", "The download has been started in your browser, if the downloaded zip contains an .mp4 file, extract it in 'VideosHere' folder.")
