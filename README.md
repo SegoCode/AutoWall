@@ -45,7 +45,7 @@ Turn videos, gifs and webs into windows live wallpapers. The most simple and use
 https://github.com/SegoCode/AutoWall/releases/
 
 
-## Articles about Autowall
+## Articles about AutoWall
 
 [https://www.ghacks.net/2020/10/19/autowall-is-an-open-source . . . ](https://www.ghacks.net/2020/10/19/autowall-is-an-open-source-program-that-can-display-animated-gifs-and-videos-as-your-wallpaper/)
 
