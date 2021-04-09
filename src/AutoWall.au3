@@ -85,8 +85,8 @@ Func setwallpaper()
 	If _WinAPI_UrlIs ($inputUdf)==0 Then
 		killAll()
 		FileChangeDir(@WorkingDir & "\mpv\")
-		Run($weebp & "run mpv " & '"' & GUICtrlRead($inputPath) & '"' & " --loop=inf --player-operation-mode=pseudo-gui --force-window=yes --no-audio")
-		Run($weebp & "add --wait --fullscreen --class mpv")
+		Run($weebp & "run mpv " & '"' & GUICtrlRead($inputPath) & '"' & " --loop=inf --player-operation-mode=pseudo-gui --force-window=yes --no-audio", "", @SW_HIDE)
+		Run($weebp & "add --wait --fullscreen --class mpv", "", @SW_HIDE)
 	 Else
 		If StringInStr(GUICtrlRead($inputPath), "steamcommunity.com") Then
 			$idSteam = StringSplit(GUICtrlRead($inputPath), "?id=", 1)
@@ -97,8 +97,8 @@ Func setwallpaper()
 			MsgBox($MB_TOPMOST, "Download from workshop", "The download has been started in your browser, if the downloaded zip contains an .mp4 file, extract it in 'VideosHere' folder.")
 		Else
 			killAll()
-			Run($weebp & "run " & '"' & $webview & '"' & " " & GUICtrlRead($inputPath))
-			Run($weebp & "add --wait --fullscreen --class webview")
+			Run($weebp & "run " & '"' & $webview & '"' & " " & GUICtrlRead($inputPath), "", @SW_HIDE)
+			Run($weebp & "add --wait --fullscreen --class webview", "", @SW_HIDE)
 			GUICtrlSetState($winStart, $GUI_ENABLE)
 		EndIf
 	EndIf
@@ -152,6 +152,6 @@ Func killAll()
 	Until Not ProcessExists('Win32WebViewHost.exe')
 
 	;Refresh
-	Run(@WorkingDir & "\weebp\wp.exe ls")
+	Run(@WorkingDir & "\weebp\wp.exe ls", "", @SW_HIDE)
 
 EndFunc   ;==>killAll
