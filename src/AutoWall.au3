@@ -26,8 +26,16 @@ $winStart = GUICtrlCreateCheckbox("Set on windows startup", 8, 40, 137, 25)
 Opt("TrayMenuMode", 3)
 TrayCreateItem("Version: 1.6", -1, -1, 0)
 Opt("TrayOnEventMode", 1)
-GUISetState(@SW_SHOW)
 #endregion ### END Koda GUI section ###
+
+If $CmdLine[0] > 0 Then
+	GUICtrlSetData($inputPath, $CmdLine[1])
+	setwallpaper()
+	Exit
+Else
+	GUISetState(@SW_SHOW)
+EndIf
+
 
 GUICtrlSendMsg($inputPath, $EM_SETCUEBANNER, False, "Browse and select video")
 GUICtrlSetState($winStart, $GUI_DISABLE)
