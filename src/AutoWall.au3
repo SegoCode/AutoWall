@@ -59,30 +59,15 @@ While 1
 WEnd
 
 Func onWinStart()
-	; I hate path quotation marks on batch
 	If GUICtrlRead($winStart) = $GUI_CHECKED Then
-		FileDelete(@AppDataDir & "\Microsoft\Windows\Start Menu\Programs\Startup\livewallpaper.bat")
-		$file = FileOpen(@AppDataDir & "\Microsoft\Windows\Start Menu\Programs\Startup\livewallpaper.bat", 1)
-		$inputUdf = GUICtrlRead($inputPath)
-		If _WinAPI_UrlIs ($inputUdf)==0 Then
-			FileWrite($file, "@echo off" & @CRLF)
-			FileWrite($file, "cd " & '"' & @WorkingDir & "\mpv\" & '"' & @CRLF)
-			FileWrite($file, '"' & @WorkingDir & "\weebp\wp.exe" & '"' & " run mpv " & '"' & GUICtrlRead($inputPath) & '"' & " --loop=inf --player-operation-mode=pseudo-gui --force-window=yes --no-audio" & @CRLF)
-			FileWrite($file, "cd " & '"' & @WorkingDir & "\weebp\" & '"' & @CRLF)
-			FileWrite($file, "wp add --wait --fullscreen --class mpv")
-			FileClose($file)
-		Else
-			FileWrite($file, "@echo off" & @CRLF)
-			FileWrite($file, "cd " & '"' & @WorkingDir & "\tools\" & '"' & @CRLF)
-			FileWrite($file, '"' & @WorkingDir & "\weebp\wp.exe" & '"' & " run " & "webView.exe " & '"' & GUICtrlRead($inputPath) & '"' & @CRLF)
-			FileWrite($file, "cd " & '"' & @WorkingDir & "\weebp\" & '"' & @CRLF)
-			FileWrite($file, "wp add --wait --fullscreen --class webview")
-			FileClose($file)
-		EndIf
+		$FileName = @WorkingDir & "\AutoWall.exe"
+		$args = GUICtrlRead($inputPath)
+		$LinkFileName = @AppDataDir & "\Microsoft\Windows\Start Menu\Programs\Startup\" & "\AutoWall.lnk"
+		$WorkingDirectory = @WorkingDir
+		FileCreateShortcut($FileName, $LinkFileName, $WorkingDirectory, $args, "", "", "", "", @SW_SHOWNORMAL)
 	Else
-		FileDelete(@AppDataDir & "\Microsoft\Windows\Start Menu\Programs\Startup\livewallpaper.bat")
+		FileDelete(@AppDataDir & "\Microsoft\Windows\Start Menu\Programs\Startup\AutoWall.lnk")
 	EndIf
-
 EndFunc   ;==>onWinStart
 
 Func setwallpaper()
@@ -135,7 +120,7 @@ EndFunc   ;==>browsefiles
 
 Func reset()
 	killAll()
-	FileDelete(@AppDataDir & "\Microsoft\Windows\Start Menu\Programs\Startup\livewallpaper.bat")
+	FileDelete(@AppDataDir & "\Microsoft\Windows\Start Menu\Programs\Startup\AutoWall.lnk")
 	GUICtrlSetState($winStart, $GUI_UNCHECKED)
 	GUICtrlSetData($inputPath, "")
 
