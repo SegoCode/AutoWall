@@ -36,10 +36,11 @@ Else
 	GUISetState(@SW_SHOW)
 EndIf
 
-
+;Init gui
 GUICtrlSendMsg($inputPath, $EM_SETCUEBANNER, False, "Browse and select video")
 GUICtrlSetState($winStart, $GUI_DISABLE)
 
+;Check updates
 Run(@WorkingDir & "\tools\updater.exe","",@SW_HIDE)
 
 While 1
