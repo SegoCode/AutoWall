@@ -41,7 +41,7 @@ GUICtrlSendMsg($inputPath, $EM_SETCUEBANNER, False, "Browse and select video")
 GUICtrlSetState($winStart, $GUI_DISABLE)
 
 ;Check updates
-Run(@WorkingDir & "\tools\updater.exe","",@SW_HIDE)
+Run(@WorkingDir & "\tools\updater.exe", "", @SW_HIDE)
 
 While 1
 	$nMsg = GUIGetMsg()
@@ -77,12 +77,12 @@ Func setwallpaper()
 	$webview = @WorkingDir & "\tools\webView.exe"
 
 	$inputUdf = GUICtrlRead($inputPath)
-	If _WinAPI_UrlIs ($inputUdf)==0 Then
+	If _WinAPI_UrlIs($inputUdf) == 0 Then
 		killAll()
 		FileChangeDir(@WorkingDir & "\mpv\")
 		Run($weebp & "run mpv " & '"' & GUICtrlRead($inputPath) & '"' & " --loop=inf --player-operation-mode=pseudo-gui --force-window=yes --no-audio", "", @SW_HIDE)
 		Run($weebp & "add --wait --fullscreen --class mpv", "", @SW_HIDE)
-	 Else
+	Else
 		If StringInStr(GUICtrlRead($inputPath), "steamcommunity.com") Then
 			$idSteam = StringSplit(GUICtrlRead($inputPath), "?id=", 1)
 			ShellExecute("https://steamworkshopdownloader.io/extension/embedded/" & $idSteam[2])
