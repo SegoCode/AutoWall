@@ -6,4 +6,4 @@ Files:
  		- mpv.com
  		- libbdplus.dll
  		- libaacs.dll
-   - mpv.conf
+ 		- mpv.conf
