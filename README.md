@@ -26,16 +26,16 @@ Turn videos, gifs and webs into windows live wallpapers. The most simple and use
 ## Web wallpaper
  Set any web to wallpaper, copy url and paste on text field, also youtube videos.
  
- Set youtube video as a wallpaper using this url format;
- 
- *https://www.youtube.com/embed/(VIDEO_ID)?autoplay=1&loop=1&mute=1&playlist=(VIDEO_ID)*
- 
- *For add sound change the mute value (&mute=1) to zero (&mute=0)*
+ - Set youtube video as a wallpaper using this url format;
 
- Set  [shadertoy](https://www.shadertoy.com) as a wallpaper using this url format;
+*https://www.youtube.com/embed/(VIDEO_ID)?autoplay=1&loop=1&mute=1&playlist=(VIDEO_ID)*
+
+*For add sound change the mute value (&mute=1) to zero (&mute=0)*
+
+ - Set  [shadertoy](https://www.shadertoy.com) as a wallpaper using this url format;
  
- *https://www.shadertoy.com/embed/(ID)?gui=false&t=10&paused=false&muted=true*
- 
+*https://www.shadertoy.com/embed/(ID)?gui=false&t=10&paused=false&muted=true*
+
  *For add sound change the mute value (&mute=true) to true (&mute=false)*
 
 ## Steam workshop
