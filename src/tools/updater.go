@@ -13,7 +13,7 @@ func main() {
 		Repository: "AutoWall",
 	}
 	
-	verfile, _ := ioutil.ReadFile("version.dat")
+	verfile, _ := ioutil.ReadFile("tools\\version.dat")
 	res, _ := latest.Check(githubTag, string(verfile))
 
 	if res.Outdated {
