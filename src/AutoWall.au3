@@ -23,8 +23,7 @@ $resetb = GUICtrlCreateButton("Reset", 432, 40, 75, 25)
 $browseb = GUICtrlCreateButton("Browse", 352, 40, 75, 25)
 $inputPath = GUICtrlCreateInput("", 8, 8, 417, 25)
 $winStart = GUICtrlCreateCheckbox("Set on windows startup", 8, 40, 137, 25)
-Opt("TrayMenuMode", 3)
-TrayCreateItem("Version: 1.6", -1, -1, 0)
+Opt("TrayMenuMode", 1)
 Opt("TrayOnEventMode", 1)
 #endregion ### END Koda GUI section ###
 
