@@ -65,7 +65,7 @@ Func onWinStart()
 		$args = GUICtrlRead($inputPath)
 		$LinkFileName = @AppDataDir & "\Microsoft\Windows\Start Menu\Programs\Startup\" & "\AutoWall.lnk"
 		$WorkingDirectory = @WorkingDir
-		FileCreateShortcut($FileName, $LinkFileName, $WorkingDirectory, $args, "", "", "", "", @SW_SHOWNORMAL)
+		FileCreateShortcut($FileName, $LinkFileName, $WorkingDirectory, '"' &$args& '"', "", "", "", "", @SW_SHOWNORMAL)
 	Else
 		FileDelete(@AppDataDir & "\Microsoft\Windows\Start Menu\Programs\Startup\AutoWall.lnk")
 	EndIf
