@@ -79,7 +79,7 @@ Func setwallpaper()
 	If _WinAPI_UrlIs($inputUdf) == 0 Then
 		killAll()
 		FileChangeDir(@WorkingDir & "\mpv\")
-		Run($weebp & "run mpv " & '"' & GUICtrlRead($inputPath) & '"' & " --loop=inf --player-operation-mode=pseudo-gui --force-window=yes --no-audio", "", @SW_HIDE)
+		Run($weebp & "run mpv " & '"' & GUICtrlRead($inputPath) & '"' & " --loop=inf --player-operation-mode=pseudo-gui --force-window=yes --input-ipc-server=\\.\pipe\mpvsocket", "", @SW_HIDE)
 		Run($weebp & "add --wait --fullscreen --class mpv", "", @SW_HIDE)
 	Else
 		If StringInStr(GUICtrlRead($inputPath), "steamcommunity.com") Then
