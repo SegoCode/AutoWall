@@ -49,7 +49,7 @@ Turn videos, gifs and webs into windows live wallpapers. The most simple and use
 
 https://github.com/SegoCode/AutoWall/releases/
 
-## Download lives wallpapers for AutoWall 
+## Lives wallpapers for AutoWall 
 List of sites to find the perfect live wallpaper for you;
 
 https://gist.github.com/SegoCode/1355316837132caeabd2e0e7bf612386
