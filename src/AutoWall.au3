@@ -16,7 +16,7 @@
 #include <MsgBoxConstants.au3>
 #include <AutoItConstants.au3>
 #include <WinAPIShPath.au3>
-#region ### START Koda GUI section ### Form=
+#Region ### START Koda GUI section ### Form=
 $form = GUICreate("github.com/SegoCode", 513, 72, 183, 124)
 $applyb = GUICtrlCreateButton("Apply", 432, 8, 75, 25)
 $resetb = GUICtrlCreateButton("Reset", 432, 40, 75, 25)
@@ -25,8 +25,12 @@ $inputPath = GUICtrlCreateInput("", 8, 8, 417, 25)
 $winStart = GUICtrlCreateCheckbox("Set on windows startup", 8, 40, 137, 25)
 Opt("TrayMenuMode", 1)
 Opt("TrayOnEventMode", 1)
-#endregion ### END Koda GUI section ###
+#EndRegion ### END Koda GUI section ###
 
+;Service
+Run(@WorkingDir & "\tools\autoPause.exe", "", @SW_HIDE)
+
+;Autorun
 If $CmdLine[0] > 0 Then
 	GUICtrlSetData($inputPath, $CmdLine[1])
 	setwallpaper()
@@ -64,7 +68,7 @@ Func onWinStart()
 		$args = GUICtrlRead($inputPath)
 		$LinkFileName = @AppDataDir & "\Microsoft\Windows\Start Menu\Programs\Startup\" & "\AutoWall.lnk"
 		$WorkingDirectory = @WorkingDir
-		FileCreateShortcut($FileName, $LinkFileName, $WorkingDirectory, '"' &$args& '"', "", "", "", "", @SW_SHOWNORMAL)
+		FileCreateShortcut($FileName, $LinkFileName, $WorkingDirectory, '"' & $args & '"', "", "", "", "", @SW_SHOWNORMAL)
 	Else
 		FileDelete(@AppDataDir & "\Microsoft\Windows\Start Menu\Programs\Startup\AutoWall.lnk")
 	EndIf

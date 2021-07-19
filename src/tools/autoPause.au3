@@ -1,28 +1,33 @@
+#NoTrayIcon
+#include <Misc.au3>
+
+If _Singleton("AutoWallService", 1) = 0 Then
+	Exit
+EndIf
+
 $pause = False
 
 While 1
-    ; Resolution might be changed
-    $iW = @DesktopWidth
-    $iH = @DesktopHeight
+	; Resolution might be changed
+	$iW = @DesktopWidth
+	$iH = @DesktopHeight
 	$Actwin = WinGetHandle("[active]")
-    $aPos = WinGetPos($Actwin)
-    $sText = WinGetTitle($Actwin)
+	$aPos = WinGetPos($Actwin)
+	$wText = WinGetTitle($Actwin)
 	
-    ; check GUI fill the screen
-    If $aPos[2] >= $iW And $aPos[3] >= $iH And StringLen($sText) > 0 Then
-		If not $pause Then
+	; check GUI fill the screen
+	If $aPos <> 0 And $aPos[2] >= $iW And $aPos[3] >= $iH And StringLen($wText) > 0 Then
+		If Not $pause Then
 			; FullScreen
 			Run(@ComSpec & " /c " & "echo cycle pause >\\.\pipe\mpvsocket")
-			$pause=True
+			$pause = True
 		EndIf
-    Else
+	Else
 		If $pause Then
 			; not FullScreen
 			Run(@ComSpec & " /c " & "echo cycle pause >\\.\pipe\mpvsocket")
-			$pause=False
+			$pause = False
 		EndIf
-    EndIf
-
-    Sleep(2000)
+	EndIf
+	Sleep(2000)
 WEnd
-
