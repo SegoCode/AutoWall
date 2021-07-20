@@ -54,7 +54,7 @@ In steam launcher, right button on the article page, copy url and paste on text 
 
 ## Configure performance
 
-AutoWall works with [mpv](src/mpv), the configuration is available in the folder "/mpv/" with the name "mpv.conf" editing with notedpad you can, for example, play the music of your live wallpaper changing the value "volume" to "100". 
+AutoWall works with [mpv](src/mpv), the configuration is available in "/mpv/" folder with the name "mpv.conf" editing with notedpad you can, for example, play the music of your live wallpaper changing the value "volume" to "100". 
 
 Follow the [official mpv documentation](https://mpv.io/manual/stable/#configuration-files) to configure all performance parameters.
 
