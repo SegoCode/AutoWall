@@ -25,12 +25,13 @@ Turn videos, gifs and webs into windows live wallpapers. The most simple and use
 
 (1.8+)
 
-- AutoWall will stop when you play games.
+- AutoWall will stop automatically when you play games.
+- [Configure live wallpaper performance.](#configure-performance)
 
 ## Web wallpaper
- Set any web to wallpaper, copy url and paste on text field, also youtube videos.
+ Set any web to wallpaper, copy url and paste on text field, also Youtube videos.
  
- - Set youtube video as a wallpaper using this url format;
+ - Set Youtube video as a wallpaper using this url format;
 
 *https://www.youtube.com/embed/(VIDEO_ID)?autoplay=1&loop=1&mute=1&playlist=(VIDEO_ID)*
 
@@ -43,21 +44,28 @@ Turn videos, gifs and webs into windows live wallpapers. The most simple and use
  *For add sound change the mute value (&mute=true) to true (&mute=false)*
 
 ## Steam workshop
- Direct download files from steam workshop.
- 
- In steam launcher, right button on the article page, copy url and paste on text field, example url;
- 
- *https://steamcommunity.com/sharedfiles/filedetails/?id=827148653*
 
-## Download
+Direct download files from steam workshop.
+ 
+In steam launcher, right button on the article page, copy url and paste on text field, example url;
+ 
+*https://steamcommunity.com/sharedfiles/filedetails/?id=827148653*
 
-https://github.com/SegoCode/AutoWall/releases/
+
+## Configure performance
+
+AutoWall works with [mpv](src/mpv), the configuration is available in the folder "/mpv/" with the name "mpv.conf" editing with notedpad you can, for example, play the music of your live wallpaper changing the value "volume" to "100". 
+
+Follow the [official mpv documentation](https://mpv.io/manual/stable/#configuration-files) to configure all performance parameters.
 
 ## Lives wallpapers for AutoWall 
 List of sites to find the perfect live wallpaper for you;
 
 https://gist.github.com/SegoCode/1355316837132caeabd2e0e7bf612386
 
+## Download
+
+https://github.com/SegoCode/AutoWall/releases/
 
 ## Articles about AutoWall
 
