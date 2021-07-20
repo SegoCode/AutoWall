@@ -15,7 +15,7 @@ While 1
 	$aPos = WinGetPos($Actwin)
 	$wText = WinGetTitle($Actwin)
 	
-	; check GUI fill the screen
+	; check GUI fill the screen and real gui
 	If $aPos <> 0 And $aPos[2] >= $iW And $aPos[3] >= $iH And StringLen($wText) > 0 Then
 		If Not $pause Then
 			; FullScreen
