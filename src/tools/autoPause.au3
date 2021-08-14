@@ -19,13 +19,13 @@ While 1
 	If $aPos <> 0 And $aPos[2] >= $iW And $aPos[3] >= $iH And StringLen($wText) > 0 Then
 		If Not $pause Then
 			; FullScreen
-			Run(@ComSpec & " /c " & "echo cycle pause >\\.\pipe\mpvsocket")
+			Run(@ComSpec & " /c " & "echo cycle pause >\\.\pipe\mpvsocket", "", @SW_HIDE)
 			$pause = True
 		EndIf
 	Else
 		If $pause Then
 			; not FullScreen
-			Run(@ComSpec & " /c " & "echo cycle pause >\\.\pipe\mpvsocket")
+			Run(@ComSpec & " /c " & "echo cycle pause >\\.\pipe\mpvsocket", "", @SW_HIDE)
 			$pause = False
 		EndIf
 	EndIf
