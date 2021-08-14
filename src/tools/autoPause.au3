@@ -9,8 +9,10 @@ $pause = False
 
 While 1
 	; Resolution might be changed
+	$Pos = WinGetPos("[CLASS:Shell_TrayWnd]")
 	$iW = @DesktopWidth
 	$iH = @DesktopHeight
+	if $Pos <> 0 And $Pos[3] > 0 Then $iH = $iH - $Pos[3]
 	$Actwin = WinGetHandle("[active]")
 	$aPos = WinGetPos($Actwin)
 	$wText = WinGetTitle($Actwin)
