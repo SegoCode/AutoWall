@@ -17,11 +17,13 @@
 #include <AutoItConstants.au3>
 #include <WinAPIShPath.au3>
 #Region ### START Koda GUI section ### Form=
-$form = GUICreate("github.com/SegoCode", 513, 72, 183, 124)
+$form = GUICreate("github.com/SegoCode", 513, 72, 183, 124,-1,$WS_EX_ACCEPTFILES)
+GUISetOnEvent($GUI_EVENT_DROPPED,-1)
 $applyb = GUICtrlCreateButton("Apply", 432, 8, 75, 25)
 $resetb = GUICtrlCreateButton("Reset", 432, 40, 75, 25)
 $browseb = GUICtrlCreateButton("Browse", 352, 40, 75, 25)
 $inputPath = GUICtrlCreateInput("", 8, 8, 417, 25)
+GUICtrlSetState(-1, $GUI_DROPACCEPTED)
 $winStart = GUICtrlCreateCheckbox("Set on windows startup", 8, 40, 137, 25)
 Opt("TrayMenuMode", 1)
 Opt("TrayOnEventMode", 1)
@@ -108,9 +110,9 @@ EndFunc   ;==>setwallpaper
 
 Func browsefiles()
 	Local Const $sMessage = "Select the video for wallpaper"
-	Local $sFileOpenDialog = FileOpenDialog($sMessage, @WorkingDir & "\VideosHere" & "\", "Videos (*.avi;*.mp4;*.gif;*.mkv;*.webm;*.mov)", BitOR($FD_FILEMUSTEXIST, $FD_PATHMUSTEXIST))
+	Local $sFileOpenDialog = FileOpenDialog($sMessage, @WorkingDir & "\VideosHere" & "\", "Videos (*.avi;*.mp4;*.gif;*.mkv;*.webm;*.mts;*.wmv;*.flv;*.mov)", BitOR($FD_FILEMUSTEXIST, $FD_PATHMUSTEXIST))
 	If @error Then
-		MsgBox($MB_SYSTEMMODAL, "", "No file was selected.")
+		MsgBox($MB_SYSTEMMODAL, "Info", "No file was selected.")
 		FileChangeDir(@ScriptDir)
 	Else
 		FileChangeDir(@ScriptDir)
