@@ -32,5 +32,5 @@ While 1
 			$pause = False
 		EndIf
 	EndIf
-	Sleep(200)
+	Sleep(100)
 WEnd
