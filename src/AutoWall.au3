@@ -17,8 +17,8 @@
 #include <AutoItConstants.au3>
 #include <WinAPIShPath.au3>
 #Region ### START Koda GUI section ### Form=
-$form = GUICreate("github.com/SegoCode", 513, 72, 183, 124,-1,$WS_EX_ACCEPTFILES)
-GUISetOnEvent($GUI_EVENT_DROPPED,-1)
+$form = GUICreate("github.com/SegoCode", 513, 72, 183, 124, -1, $WS_EX_ACCEPTFILES)
+GUISetOnEvent($GUI_EVENT_DROPPED, -1)
 $applyb = GUICtrlCreateButton("Apply", 432, 8, 75, 25)
 $resetb = GUICtrlCreateButton("Reset", 432, 40, 75, 25)
 $browseb = GUICtrlCreateButton("Browse", 352, 40, 75, 25)
