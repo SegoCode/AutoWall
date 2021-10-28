@@ -51,6 +51,8 @@ In steam launcher, right button on the article page, copy url and paste on text 
  
 *https://steamcommunity.com/sharedfiles/filedetails/?id=827148653*
 
+*Maybe you might be interested in https://github.com/SegoCode/swd*
+
 
 ## Configure performance
 
