@@ -16,6 +16,9 @@
 #include <MsgBoxConstants.au3>
 #include <AutoItConstants.au3>
 #include <WinAPIShPath.au3>
+#include <GuiComboBox.au3>
+
+
 #Region ### START Koda GUI section ### Form=
 $form = GUICreate("github.com/SegoCode", 513, 72, 183, 124, -1, $WS_EX_ACCEPTFILES)
 GUISetOnEvent($GUI_EVENT_DROPPED, -1)
@@ -28,6 +31,17 @@ $winStart = GUICtrlCreateCheckbox("Set on windows startup", 8, 40, 137, 25)
 Opt("TrayMenuMode", 1)
 Opt("TrayOnEventMode", 1)
 #EndRegion ### END Koda GUI section ###
+
+;Detect multiple screen 
+$multiScreen = False
+If int(_WinAPI_GetSystemMetrics($SM_CMONITORS)) > 1 Then
+	$multiScreen = True
+	$comboScreens = GUICtrlCreateCombo("", 225, 41, 120, 0, $CBS_DROPDOWNLIST)
+	_GUICtrlComboBox_SetItemHeight($comboScreens, 17)
+	For $i = 0 To int(_WinAPI_GetSystemMetrics($SM_CMONITORS)) -1
+		 GUICtrlSetData($comboScreens, "Apply on screen " & $i+1)
+	Next
+EndIf
 
 ;Service
 Run(@WorkingDir & "\tools\autoPause.exe", "", @SW_HIDE)
@@ -54,7 +68,11 @@ While 1
 		Case $GUI_EVENT_CLOSE
 			Exit
 		Case $applyb
-			setwallpaper()
+			If $multiScreen Then
+				setwallpaperMultiScreen()
+			Else
+				setwallpaper()
+			EndIf
 		Case $browseb
 			browsefiles()
 		Case $winStart
@@ -75,6 +93,16 @@ Func onWinStart()
 		FileDelete(@AppDataDir & "\Microsoft\Windows\Start Menu\Programs\Startup\AutoWall.lnk")
 	EndIf
 EndFunc   ;==>onWinStart
+
+Func setwallpaperMultiScreen()
+	$oldwork = @WorkingDir
+	$weebp = @WorkingDir & "\weebp\wp.exe "
+	$webview = @WorkingDir & "\tools\webView.exe"
+	
+	FileChangeDir(@WorkingDir & "\mpv\")
+	RunWait($weebp & "run mpv " & '"' & GUICtrlRead($inputPath) & '"' & " --screen="& _GUICtrlComboBox_GetCurSel($comboScreens)+1 &" --loop=inf --player-operation-mode=pseudo-gui --force-window=yes --input-ipc-server=\\.\pipe\mpvsocket", "", @SW_HIDE)
+	Run($weebp & "add --wait --fullscreen --class mpv", "", @SW_HIDE)
+EndFunc   ;==>setwallpaperMultiScreen
 
 Func setwallpaper()
 	$oldwork = @WorkingDir
