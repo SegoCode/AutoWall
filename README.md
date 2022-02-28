@@ -28,6 +28,9 @@ Turn videos, gifs and webs into windows live wallpapers. The most simple and use
 - AutoWall will stop automatically when you play games.
 - [Configure live wallpaper performance.](#configure-performance)
 
+(1.9+)
+- AutoWall videos will stop when wallpaper is not visible (even if not playing any games).
+
 ## Web wallpaper
  Set any web to wallpaper, copy url and paste on text field, also Youtube videos.
  
@@ -61,9 +64,28 @@ AutoWall works with [mpv](src/mpv), the configuration is available in "/mpv/" fo
 Follow the [official mpv documentation](https://mpv.io/manual/stable/#configuration-files) to configure all performance parameters.
 
 ## Lives wallpapers for AutoWall 
-List of sites to find the perfect live wallpaper for you;
+<details>
+    <summary>List of sites to find and download the perfect live wallpaper for use in AutoWall;</summary>
+ 
+    https://mylivewallpapers.com/
 
-https://gist.github.com/SegoCode/1355316837132caeabd2e0e7bf612386
+    https://wallpaperwaifu.com/
+
+    https://moewalls.com/
+
+    http://openings.moe/
+
+    https://www.shadertoy.com/
+
+    https://livewallpapers4free.com/
+
+    https://gfycat.com/gifs/search/live+wallpaper/
+
+    https://steamcommunity.com/workshop/browse/?appid=431960
+
+    https://www.deviantart.com/rainwallpaper/gallery/
+ 
+</details>
 
 ## Download
 
