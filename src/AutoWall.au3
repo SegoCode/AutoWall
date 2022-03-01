@@ -26,38 +26,52 @@ $applyb = GUICtrlCreateButton("Apply", 432, 8, 75, 25)
 $resetb = GUICtrlCreateButton("Reset", 432, 40, 75, 25)
 $browseb = GUICtrlCreateButton("Browse", 352, 40, 75, 25)
 $inputPath = GUICtrlCreateInput("", 8, 8, 417, 25)
+$comboScreens = GUICtrlCreateCombo("", 225, 41, 120, 0, $CBS_DROPDOWNLIST)
 GUICtrlSetState(-1, $GUI_DROPACCEPTED)
 $winStart = GUICtrlCreateCheckbox("Set on windows startup", 8, 40, 137, 25)
 Opt("TrayMenuMode", 1)
 Opt("TrayOnEventMode", 1)
 #EndRegion ### END Koda GUI section ###
 
-;Detect multiple screen 
-$multiScreen = False
-If int(_WinAPI_GetSystemMetrics($SM_CMONITORS)) > 1 Then
-	$multiScreen = True
-	$comboScreens = GUICtrlCreateCombo("", 225, 41, 120, 0, $CBS_DROPDOWNLIST)
-	_GUICtrlComboBox_SetItemHeight($comboScreens, 17)
-	For $i = 0 To int(_WinAPI_GetSystemMetrics($SM_CMONITORS)) -1
-		 GUICtrlSetData($comboScreens, "Apply on screen " & $i+1)
-	Next
-EndIf
-
-;Service
-Run(@WorkingDir & "\tools\autoPause.exe", "", @SW_HIDE)
 
 ;Autorun
 If $CmdLine[0] > 0 Then
 	GUICtrlSetData($inputPath, $CmdLine[1])
 	setwallpaper()
 	Exit
-Else
-	GUISetState(@SW_SHOW)
 EndIf
 
+;Detect multiple screen 
+$multiScreen = False
+If int(_WinAPI_GetSystemMetrics($SM_CMONITORS)) > 1 Then
+	$aBox = MsgBox(4, "Multi screen detected", "Do you want run AutoWall in multi screen mode?")
+	If $aBox = 6 Then
+		$multiScreen = True
+	ElseIf $aBox = 7 Then
+		$multiScreen = False
+	EndIf
+EndIf
+
+If Not $multiScreen Then
+	;Wallpaper stop when isnt visible
+	Run(@WorkingDir & "\tools\autoPause.exe", "", @SW_HIDE)
+EndIf
+
+
 ;Init gui
+GUISetState(@SW_SHOW)
 GUICtrlSendMsg($inputPath, $EM_SETCUEBANNER, False, "Browse and select video")
 GUICtrlSetState($winStart, $GUI_DISABLE)
+
+If $multiScreen Then ;Init gui multiScreen
+	GUICtrlSetState($applyb, $GUI_DISABLE)
+	_GUICtrlComboBox_SetItemHeight($comboScreens, 17)
+	For $i = 0 To int(_WinAPI_GetSystemMetrics($SM_CMONITORS)) -1
+		GUICtrlSetData($comboScreens, "Apply on screen " & $i+1)
+	Next
+Else
+	GUICtrlSetState($comboScreens, $GUI_HIDE)
+EndIf
 
 ;Check updates
 Run(@WorkingDir & "\tools\updater.exe", "", @SW_HIDE)
@@ -75,6 +89,10 @@ While 1
 			EndIf
 		Case $browseb
 			browsefiles()
+		case $comboScreens
+			GUICtrlSetState($applyb, $GUI_ENABLE)
+			GUICtrlSetState($winStart, $GUI_UNCHECKED)
+			GUICtrlSetData($inputPath, "")
 		Case $winStart
 			onWinStart()
 		Case $resetb
@@ -101,6 +119,7 @@ Func setwallpaperMultiScreen()
 	
 	FileChangeDir(@WorkingDir & "\mpv\")
 	RunWait($weebp & "run mpv " & '"' & GUICtrlRead($inputPath) & '"' & " --screen="& _GUICtrlComboBox_GetCurSel($comboScreens)+1 &" --loop=inf --player-operation-mode=pseudo-gui --force-window=yes --input-ipc-server=\\.\pipe\mpvsocket", "", @SW_HIDE)
+	sleep(500)
 	Run($weebp & "add --wait --fullscreen --class mpv", "", @SW_HIDE)
 EndFunc   ;==>setwallpaperMultiScreen
 
