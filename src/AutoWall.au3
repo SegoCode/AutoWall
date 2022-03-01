@@ -34,11 +34,18 @@ Opt("TrayOnEventMode", 1)
 #EndRegion ### END Koda GUI section ###
 
 
-;Autorun
+;Autorun lauch
+$autoRunState=False
 If $CmdLine[0] > 0 Then
-	GUICtrlSetData($inputPath, $CmdLine[1])
-	setwallpaper()
-	Exit
+	$autoRunState=True
+	If $CmdLine[0] > 1 Then		
+		GUICtrlSetData($inputPath, $CmdLine[1])
+		setwallpaperMultiScreen($CmdLine[2])
+	Else
+		GUICtrlSetData($inputPath, $CmdLine[1])
+		setwallpaper()
+	EndIf
+	Exit	
 EndIf
 
 ;Detect multiple screen 
@@ -112,13 +119,17 @@ Func onWinStart()
 	EndIf
 EndFunc   ;==>onWinStart
 
-Func setwallpaperMultiScreen()
+Func setwallpaperMultiScreen($screenNumber = 0)
 	$oldwork = @WorkingDir
 	$weebp = @WorkingDir & "\weebp\wp.exe "
 	$webview = @WorkingDir & "\tools\webView.exe"
 	
+	If Not $autoRunState Then
+		$screenNumber = _GUICtrlComboBox_GetCurSel($comboScreens)+1
+	EndIf
+	
 	FileChangeDir(@WorkingDir & "\mpv\")
-	RunWait($weebp & "run mpv " & '"' & GUICtrlRead($inputPath) & '"' & " --screen="& _GUICtrlComboBox_GetCurSel($comboScreens)+1 &" --loop=inf --player-operation-mode=pseudo-gui --force-window=yes --input-ipc-server=\\.\pipe\mpvsocket", "", @SW_HIDE)
+	RunWait($weebp & "run mpv " & '"' & GUICtrlRead($inputPath) & '"' & " --screen="& $screenNumber &" --loop=inf --player-operation-mode=pseudo-gui --force-window=yes --input-ipc-server=\\.\pipe\mpvsocket", "", @SW_HIDE)
 	sleep(500)
 	Run($weebp & "add --wait --fullscreen --class mpv", "", @SW_HIDE)
 EndFunc   ;==>setwallpaperMultiScreen
