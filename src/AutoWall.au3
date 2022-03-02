@@ -39,6 +39,7 @@ $autoRunState=False
 If $CmdLine[0] > 0 Then
 	$autoRunState=True
 	If $CmdLine[0] > 1 Then		
+		sleep(1000 + Random(1, 1000, 2000))
 		GUICtrlSetData($inputPath, $CmdLine[1])
 		setwallpaperMultiScreen($CmdLine[2])
 	Else
@@ -51,7 +52,7 @@ EndIf
 ;Detect multiple screen 
 $multiScreen = False
 If int(_WinAPI_GetSystemMetrics($SM_CMONITORS)) > 1 Then
-	$aBox = MsgBox(4, "Multi screen detected", "Do you want run AutoWall in multi screen mode?")
+	$aBox = MsgBox(4, "Multi-screen detected", "Do you want run AutoWall in multi-screen mode?")
 	If $aBox = 6 Then
 		$multiScreen = True
 	ElseIf $aBox = 7 Then
@@ -72,6 +73,7 @@ GUICtrlSetState($winStart, $GUI_DISABLE)
 
 If $multiScreen Then ;Init gui multiScreen
 	GUICtrlSetState($applyb, $GUI_DISABLE)
+	GUICtrlSetState($browseb, $GUI_DISABLE)
 	_GUICtrlComboBox_SetItemHeight($comboScreens, 17)
 	For $i = 0 To int(_WinAPI_GetSystemMetrics($SM_CMONITORS)) -1
 		GUICtrlSetData($comboScreens, "Apply on screen " & $i+1)
@@ -98,6 +100,7 @@ While 1
 			browsefiles()
 		case $comboScreens
 			GUICtrlSetState($applyb, $GUI_ENABLE)
+			GUICtrlSetState($browseb, $GUI_ENABLE)
 			GUICtrlSetState($winStart, $GUI_UNCHECKED)
 			GUICtrlSetData($inputPath, "")
 		Case $winStart
@@ -111,11 +114,23 @@ Func onWinStart()
 	If GUICtrlRead($winStart) = $GUI_CHECKED Then
 		$FileName = @WorkingDir & "\AutoWall.exe"
 		$args = GUICtrlRead($inputPath)
-		$LinkFileName = @AppDataDir & "\Microsoft\Windows\Start Menu\Programs\Startup\" & "\AutoWall.lnk"
-		$WorkingDirectory = @WorkingDir
-		FileCreateShortcut($FileName, $LinkFileName, $WorkingDirectory, '"' & $args & '"', "", "", "", "", @SW_SHOWNORMAL)
-	Else
+		
+		If $multiScreen Then
+			$LinkFileName = @AppDataDir & "\Microsoft\Windows\Start Menu\Programs\Startup\" & "\AutoWall"& (_GUICtrlComboBox_GetCurSel($comboScreens)+1)&".lnk"
+			$WorkingDirectory = @WorkingDir
+			FileCreateShortcut($FileName, $LinkFileName, $WorkingDirectory, '"' & $args & '" '& (_GUICtrlComboBox_GetCurSel($comboScreens)+1), "", "", "", "", @SW_SHOWNORMAL)
+		Else
+			$LinkFileName = @AppDataDir & "\Microsoft\Windows\Start Menu\Programs\Startup\" & "\AutoWall.lnk"
+			$WorkingDirectory = @WorkingDir
+			FileCreateShortcut($FileName, $LinkFileName, $WorkingDirectory, '"' & $args & '"', "", "", "", "", @SW_SHOWNORMAL)
+		EndIf
+	Else	
 		FileDelete(@AppDataDir & "\Microsoft\Windows\Start Menu\Programs\Startup\AutoWall.lnk")
+		
+		If $multiScreen Then 
+				FileDelete(@AppDataDir & "\Microsoft\Windows\Start Menu\Programs\Startup\AutoWall"&(_GUICtrlComboBox_GetCurSel($comboScreens)+1)&".lnk")
+		EndIf
+		
 	EndIf
 EndFunc   ;==>onWinStart
 
@@ -132,6 +147,7 @@ Func setwallpaperMultiScreen($screenNumber = 0)
 	RunWait($weebp & "run mpv " & '"' & GUICtrlRead($inputPath) & '"' & " --screen="& $screenNumber &" --loop=inf --player-operation-mode=pseudo-gui --force-window=yes --input-ipc-server=\\.\pipe\mpvsocket", "", @SW_HIDE)
 	sleep(500)
 	Run($weebp & "add --wait --fullscreen --class mpv", "", @SW_HIDE)
+	FileChangeDir($oldwork)
 EndFunc   ;==>setwallpaperMultiScreen
 
 Func setwallpaper()
@@ -185,6 +201,13 @@ EndFunc   ;==>browsefiles
 Func reset()
 	killAll()
 	FileDelete(@AppDataDir & "\Microsoft\Windows\Start Menu\Programs\Startup\AutoWall.lnk")
+	
+	If $multiScreen Then ;Yeah boring solution
+		For $i = 0 To 10 Step 1
+			FileDelete(@AppDataDir & "\Microsoft\Windows\Start Menu\Programs\Startup\AutoWall"&$i&".lnk")
+		Next
+	EndIf
+	
 	GUICtrlSetState($winStart, $GUI_UNCHECKED)
 	GUICtrlSetData($inputPath, "")
 
