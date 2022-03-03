@@ -35,12 +35,9 @@ func main() {
 		os.Exit(1)
 	}
 
-	//Convert the body to type string
-	JSON := string(body)
-
-	// Unmarshal the JSON string into jsonMap map variable.
+	// Unmarshal the json string into jsonMap map variable.
 	var jsonMap map[string]interface{}
-	json.Unmarshal([]byte(JSON), &jsonMap)
+	json.Unmarshal([]byte(string(body)), &jsonMap)
 
 	//Get actual version
 	verfile, err := ioutil.ReadFile("tools\\version.dat")
