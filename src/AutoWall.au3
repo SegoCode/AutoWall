@@ -39,7 +39,7 @@ $autoRunState=False
 If $CmdLine[0] > 0 Then
 	$autoRunState=True
 	If $CmdLine[0] > 1 Then		
-		sleep(1000 + Random(1, 1000, 2000))
+		sleep(2000) ;Time to power others screens
 		GUICtrlSetData($inputPath, $CmdLine[1])
 		setwallpaperMultiScreen($CmdLine[2])
 	Else
@@ -144,9 +144,19 @@ Func setwallpaperMultiScreen($screenNumber = 0)
 	EndIf
 	
 	FileChangeDir(@WorkingDir & "\mpv\")
+	
+	;This is a temporary solution, usefull to initialize the screens, the first video does not have loop which dying in the end
+	
+	;Init screen, fake video spawn 
+	RunWait($weebp & "run mpv " & '"' & GUICtrlRead($inputPath) & '"' & " --screen="& $screenNumber &" --player-operation-mode=pseudo-gui --force-window=yes --input-ipc-server=\\.\pipe\mpvsocket", "", @SW_HIDE)
+	sleep(500)
+	Run($weebp & "add --wait --fullscreen --class mpv", "", @SW_HIDE)
+	
+	;Final video spawn 
 	RunWait($weebp & "run mpv " & '"' & GUICtrlRead($inputPath) & '"' & " --screen="& $screenNumber &" --loop=inf --player-operation-mode=pseudo-gui --force-window=yes --input-ipc-server=\\.\pipe\mpvsocket", "", @SW_HIDE)
 	sleep(500)
 	Run($weebp & "add --wait --fullscreen --class mpv", "", @SW_HIDE)
+
 	FileChangeDir($oldwork)
 EndFunc   ;==>setwallpaperMultiScreen
 
