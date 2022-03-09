@@ -145,20 +145,26 @@ Func setwallpaperMultiScreen($screenNumber = 0)
 	
 	FileChangeDir(@WorkingDir & "\mpv\")
 	
-	;This is a temporary solution, usefull to initialize the screens, the first video does not have loop which dying in the end
-	
-	;Init screen, fake video spawn 
-	RunWait($weebp & "run mpv " & '"' & GUICtrlRead($inputPath) & '"' & " --screen="& $screenNumber &" --player-operation-mode=pseudo-gui --force-window=yes --input-ipc-server=\\.\pipe\mpvsocket", "", @SW_HIDE)
-	sleep(500)
-	Run($weebp & "add --wait --fullscreen --class mpv", "", @SW_HIDE)
-	
-	;Final video spawn 
-	RunWait($weebp & "run mpv " & '"' & GUICtrlRead($inputPath) & '"' & " --screen="& $screenNumber &" --loop=inf --player-operation-mode=pseudo-gui --force-window=yes --input-ipc-server=\\.\pipe\mpvsocket", "", @SW_HIDE)
-	sleep(500)
-	Run($weebp & "add --wait --fullscreen --class mpv", "", @SW_HIDE)
-
+	$inputUdf = GUICtrlRead($inputPath)
+	If _WinAPI_UrlIs($inputUdf) == 0 Then
+		;This is a temporary solution, usefull to initialize the screens, the first video does not have loop which dying in the end
+		
+		;Init screen, fake video spawn dying in the end
+		RunWait($weebp & "run mpv " & '"' & GUICtrlRead($inputPath) & '"' & " --screen="& $screenNumber &" --player-operation-mode=pseudo-gui --force-window=yes --input-ipc-server=\\.\pipe\mpvsocket", "", @SW_HIDE)
+		sleep(500)
+		Run($weebp & "add --wait --fullscreen --class mpv", "", @SW_HIDE)
+		
+		;Final video spawn 
+		RunWait($weebp & "run mpv " & '"' & GUICtrlRead($inputPath) & '"' & " --screen="& $screenNumber &" --loop=inf --player-operation-mode=pseudo-gui --force-window=yes --input-ipc-server=\\.\pipe\mpvsocket", "", @SW_HIDE)
+		sleep(500)
+		Run($weebp & "add --wait --fullscreen --class mpv", "", @SW_HIDE)
+	Else
+		MsgBox(0, "AutoWall Multi-screen mode", "Web wallpaper is not supported in multi-screen mode")
+		GUICtrlSetData($inputPath, "")
+	EndIf
 	FileChangeDir($oldwork)
 EndFunc   ;==>setwallpaperMultiScreen
+
 
 Func setwallpaper()
 	$oldwork = @WorkingDir
