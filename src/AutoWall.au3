@@ -102,6 +102,7 @@ While 1
 			GUICtrlSetState($applyb, $GUI_ENABLE)
 			GUICtrlSetState($browseb, $GUI_ENABLE)
 			GUICtrlSetState($winStart, $GUI_UNCHECKED)
+			GUICtrlSetState($winStart, $GUI_DISABLE)
 			GUICtrlSetData($inputPath, "")
 		Case $winStart
 			onWinStart()
@@ -164,7 +165,6 @@ Func setwallpaperMultiScreen($screenNumber = 0)
 	EndIf
 	FileChangeDir($oldwork)
 EndFunc   ;==>setwallpaperMultiScreen
-
 
 Func setwallpaper()
 	$oldwork = @WorkingDir
@@ -252,3 +252,4 @@ Func killAll()
 	Run(@WorkingDir & "\weebp\wp.exe ls", "", @SW_HIDE)
 
 EndFunc   ;==>killAll
+
