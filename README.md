@@ -71,7 +71,7 @@ Follow the [official mpv documentation](https://mpv.io/manual/stable/#configurat
 
 ## Multiple screens
 
-Autowall from 1.10+ has implemented a very expected request, multiscreen mode, this still in Beta due to the number of use cases, [open an issue if you see something strange or something to improved](https://github.com/SegoCode/AutoWall/issues/new). Currently multiscreen mode doesnt support many of the singlescreen mode features such as "Stop when Wallpaper is not visible" or "Web wallpaper" . . .
+Autowall from 1.10+ has implemented a very expected request, multiscreen mode. When you have more than one screen, Autowall detects it and show you the option to run it in mutiscreen mode, this still in Beta due to the number of use cases, [open an issue if you see something strange or something to improved](https://github.com/SegoCode/AutoWall/issues/new). Currently multiscreen mode doesnt support many of the singlescreen mode features such as "Stop when Wallpaper is not visible" or "Web wallpaper" . . .
 
 ## Lives wallpapers for AutoWall 
 <details>
