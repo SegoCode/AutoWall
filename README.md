@@ -29,7 +29,13 @@ Turn videos, gifs and webs into windows live wallpapers. The most simple and use
 - [Configure live wallpaper performance.](#configure-performance)
 
 (1.9+)
+
 - AutoWall videos will stop when wallpaper is not visible (even if not playing any games).
+
+(1.10+)
+
+- [Support for multiple screens (Beta)](#multiple-screens)
+
 
 ## Web wallpaper
  Set any web to wallpaper, copy url and paste on text field, also Youtube videos.
@@ -62,6 +68,10 @@ In steam launcher, right button on the article page, copy url and paste on text 
 AutoWall works with [mpv](src/mpv), the configuration is available in "/mpv/" folder with the name "mpv.conf" editing with notedpad you can, for example, play the music of your live wallpaper changing the value "volume" to "100". 
 
 Follow the [official mpv documentation](https://mpv.io/manual/stable/#configuration-files) to configure all performance parameters.
+
+## Multiple screens
+
+Autowall from 1.10+ has implemented a very expected request, multiscreen mode, this still in Beta due to the number of use cases, [open an issue if you see something strange or something to improved](https://github.com/SegoCode/AutoWall/issues/new). Currently multiscreen mode doesnt support many of the singlescreen mode features such as "Stop when Wallpaper is not visible" or "Web wallpaper"...
 
 ## Lives wallpapers for AutoWall 
 <details>
