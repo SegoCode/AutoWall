@@ -47,7 +47,7 @@ func main() {
 
 	//Check version
 	if string(verfile) != jsonMap["tag_name"] {
-		respD := MessageBox(0, "You are running an old version of AutoWall, the actual version is "+jsonMap["tag_name"].(string)+"\nChanges in the latest version:\n\n"+jsonMap["body"].(string)+"\n\n Do you want download last version?", "AutoWall Updater, new version is available", 4)
+		respD := MessageBox(0, "You are running an old version of AutoWall, the latest version is "+jsonMap["tag_name"].(string)+"\nChanges in the latest version:\n\n"+jsonMap["body"].(string)+"\n\n Do you want download last version?", "AutoWall Updater, new version is available", 4)
 		if respD == 6 {
 			exec.Command("rundll32", "url.dll,FileProtocolHandler", jsonMap["html_url"].(string)).Start()
 		}
