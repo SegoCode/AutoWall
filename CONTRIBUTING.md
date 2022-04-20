@@ -18,6 +18,7 @@ All types of contributions are encouraged and valued. See the [Table of Contents
 - [I Want To Contribute](#i-want-to-contribute)
   - [Reporting Bugs](#reporting-bugs)
   - [Suggesting Enhancements](#suggesting-enhancements)
+  - [Pull Request](#pull-request)
 
 
 ## I Have a Question
@@ -88,5 +89,14 @@ Enhancement suggestions are tracked as [GitHub issues](https://github.com/SegoCo
 - **Describe the current behavior** and **explain which behavior you expected to see instead** and why. At this point you can also tell which alternatives do not work for you.
 - **Explain why this enhancement would be useful** to most Autowall users. You may also want to point out the other projects that solved it better and which could serve as inspiration.
 
+## Pull Request
+
+You are the best, seriously 💕 All Pull Request are welcome:
+
+- Use a **clear and descriptive title** for the commit.
+- Split code in diferent commits whith **clear and descriptive title** If your code implements features without relation to each other.
+- **Explains briefly the changes would be useful** or **attach number of the issue in the commit**.
+
+That's it, simple! and of course you still the best 💕
 
 
