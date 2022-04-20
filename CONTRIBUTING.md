@@ -66,7 +66,7 @@ Once it's filed:
 
 - I will label the issue accordingly.
 - I will try to reproduce the issue with your provided steps. If there are no reproduction steps or no obvious way to reproduce the issue
-- If i will able to reproduce the issue, it will be marked with a related tag, and the issue will be left to be [implemented by someone](#your-first-code-contribution).
+- If i will able to reproduce the issue, it will be marked with a related tag, and the issue will be left to be implemented by someone.
 
 
 ### Suggesting Enhancements
