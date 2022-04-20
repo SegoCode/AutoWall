@@ -17,9 +17,9 @@ For compile extra features also called ``tools`` in https://github.com/SegoCode/
 
 ## Building 
 
-First of all download the repository ```git clone https://github.com/SegoCode/AutoWall```
+First of all download the repository ```git clone https://github.com/SegoCode/AutoWall```.
 
-Now with the [mpv](https://mpv.io/installation/) and [weebp](https://github.com/Francesco149/weebp/releases) binary unzip to respectives folders ```AutoWall/src/weebp``` and ```AutoWall/src/mpv```
+Now with the [mpv](https://mpv.io/installation/) and [weebp](https://github.com/Francesco149/weebp/releases) binary unzip to respectives folders ```AutoWall/src/weebp``` and ```AutoWall/src/mpv```.
 
 ## Compiling
 
@@ -38,7 +38,7 @@ Install golang dependences ``go install github.com/inkeliz/gowebview ``.
 
 Run golang compiler ``go build webView.go``.
 
-Using [Aut2Exe](https://www.autoitscript.com/autoit3/docs/intro/compiler.htm) compile to x64 ``autoPause.au3``
+Using [Aut2Exe](https://www.autoitscript.com/autoit3/docs/intro/compiler.htm) compile to x64 ``autoPause.au3``.
 
 __And now you will have three ``.exe`` in ``/tools``, Autowall is ready to use!__
 
