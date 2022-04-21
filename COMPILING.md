@@ -4,7 +4,7 @@
 First off, thanks for your interest in Autowall!💕 Have you already read the [contribution guide](https://github.com/SegoCode/AutoWall/blob/master/CONTRIBUTING.md)? 
 
 
-## Tools needed
+## Software needed
 
 MPV binary (Portable) available [here](https://mpv.io/installation/).
 
