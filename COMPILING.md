@@ -12,7 +12,7 @@ Weebp binary (Portable) available [here](https://github.com/Francesco149/weebp/r
 
 Autoit compiler [Aut2Exe](https://www.autoitscript.com/autoit3/docs/intro/compiler.htm) available [here](https://www.autoitscript.com/cgi-bin/getfile.pl?autoit3/autoit-v3.zip).
 
-For compile extra features also called ``tools`` in https://github.com/SegoCode/AutoWall/tree/master/src/tools you have to [download and install golang](https://go.dev/doc/install) but they are not necessary to run autowall.
+For compile extra features also called ``tools`` in [``AutoWall/src/tools/``](https://github.com/SegoCode/AutoWall/tree/master/src/tools) you have to [download and install golang](https://go.dev/doc/install) but they are not necessary to run autowall.
 
 
 ## Building 
