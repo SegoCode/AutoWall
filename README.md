@@ -21,7 +21,7 @@ Turn videos, gifs and webs into windows live wallpapers. The most simple and use
 
 (1.3+)
 
-- [Direct download from steam workshop.](#steam-workshop)
+- ~~[Direct download from steam workshop.](#steam-workshop)~~
 
 (1.8+)
 
@@ -51,16 +51,6 @@ Turn videos, gifs and webs into windows live wallpapers. The most simple and use
 *https://www.shadertoy.com/embed/(ID)?gui=false&t=10&paused=false&muted=true*
 
  *For add sound change the mute value (&mute=true) to true (&mute=false)*
-
-## Steam workshop
-
-Direct download files from steam workshop.
- 
-In steam launcher, right button on the article page, copy url and paste on text field, example url;
- 
-*https://steamcommunity.com/sharedfiles/filedetails/?id=827148653*
-
-*Maybe you might be interested in https://github.com/SegoCode/swd*
 
 
 ## Configure performance
