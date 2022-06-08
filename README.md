@@ -89,7 +89,7 @@ Autowall from 1.10+ has implemented a very expected feature, multiscreen mode. W
 
 ## Download
 
-https://github.com/SegoCode/AutoWall/releases/
+[https://github.com/SegoCode/AutoWall/releases/](https://github.com/SegoCode/AutoWall/releases/download/1.10/AutoWall.zip)
 
 ## Articles about AutoWall
 
