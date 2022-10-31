@@ -45,6 +45,7 @@ If $CmdLine[0] > 0 Then
 	Else
 		GUICtrlSetData($inputPath, $CmdLine[1])
 		setwallpaper()
+		Run(@WorkingDir & "\tools\autoPause.exe", "", @SW_HIDE)
 	EndIf
 	Exit	
 EndIf
