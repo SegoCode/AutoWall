@@ -87,12 +87,6 @@ Autowall from 1.10+ has implemented a very expected feature, multiscreen mode. W
  
 </details>
 
-## Contributors
-
-<a href="https://github.com/SegoCode/AutoWall/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=SegoCode/AutoWall" />
-</a>
-
 ## Download
 
 [https://github.com/SegoCode/AutoWall/releases/](https://github.com/SegoCode/AutoWall/releases/download/1.10/AutoWall.zip)
@@ -103,6 +97,11 @@ Autowall from 1.10+ has implemented a very expected feature, multiscreen mode. W
 
 [https://www.genbeta.com/deskmod/esta-aplicacion-gratuita . . . ](https://www.genbeta.com/deskmod/esta-aplicacion-gratuita-puedes-poner-gif-video-como-fondo-pantalla-windows-10)
 
+##
+<p align="center">
+<a href="https://github.com/SegoCode/AutoWall/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=SegoCode/AutoWall" />
+</a>
 
 
 
