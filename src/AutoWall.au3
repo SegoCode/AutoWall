@@ -181,11 +181,11 @@ Func setwallpaper()
 	Else
 		If StringInStr(GUICtrlRead($inputPath), "steamcommunity.com") Then
 			$idSteam = StringSplit(GUICtrlRead($inputPath), "?id=", 1)
-			ShellExecute("https://steamworkshopdownloader.io/extension/embedded/" & $idSteam[2])
+			;ShellExecute("https://steamworkshopdownloader.io/extension/embedded/" & $idSteam[2])
 			GUICtrlSetState($winStart, $GUI_UNCHECKED)
 			GUICtrlSetState($winStart, $GUI_DISABLE)
 			GUICtrlSetData($inputPath, "")
-			MsgBox($MB_TOPMOST, "Download from workshop", "The download has been started in your browser, if the downloaded zip contains an .mp4 file, extract it in 'VideosHere' folder.")
+			MsgBox($MB_TOPMOST, "Download from workshop", "Sorry, AutoWall no longer support steamworkshop downloads. Try download the video manually.")
 		Else
 			killAll()
 			Run($weebp & "run " & '"' & $webview & '"' & " " & GUICtrlRead($inputPath), "", @SW_HIDE)
