@@ -21,7 +21,7 @@ Turn videos, gifs and webs into windows live wallpapers. The most simple and use
 
 (1.3+)
 
-- ~~[Direct download from steam workshop.](#steam-workshop)~~
+- ~~[Direct download from steam workshop.](https://github.com/SegoCode/swd)~~
 
 (1.8+)
 
