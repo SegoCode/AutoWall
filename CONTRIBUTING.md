@@ -1,7 +1,7 @@
 
 # Contributing to Autowall
 
-First off, thanks for taking the time to contribute! 💕 Have you already read the [compiling guide](https://github.com/SegoCode/AutoWall/blob/master/COMPILING.md)?
+First off, thanks for taking the time to contribute to Autowall! 💕 Before you start, please make sure that you have read the [compilation guide](https://github.com/SegoCode/AutoWall/blob/master/COMPILING.md) to understand the requirements and steps for building the project from source.
 
 All types of contributions are encouraged and valued. See the [Table of Contents](#table-of-contents) for different ways to help and details about how this project handles them. Please make sure to read the relevant section before making your contribution. It will make it a lot easier for us maintainers and smooth out the experience for all involved. The community looks forward to your contributions. 🎉
 
