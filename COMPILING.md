@@ -70,8 +70,16 @@ Use [Aut2Exe](https://www.autoitscript.com/autoit3/docs/intro/compiler.htm) to c
 After completing these steps, you should have three .exe files in the tools directory: updater.exe, webView.exe, and autoPause.exe. Autowall is now ready to use with the extra features enabled.
 
 
-## AutoPause.au3
-> #### SegoCode at https://github.com/SegoCode/AutoWall/issues/19#issuecomment-955776642
-> Also for you and any dev reading this, the autoPause.exe is a "out of the box" deamon monitoring state of windows and send actions to mpv throw the pipe ```cycle pause >\\.\pipe\mpvsocket```, You can just delete the autoPause.exe and autowall still works perfectly without "play - pause" feature. Also this means that you can create your own window detector with any rule working with the pipe ```cycle pause >\\.\pipe\mpvsocket``` , the only thing that do Autowall is running a binary called ```autoPause.exe```
+### AutoPause.au3
+The AutoPause feature in Autowall is a background process that monitors the state of windows on a computer. It uses a pipe cycle to communicate with a media player called mpv, which is responsible for playing live wallpaper. AutoPause daemon and mpv use a pipe to exchange messages and control the playback of the live wallpaper. When a full window is detected, the AutoPause daemon sends a pause message through the pipe, which is received by mpv and causes it to pause the wallpaper. When the window is closed, the AutoPause daemon sends a play message through the pipe, which is received by mpv and causes it to resume playback of the wallpaper.
+
+One advantage of this design is that the AutoPause daemon is a separate binary file, which means it can be replaced with a custom implementation without affecting the overall functioning of Autowall. Any can create their own window detectors by working with the pipe cycle and implementing their own rules for detecting and pausing full windows. This allows for customization and flexibility in how the live wallpaper behaves.
+
+### updater.go
+A simple updater for the AutoWall software. It makes a GET request to the GitHub API to retrieve information about the latest release of the software. It then reads the local version of the software from a file called ``version.dat`` and compares it to the latest release. If the local version is older, it displays a message box to the user asking if they want to download the latest version using the rundll32 command to open the download page in the user's web browser.
+
+The ``version.dat`` file is important because it contains the version number of the currently installed version of the software. The updater uses this information to determine whether an update is available. It is important that the user does not modify this file, as doing so could cause the updater to malfunction. Modifying the file could also prevent the user from receiving important updates to the software.
 
 
+### webView.go
+A simple web viewer that allows AutoWall to display a web in a built-in web browser that can be set as a live wallpaper. As before in AutoPause.au3 any can create their own web viewer, as long as the binary has the same name, if this is not the case, you will have to modify the AutoWall code.
