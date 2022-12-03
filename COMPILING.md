@@ -3,7 +3,7 @@
 
 Welcome to the Autowall compilation guide! In this guide, you will find the instructions and requirements for building Autowall from source code.
 
-First off, thank you for your interest in contributing to the Autowall project. We hope this guide will be helpful and make the compilation process as smooth as possible. Have you already read the [contribution guide](https://github.com/SegoCode/AutoWall/blob/master/CONTRIBUTING.md)? 
+First off, thank you for your interest in contributing to the Autowall project. I hope this guide will be helpful and make the compilation process as smooth as possible. Have you already read the [contribution guide](https://github.com/SegoCode/AutoWall/blob/master/CONTRIBUTING.md)? 
 
 ## Software needed
 
