@@ -65,7 +65,7 @@ Compile the ``webView.go`` file. This will create a webView.exe file:
 go build webView.go
 ```
 
-Use [Aut2Exe](https://www.autoitscript.com/autoit3/docs/intro/compiler.htm) to compile the ``autoPause.au3`` file to x64. This will create an ``autoPause.exe```file.
+Use [Aut2Exe](https://www.autoitscript.com/autoit3/docs/intro/compiler.htm) to compile the ``autoPause.au3`` file to x64. This will create an ``autoPause.exe`` file.
 
 After completing these steps, you should have three .exe files in the tools directory: updater.exe, webView.exe, and autoPause.exe. Autowall is now ready to use with the extra features enabled.
 
