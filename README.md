@@ -9,6 +9,8 @@
 
 Turn videos, gifs and webs into windows live wallpapers. The most simple and useful [Weebp](src/weebp) implementation in autoit. 
 
+_⚠️ This software has only been tested on Windows 10 and may not be fully compatible with other versions of Windows. Some features may not be available._
+
 ## Features
 - Portable.
 - Browse your gif or video files.
