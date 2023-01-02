@@ -89,7 +89,7 @@ Autowall 1.10+ now includes the highly anticipated multiscreen mode, which is cu
  
 </details>
 
-## Download
+## Direct download
 
 [https://github.com/SegoCode/AutoWall/releases/](https://github.com/SegoCode/AutoWall/releases/download/1.10/AutoWall.zip)
 
