@@ -50,11 +50,6 @@ Navigate to the ``src/tools`` directory:
 cd src/tools
 ```
 
-Compile the ``updater.go`` file using the golang compiler. This will create an updater.exe file:
-```bash
-go build updater.go
-```
-
 Install the necessary golang dependencies. These are required for the ``webView.go`` file to be compiled properly:
 ```bash
 go install github.com/inkeliz/gowebview 
@@ -64,6 +59,8 @@ Compile the ``webView.go`` file. This will create a webView.exe file:
 ```
 go build webView.go
 ```
+
+Use [Aut2Exe](https://www.autoitscript.com/autoit3/docs/intro/compiler.htm) to compile the ``updater.au3`` file to x64. This will create an ``updater.exe`` file.
 
 Use [Aut2Exe](https://www.autoitscript.com/autoit3/docs/intro/compiler.htm) to compile the ``autoPause.au3`` file to x64. This will create an ``autoPause.exe`` file.
 
