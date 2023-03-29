@@ -72,8 +72,8 @@ The AutoPause feature in Autowall is a background process that monitors the stat
 
 One advantage of this design is that the AutoPause daemon is a separate binary file, which means it can be replaced with a custom implementation without affecting the overall functioning of Autowall. Any can create their own window detectors by working with the pipe cycle and implementing their own rules for detecting and pausing full windows. This allows for customization and flexibility in how the live wallpaper behaves.
 
-### updater.go
-A simple updater for the AutoWall software. It makes a GET request to the GitHub API to retrieve information about the latest release of the software. It then reads the local version of the software from a file called ``version.dat`` and compares it to the latest release. If the local version is older, it displays a message box to the user asking if they want to download the latest version using the rundll32 command to open the download page in the user's web browser.
+### updater.au3
+A simple updater for the AutoWall software. It makes a GET request to the GitHub API to retrieve information about the latest release of the software. It then reads the local version of the software from a file called ``version.dat`` and compares it to the latest release. If the local version is older, it displays a message box to the user asking if they want to download the latest version, open the download page in the user's web browser.
 
 The ``version.dat`` file is important because it contains the version number of the currently installed version of the software. The updater uses this information to determine whether an update is available. It is important that the user does not modify this file, as doing so could cause the updater to malfunction. Modifying the file could also prevent the user from receiving important updates to the software.
 
