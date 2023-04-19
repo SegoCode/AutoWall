@@ -1,16 +1,14 @@
-
 # Contributing to Autowall
 
-First off, thanks for taking the time to contribute to Autowall! 💕 Before you start, please make sure that you have read the [compilation guide](https://github.com/SegoCode/AutoWall/blob/master/COMPILING.md) to understand the requirements and steps for building the project from source.
+Thank you for considering contributing to Autowall! 💕 Before diving in, please ensure you've read the [compilation guide](https://github.com/SegoCode/AutoWall/blob/master/COMPILING.md) to understand the requirements and steps for building the project from source.
 
-All types of contributions are encouraged and valued. See the [Table of Contents](#table-of-contents) for different ways to help and details about how this project handles them. Please make sure to read the relevant section before making your contribution. It will make it a lot easier for us maintainers and smooth out the experience for all involved. The community looks forward to your contributions. 🎉
+We welcome and appreciate all types of contributions. See the [Table of Contents](#table-of-contents) for different ways to help and details about how this project handles them. Please read the relevant section before making your contribution, as it will make the process smoother for both maintainers and contributors. The community looks forward to your contributions! 🎉
 
-> And if you like the project, but just don't have time to contribute, that's fine. There are other easy ways to support the project and show your appreciation, which we would also be very happy about:
-> - Star the project
-> - Tweet about it
-> - Refer this project in your project's readme
-> - Mention the project at local meetups and tell your friends/colleagues
-
+If you enjoy the project but don't have time to contribute, there are other simple ways to support and show appreciation:
+- Star the project
+- Tweet about it
+- Reference this project in your project's readme
+- Mention the project at local meetups and tell your friends/colleagues
 
 ## Table of Contents
 
@@ -18,85 +16,80 @@ All types of contributions are encouraged and valued. See the [Table of Contents
 - [I Want To Contribute](#i-want-to-contribute)
   - [Reporting Bugs](#reporting-bugs)
   - [Suggesting Enhancements](#suggesting-enhancements)
-  - [Pull Request](#pull-request)
-
+  - [Pull Requests](#pull-requests)
 
 ## I Have a Question
 
-Before you ask a question, it is best to search for existing [Issues](https://github.com/SegoCode/AutoWall/issues) that might help you. In case you have found a suitable issue and still need clarification, you can write your question in this issue. It is also advisable to search the internet for answers first.
+Before asking a question, search for existing [Issues](https://github.com/SegoCode/AutoWall/issues) that might help. If you find a relevant issue and need clarification, ask your question there. It's also a good idea to search the internet for answers first.
 
-If you then still feel the need to ask a question and need clarification, we recommend the following:
+If you still need to ask a question, we recommend the following:
 
 - Open an [Issue](https://github.com/SegoCode/AutoWall/issues/new).
-- Provide as much context as you can about what you're running into.
-- Provide project and platform versions (Windows, AutoWall version, other software running in background) depending on what seems relevant.
+- Provide as much context as possible about your situation.
+- Include project and platform versions (Windows, AutoWall version, other software running in the background) when relevant.
 
-We will then take care of the issue as soon as possible.
-
+We'll address the issue as soon as possible.
 
 ## I Want To Contribute
 
 > ### Legal Notice
-> When contributing to this project, you must agree that you have authored 100% of the content, that you have the necessary rights to the content and that the content you contribute may be provided under the project license.
+> By contributing to this project, you confirm that you have authored 100% of the content, possess the necessary rights, and agree that the content may be provided under the project license.
 
 ### Reporting Bugs
 
-
 #### Before Submitting a Bug Report
 
-A good bug report shouldn't leave others needing to chase you up for more information. Therefore, we ask you to investigate carefully, collect information and describe the issue in detail in your report. Please complete the following steps in advance to help us fix any potential bug as fast as possible.
+A thorough bug report saves time for everyone involved. Please investigate, collect information, and describe the issue in detail before submitting your report. Complete the following steps beforehand to help us fix potential bugs quickly:
 
-- Make sure that you are using the latest version.
-- Determine if your bug is really a bug and not an error on your side e.g. using incompatible environment components/versions. If you are looking for support, you might want to check [this section](#i-have-a-question).
-- To see if other users have experienced (and potentially already solved) the same issue you are having, check if there is not already a bug report existing for your bug or error in the [Issues](https://github.com/SegoCode/AutoWall/issues).
+- Ensure you're using the latest version.
+- Determine if it's truly a bug, rather than an error on your side (e.g., using incompatible environment components/versions). For support, check [this section](#i-have-a-question).
+- Search [Issues](https://github.com/SegoCode/AutoWall/issues) to see if the bug has already been reported. If so, add a comment to the existing issue.
 - Collect information about the bug:
-  - OS, Platform and Version (Windows).
-  - Version of the AutoWall.
-  - Any software in seems relevant in background.
-  - Can you reliably reproduce the issue? And can you also reproduce it with older versions?
+  - OS, Platform, and Version (Windows).
+  - AutoWall version.
+  - Relevant background software.
+  - Can you reliably reproduce the issue? Can you reproduce it with older versions?
 
 #### How Do I Submit a Good Bug Report?
 
-We use GitHub issues to track bugs and errors. If you run into an issue with the project:
+We use GitHub issues to track bugs and errors. If you encounter an issue with the project:
 
-- Open an [Issue](https://github.com/SegoCode/AutoWall/issues/new). (Since we can't be sure at this point whether it is a bug or not, we ask you not to talk about a bug yet and not to label the issue.)
-- Explain the behavior you would expect and the actual behavior.
-- Please provide as much context as possible and describe the *reproduction steps* that someone else can follow to recreate the issue on their own.
+- Open an [Issue](https://github.com/SegoCode/AutoWall/issues/new). (At this point, refrain from labeling it as a bug.)
+- Explain the expected behavior and the actual behavior.
+- Provide as much context as possible and describe the *reproduction steps* for others to recreate the issue.
 
-Once it's filed:
+Once filed:
 
-- I will label the issue accordingly.
-- I will try to reproduce the issue with your provided steps. If there are no reproduction steps or no obvious way to reproduce the issue
-- If i will able to reproduce the issue, it will be marked with a related tag, and the issue will be left to be implemented by someone.
-
+- The maintainer will label the issue accordingly.
+- The maintainer will attempt to
+reproduce the issue using your provided steps. If there are no reproduction steps or no obvious way to reproduce the issue:
+  - The issue will be marked with a related tag, and left for someone to implement a solution.
 
 ### Suggesting Enhancements
 
-This section guides you through submitting an enhancement suggestion for Autowall, **including completely new features and minor improvements to existing functionality**. Following these guidelines will help maintainers and the community to understand your suggestion and find related suggestions.
+This section guides you through submitting an enhancement suggestion for Autowall, **including new features and minor improvements to existing functionality**. Following these guidelines will help maintainers and the community understand your suggestion and find related suggestions.
 
 #### Before Submitting an Enhancement
 
-- Make sure that you are using the latest version.
-- Perform a [search](https://github.com/SegoCode/AutoWall/issues) to see if the enhancement has already been suggested. If it has, add a comment to the existing issue instead of opening a new one.
-- Find out whether your idea fits with the scope and aims of the project. It's up to you to make a strong case to convince the project's developers of the merits of this feature. Keep in mind that we want features that will be useful to the majority of our users and not just a small subset.
+- Ensure you're using the latest version.
+- Perform a [search](https://github.com/SegoCode/AutoWall/issues) to see if the enhancement has already been suggested. If so, add a comment to the existing issue instead of opening a new one.
+- Determine if your idea aligns with the project's scope and goals. Make a strong case to convince the project's developers of the merits of this feature. Keep in mind that we aim for features that will benefit the majority of our users, not just a small subset.
 
 #### How Do I Submit a Good Enhancement Suggestion?
 
 Enhancement suggestions are tracked as [GitHub issues](https://github.com/SegoCode/AutoWall/issues).
 
 - Use a **clear and descriptive title** for the issue to identify the suggestion.
-- Provide a **step-by-step description of the suggested enhancement** in as many details as possible.
-- **Describe the current behavior** and **explain which behavior you expected to see instead** and why. At this point you can also tell which alternatives do not work for you.
-- **Explain why this enhancement would be useful** to most Autowall users. You may also want to point out the other projects that solved it better and which could serve as inspiration.
+- Provide a **step-by-step description of the suggested enhancement** in as much detail as possible.
+- **Describe the current behavior** and **explain the desired behavior** and why. You can also mention which alternatives do not work for you.
+- **Explain why this enhancement would be useful** to most Autowall users. You may want to reference other projects that have implemented similar features for inspiration.
 
-## Pull Request
+## Pull Requests
 
-You are the best, seriously 💕 All Pull Request are welcome:
+You're amazing, seriously 💕 All Pull Requests are welcome:
 
 - Use a **clear and descriptive title** for the commit.
-- Split code in diferent commits whith **clear and descriptive title** If your code implements features without relation to each other.
-- **Explains briefly the changes would be useful** or **attach number of the issue in the commit**.
+- If your code implements unrelated features, split it into separate commits with **clear and descriptive titles**.
+- Briefly **explain the usefulness of the changes** or **reference the issue number in the commit**.
 
-That's it, simple! and of course you still the best 💕
-
-
+That's it, simple! And you're still the best 💕
