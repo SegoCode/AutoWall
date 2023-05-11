@@ -1,5 +1,5 @@
-blank_issues_enabled: false
+blank_issues_enabled: true
 contact_links:
-  - name: Contact with the developer
+  - name: Contact the developer of AutoWall
     url: https://segocode.github.io/SegoCode/
     about: For any other inquiries about AutoWall
