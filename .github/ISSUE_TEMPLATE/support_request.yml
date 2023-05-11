@@ -1,0 +1,38 @@
+name: Support Request
+description: Ask for help or support related to AutoWall
+labels: support
+title: "[SUPPORT REQUEST] - "
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Please describe your support request clearly and concisely**
+
+  - type: textarea
+    attributes:
+      label: Issue Description
+      description: Provide a brief description of the problem you are facing
+    validations:
+      required: true
+
+  - type: dropdown
+    attributes:
+      label: Please provide your Windows version
+      options:
+        - Windows 11
+        - Windows 10
+        - Windows 8
+        - Windows 7
+        - Other
+    validations:
+      required: true
+
+  - type: checkboxes
+    attributes:
+      label: Confirmation
+      options:
+        - label: I performed a [search of the support requests](https://github.com/segocode/AutoWall/issues) to avoid submitting a duplicate request
+          required: true
+        - label: I understand that not filling out this template correctly may lead to the request being closed
+          required: true

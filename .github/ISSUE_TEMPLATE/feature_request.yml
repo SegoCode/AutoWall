@@ -1,0 +1,40 @@
+name: Feature Request
+description: Suggest an idea for AutoWall
+labels: enhancement
+title: "[FEATURE REQUEST] - "
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Please describe your feature request clearly and concisely**
+
+  - type: textarea
+    attributes:
+      label: Feature Description
+      description: Provide a brief description of the feature you'd like to see implemented
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Motivation
+      description: Explain why this feature is important and how it will enhance the user experience
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Alternatives
+      description: Discuss any alternative solutions or features you've considered
+    validations:
+      required: false
+
+  - type: checkboxes
+    attributes:
+      label: Confirmation
+      options:
+        - label: I performed a [search of the feature requests](https://github.com/segocode/AutoWall/issues) to avoid suggesting a duplicate feature
+          required: true
+        - label: I understand that not filling out this template correctly may lead to the request being closed
+          required: true
