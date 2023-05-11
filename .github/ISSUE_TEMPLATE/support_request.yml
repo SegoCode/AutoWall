@@ -1,6 +1,6 @@
 name: Support Request
 description: Ask for help or support related to AutoWall
-labels: support
+labels: question
 title: "[SUPPORT REQUEST] - "
 
 body:
