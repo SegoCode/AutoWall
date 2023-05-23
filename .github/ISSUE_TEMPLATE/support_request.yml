@@ -18,7 +18,7 @@ body:
 
   - type: dropdown
     attributes:
-      label: Please provide your Windows version
+      label: Windows version
       options:
         - Windows 11
         - Windows 10
