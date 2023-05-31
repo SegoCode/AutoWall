@@ -1,0 +1,5 @@
+Version: 1.0.0
+Source: https://github.com/SegoCode/LiteWebview
+
+Files:
+ 		- LiteWebview.exe
