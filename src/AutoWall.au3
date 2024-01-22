@@ -24,6 +24,7 @@ $form = GUICreate("github.com/SegoCode", 513, 72, 183, 124, -1, $WS_EX_ACCEPTFIL
 GUISetOnEvent($GUI_EVENT_DROPPED, -1)
 $applyb = GUICtrlCreateButton("Apply", 432, 8, 75, 25)
 $resetb = GUICtrlCreateButton("Reset", 432, 40, 75, 25)
+GUICtrlSetBkColor($resetb, 0xff7b7b)
 $browseb = GUICtrlCreateButton("Browse", 352, 40, 75, 25)
 $inputPath = GUICtrlCreateInput("", 8, 8, 417, 25)
 $comboScreens = GUICtrlCreateCombo("", 225, 41, 120, 0, $CBS_DROPDOWNLIST)
