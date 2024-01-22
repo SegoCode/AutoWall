@@ -188,8 +188,17 @@ Func setwallpaper()
 			MsgBox($MB_TOPMOST, "Download from workshop", "Sorry, AutoWall no longer support steamworkshop downloads. Try download the video manually.")
 		Else
 			killAll()
+			GUICtrlSetState($applyb, $GUI_DISABLE)
 			Run($weebp & " run " & '"' & $webview & '"' & ' "" "' & GUICtrlRead($inputPath) & '"', "", @SW_HIDE)
+            ; Loop until the window is found
+            Local $hWnd = 0
+			While $hWnd = 0
+				$hWnd = WinGetHandle("litewebview")
+                If $hWnd <> 0 Then ExitLoop ; Exit the loop if the window is found
+				Sleep(500) ; Wait for before checking again
+            WEnd
 			Run($weebp & "add --wait --fullscreen --name litewebview", "", @SW_HIDE)
+			GUICtrlSetState($applyb, $GUI_ENABLE)
 			GUICtrlSetState($winStart, $GUI_ENABLE)
 		EndIf
 	EndIf
