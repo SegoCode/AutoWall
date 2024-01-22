@@ -139,7 +139,7 @@ EndFunc   ;==>onWinStart
 Func setwallpaperMultiScreen($screenNumber = 0)
 	$oldwork = @WorkingDir
 	$weebp = @WorkingDir & "\weebp\wp.exe "
-	$webview = @WorkingDir & "\tools\webView.exe"
+	$webview = @WorkingDir & "\tools\webview.exe"
 	
 	If Not $autoRunState Then
 		$screenNumber = _GUICtrlComboBox_GetCurSel($comboScreens)+1
@@ -188,8 +188,8 @@ Func setwallpaper()
 			MsgBox($MB_TOPMOST, "Download from workshop", "Sorry, AutoWall no longer support steamworkshop downloads. Try download the video manually.")
 		Else
 			killAll()
-			Run($weebp & "run " & '"' & $webview & '"' & " " & GUICtrlRead($inputPath), "", @SW_HIDE)
-			Run($weebp & "add --wait --fullscreen --class webview", "", @SW_HIDE)
+			Run($weebp & " run " & '"' & $webview & '"' & ' "" "' & GUICtrlRead($inputPath) & '"', "", @SW_HIDE)
+			Run($weebp & "add --wait --fullscreen --name litewebview", "", @SW_HIDE)
 			GUICtrlSetState($winStart, $GUI_ENABLE)
 		EndIf
 	EndIf
@@ -242,8 +242,8 @@ Func killAll()
 	Until Not ProcessExists('wp.exe')
 
 	Do
-		ProcessClose('webView.exe')
-	Until Not ProcessExists('webView.exe')
+		ProcessClose('LiteWebview.exe')
+	Until Not ProcessExists('LiteWebview.exe')
 
 	Do
 		ProcessClose('Win32WebViewHost.exe')
