@@ -1,0 +1,82 @@
+<!-- Credits to Antonio Smoljan -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  background:#34495e;
+}
+
+.eyes {
+  position: absolute;
+  top: 50%;
+  transform:translateY(-50%);
+  text-align: center;
+  width: 100%;
+}
+
+.eye {
+  width: 240px;
+  height: 120px;
+  background: #fff;
+  display: inline-block;
+  margin: 40px;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+}
+
+.ball {
+  width: 40px;
+  height: 40px;
+  background: #000;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform:translate3d(-50%, -50%, 0);
+  border-radius: 50%;
+  border:15px solid #333;
+  
+}
+</style>
+</head>
+<body>
+  <div class="eyes">
+    <div class="eye">
+      <div class="ball"></div>
+    </div>
+    
+    <div class="eye">
+      <div class="ball"></div>
+    </div>
+  </div>
+<script>
+const balls = document.querySelectorAll(".ball");
+
+function moveEyes() {
+  let x = event.x * 100 / window.innerWidth + "%";
+  let y = event.y * 100 / window.innerHeight + "%";
+  // event.clientX => get the horizontal coordinate of the mouse
+  // event.clientY => get the vertical coordinate of the mouse
+  // window.innerWidth => get the browser width
+  // window.innerHeight => get hte browser height
+  
+  
+  console.log(event.clientX * 100 / window.innerWidth);
+  balls.forEach(b => {
+    b.style.left = x;
+    b.style.top = y;
+    b.style.transform = `translate(-${x} ,-${y})`;
+  })
+  
+}
+
+document.addEventListener("mousemove", moveEyes);
+</script>
+</body>
+</html>
