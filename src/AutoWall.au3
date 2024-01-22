@@ -181,11 +181,10 @@ Func setwallpaper()
 	Else
 		If StringInStr(GUICtrlRead($inputPath), "steamcommunity.com") Then
 			$idSteam = StringSplit(GUICtrlRead($inputPath), "?id=", 1)
-			;ShellExecute("https://steamworkshopdownloader.io/extension/embedded/" & $idSteam[2])
 			GUICtrlSetState($winStart, $GUI_UNCHECKED)
 			GUICtrlSetState($winStart, $GUI_DISABLE)
 			GUICtrlSetData($inputPath, "")
-			MsgBox($MB_TOPMOST, "Download from workshop", "Sorry, AutoWall no longer support steamworkshop downloads. Try download the video manually.")
+			MsgBox($MB_TOPMOST, "Download from workshop", "Sorry, AutoWall no longer support steamworkshop downloads.")
 		Else
 			killAll()
 			GUICtrlSetState($applyb, $GUI_DISABLE)
@@ -206,13 +205,10 @@ Func setwallpaper()
 EndFunc   ;==>setwallpaper
 
 
-
-
 Func browsefiles()
 	Local Const $sMessage = "Select the video for wallpaper"
 	Local $sFileOpenDialog = FileOpenDialog($sMessage, @WorkingDir & "\VideosHere" & "\", "Videos (*.avi;*.mp4;*.gif;*.mkv;*.webm;*.mts;*.wmv;*.flv;*.mov)", BitOR($FD_FILEMUSTEXIST, $FD_PATHMUSTEXIST))
 	If @error Then
-		MsgBox($MB_SYSTEMMODAL, "Info", "No file was selected.")
 		FileChangeDir(@ScriptDir)
 	Else
 		FileChangeDir(@ScriptDir)
@@ -225,41 +221,25 @@ Func browsefiles()
 EndFunc   ;==>browsefiles
 
 Func reset()
-	killAll()
-	FileDelete(@AppDataDir & "\Microsoft\Windows\Start Menu\Programs\Startup\AutoWall.lnk")
-	
-	If $multiScreen Then ;Yeah boring solution
-		For $i = 0 To 10 Step 1
-			FileDelete(@AppDataDir & "\Microsoft\Windows\Start Menu\Programs\Startup\AutoWall"&$i&".lnk")
-		Next
-	EndIf
-	
-	GUICtrlSetState($winStart, $GUI_UNCHECKED)
-	GUICtrlSetData($inputPath, "")
+    killAll()
+    FileDelete(@AppDataDir & "\Microsoft\Windows\Start Menu\Programs\Startup\AutoWall.lnk")
+    FileDelete(@AppDataDir & "\Microsoft\Windows\Start Menu\Programs\Startup\AutoWall*.lnk")
 
+    GUICtrlSetState($winStart, $GUI_UNCHECKED)
+    GUICtrlSetData($inputPath, "")
 EndFunc   ;==>reset
 
 
 Func killAll()
+    Local $aProcesses = ['mpv.exe', 'wp.exe', 'litewebview.exe', 'Win32WebViewHost.exe', 'autopause.exe']
 
-	Do
-		ProcessClose('mpv.exe')
-	Until Not ProcessExists('mpv.exe')
+    For $sProcess In $aProcesses
+        Do
+            ProcessClose($sProcess)
+        Until Not ProcessExists($sProcess)
+    Next
 
-	Do
-		ProcessClose('wp.exe')
-	Until Not ProcessExists('wp.exe')
-
-	Do
-		ProcessClose('LiteWebview.exe')
-	Until Not ProcessExists('LiteWebview.exe')
-
-	Do
-		ProcessClose('Win32WebViewHost.exe')
-	Until Not ProcessExists('Win32WebViewHost.exe')
-
-	;Refresh
-	Run(@WorkingDir & "\weebp\wp.exe ls", "", @SW_HIDE)
-
+    ; Refresh
+    Run(@WorkingDir & "\weebp\wp.exe ls", "", @SW_HIDE)
 EndFunc   ;==>killAll
 
