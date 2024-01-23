@@ -18,13 +18,15 @@
 #include <WinAPIShPath.au3>
 #include <GuiComboBox.au3>
 
-
+; -------------------------
+; KODA GUI FORM
+; -------------------------
 #Region ### START Koda GUI section ### Form=
 $form = GUICreate("github.com/SegoCode", 513, 72, 183, 124, -1, $WS_EX_ACCEPTFILES)
 GUISetOnEvent($GUI_EVENT_DROPPED, -1)
 $applyb = GUICtrlCreateButton("Apply", 432, 8, 75, 25)
 $resetb = GUICtrlCreateButton("Reset", 432, 40, 75, 25)
-GUICtrlSetBkColor($resetb, 0xff7b7b)
+If ReadIniKey("redResetButton") Then GUICtrlSetBkColor($resetb, 0xff7b7b)
 $browseb = GUICtrlCreateButton("Browse", 352, 40, 75, 25)
 $inputPath = GUICtrlCreateInput("", 8, 8, 417, 25)
 $comboScreens = GUICtrlCreateCombo("", 225, 41, 120, 0, $CBS_DROPDOWNLIST)
@@ -35,7 +37,9 @@ Opt("TrayOnEventMode", 1)
 #EndRegion ### END Koda GUI section ###
 
 
-;Autorun lauch
+; -------------------------
+; AUTORUN LAUCH
+; -------------------------
 $autoRunState=False
 If $CmdLine[0] > 0 Then
 	$autoRunState=True
@@ -46,7 +50,7 @@ If $CmdLine[0] > 0 Then
 	Else
 		GUICtrlSetData($inputPath, $CmdLine[1])
 		setwallpaper()
-		Run(@WorkingDir & "\tools\autoPause.exe", "", @SW_HIDE)
+		If ReadIniKey("autoPauseFeature") Then Run(@WorkingDir & "\tools\autoPause.exe", "", @SW_HIDE)
 	EndIf
 	Exit	
 EndIf
@@ -62,13 +66,9 @@ If int(_WinAPI_GetSystemMetrics($SM_CMONITORS)) > 1 Then
 	EndIf
 EndIf
 
-If Not $multiScreen Then
-	;Wallpaper stop when isnt visible
-	Run(@WorkingDir & "\tools\autoPause.exe", "", @SW_HIDE)
-EndIf
-
-
-;Init gui
+; -------------------------
+; INIT GUI
+; -------------------------
 GUISetState(@SW_SHOW)
 GUICtrlSendMsg($inputPath, $EM_SETCUEBANNER, False, "Browse and select video")
 GUICtrlSetState($winStart, $GUI_DISABLE)
@@ -87,6 +87,9 @@ EndIf
 ;Check updates
 Run(@WorkingDir & "\tools\updater.exe", "", @SW_HIDE)
 
+; -------------------------
+; GUI LOOP
+; -------------------------
 While 1
 	$nMsg = GUIGetMsg()
 	Switch $nMsg
@@ -112,6 +115,10 @@ While 1
 			reset()
 	EndSwitch
 WEnd
+
+; -------------------------
+; FUNCTIONS
+; -------------------------
 
 Func onWinStart()
 	If GUICtrlRead($winStart) = $GUI_CHECKED Then
@@ -203,6 +210,7 @@ Func setwallpaper()
 		EndIf
 	EndIf
 	FileChangeDir($oldwork)
+	If ReadIniKey("autoPauseFeature") Then Run(@WorkingDir & "\tools\autoPause.exe", "", @SW_HIDE)
 EndFunc   ;==>setwallpaper
 
 
@@ -244,3 +252,20 @@ Func killAll()
     Run(@WorkingDir & "\weebp\wp.exe ls", "", @SW_HIDE)
 EndFunc   ;==>killAll
 
+Func ReadIniKey($sKey)
+    ; Set the file path to the INI file in the working directory
+    $sFilePath = @WorkingDir & "\config.ini"
+
+    ; Check if the INI file exists
+    If Not FileExists($sFilePath) Then Return False
+
+    ; Attempt to read the value of the key
+    $sValue = IniRead($sFilePath, "Configurations", $sKey, "NotFound")
+    
+    ; Check if the key was found and if its value is 'true'
+    If $sValue == "true" Then
+        Return True
+    Else
+        Return False
+    EndIf
+EndFunc ;==>ReadIniKey
