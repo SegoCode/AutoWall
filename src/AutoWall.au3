@@ -204,6 +204,7 @@ Func setwallpaper()
                 If $hWnd <> 0 Then ExitLoop ; Exit the loop if the window is found
 				Sleep(500) ; Wait for before checking again
             WEnd
+			If ReadIniKey("mouseToWallpaper") Then Run($oldwork & "\tools\mousesender.exe", "", @SW_HIDE)
 			Run($weebp & "add --wait --fullscreen --name litewebview", "", @SW_HIDE)
 			GUICtrlSetState($applyb, $GUI_ENABLE)
 			GUICtrlSetState($winStart, $GUI_ENABLE)
@@ -255,14 +256,11 @@ EndFunc   ;==>killAll
 Func ReadIniKey($sKey)
     ; Set the file path to the INI file in the working directory
     $sFilePath = @WorkingDir & "\config.ini"
-
-    ; Check if the INI file exists
     If Not FileExists($sFilePath) Then Return False
 
     ; Attempt to read the value of the key
     $sValue = IniRead($sFilePath, "Configurations", $sKey, "NotFound")
     
-    ; Check if the key was found and if its value is 'true'
     If $sValue == "true" Then
         Return True
     Else
