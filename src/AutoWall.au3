@@ -17,6 +17,7 @@
 #include <AutoItConstants.au3>
 #include <WinAPIShPath.au3>
 #include <GuiComboBox.au3>
+#include <Date.au3>
 
 ; -------------------------
 ; KODA GUI FORM
@@ -180,9 +181,10 @@ Func setwallpaper()
 	$weebp = @WorkingDir & "\weebp\wp.exe "
 	$webview = @WorkingDir & "\tools\webView.exe"
 	$mouseWallpaper = ReadIniKey("mouseToWallpaper")
+	GUICtrlSetState($applyb, $GUI_DISABLE)
 
 	$inputUdf = GUICtrlRead($inputPath)
-	If _WinAPI_UrlIs($inputUdf) == 0 Then
+	If _WinAPI_UrlIs($inputUdf) == 0 And Not StringRegExp($inputUdf, "\.html?$", 0) Then
 		killAll()
 		FileChangeDir(@WorkingDir & "\mpv\")
 		Run($weebp & "run mpv " & '"' & GUICtrlRead($inputPath) & '"' & " --loop=inf --player-operation-mode=pseudo-gui --force-window=yes --input-ipc-server=\\.\pipe\mpvsocket", "", @SW_HIDE)
@@ -196,23 +198,21 @@ Func setwallpaper()
 			MsgBox($MB_TOPMOST, "Download from workshop", "Sorry, AutoWall no longer support steamworkshop downloads.")
 		Else
 			killAll()
-			GUICtrlSetState($applyb, $GUI_DISABLE)
 			Run($weebp & " run " & '"' & $webview & '"' & ' "" "' & GUICtrlRead($inputPath) & '"', "", @SW_HIDE)
-            ; Loop until the window is found
-            Local $hWnd = 0
-			While $hWnd = 0
-				$hWnd = WinGetHandle("litewebview")
-                If $hWnd <> 0 Then ExitLoop ; Exit the loop if the window is found
-				Sleep(500) ; Wait for before checking again
-            WEnd
+			Sleep(1000) 
 			If $mouseWallpaper Then Run($oldWork & "\tools\mousesender.exe", "", @SW_HIDE)
+			Sleep(1000) 
 			Run($weebp & "add --wait --fullscreen --name litewebview", "", @SW_HIDE)
-			GUICtrlSetState($applyb, $GUI_ENABLE)
+			
+			
+
+
 			GUICtrlSetState($winStart, $GUI_ENABLE)
 		EndIf
 	EndIf
 	FileChangeDir($oldWork)
 	If ReadIniKey("autoPauseFeature") Then Run(@WorkingDir & "\tools\autoPause.exe", "", @SW_HIDE)
+	GUICtrlSetState($applyb, $GUI_ENABLE)
 EndFunc   ;==>setwallpaper
 
 
@@ -236,13 +236,14 @@ Func reset()
     FileDelete(@AppDataDir & "\Microsoft\Windows\Start Menu\Programs\Startup\AutoWall.lnk")
     FileDelete(@AppDataDir & "\Microsoft\Windows\Start Menu\Programs\Startup\AutoWall*.lnk")
 
+	GUICtrlSetState($applyb, $GUI_ENABLE)
     GUICtrlSetState($winStart, $GUI_UNCHECKED)
     GUICtrlSetData($inputPath, "")
 EndFunc   ;==>reset
 
 
 Func killAll()
-    Local $aProcesses = ['mpv.exe', 'wp.exe', 'litewebview.exe', 'Win32WebViewHost.exe', 'autopause.exe']
+    Local $aProcesses = ['mpv.exe', 'wp.exe', 'litewebview.exe', 'Win32WebViewHost.exe', 'autopause.exe', 'mousesender.exe']
 
     For $sProcess In $aProcesses
         Do
