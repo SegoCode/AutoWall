@@ -145,7 +145,7 @@ Func onWinStart()
 EndFunc   ;==>onWinStart
 
 Func setwallpaperMultiScreen($screenNumber = 0)
-	$oldwork = @WorkingDir
+	$oldWork = @WorkingDir
 	$weebp = @WorkingDir & "\weebp\wp.exe "
 	$webview = @WorkingDir & "\tools\webview.exe"
 	
@@ -172,13 +172,14 @@ Func setwallpaperMultiScreen($screenNumber = 0)
 		MsgBox(0, "AutoWall Multi-screen mode", "Web wallpaper is not supported in multi-screen mode")
 		GUICtrlSetData($inputPath, "")
 	EndIf
-	FileChangeDir($oldwork)
+	FileChangeDir($oldWork)
 EndFunc   ;==>setwallpaperMultiScreen
 
 Func setwallpaper()
-	$oldwork = @WorkingDir
+	$oldWork = @WorkingDir
 	$weebp = @WorkingDir & "\weebp\wp.exe "
 	$webview = @WorkingDir & "\tools\webView.exe"
+	$mouseWallpaper = ReadIniKey("mouseToWallpaper")
 
 	$inputUdf = GUICtrlRead($inputPath)
 	If _WinAPI_UrlIs($inputUdf) == 0 Then
@@ -204,13 +205,13 @@ Func setwallpaper()
                 If $hWnd <> 0 Then ExitLoop ; Exit the loop if the window is found
 				Sleep(500) ; Wait for before checking again
             WEnd
-			If ReadIniKey("mouseToWallpaper") Then Run($oldwork & "\tools\mousesender.exe", "", @SW_HIDE)
+			If $mouseWallpaper Then Run($oldWork & "\tools\mousesender.exe", "", @SW_HIDE)
 			Run($weebp & "add --wait --fullscreen --name litewebview", "", @SW_HIDE)
 			GUICtrlSetState($applyb, $GUI_ENABLE)
 			GUICtrlSetState($winStart, $GUI_ENABLE)
 		EndIf
 	EndIf
-	FileChangeDir($oldwork)
+	FileChangeDir($oldWork)
 	If ReadIniKey("autoPauseFeature") Then Run(@WorkingDir & "\tools\autoPause.exe", "", @SW_HIDE)
 EndFunc   ;==>setwallpaper
 
