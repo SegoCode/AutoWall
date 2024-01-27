@@ -75,23 +75,23 @@ Autowall 1.10+ now includes the highly anticipated multiscreen mode, which is cu
 
 Autowall uses a Configuration File that can be easily modified to customise how the application behaves, allowing you to set the following values: 
 
-`redResetButton=false`
-  - Keeps the "reset" button in its default color. When set to true, it changes the color of the "reset" button to a cool red.
+`redResetButton`
+  - When set to false, the "reset" button retains its default color. If set to true, it changes the color of the "reset" button to a cool red.
 
-`autoPauseFeature=true`
-  - Enables the auto-pause feature. When set to true, videos will stop when the wallpaper is not visible.
+`autoPauseFeature`
+  - When set to true, the auto-pause feature is enabled, causing videos to stop when the wallpaper is not visible. If set to false, this feature is disabled, allowing videos to continue playing regardless of wallpaper visibility.
 
-`mouseToWallpaper=true`
-  - Allows mouse input to interact with the wallpaper. When set to true, it enables features like having the wallpaper follow the cursor or change its perspective.
+`mouseToWallpaper`
+  - When set to true, mouse input is allowed to interact with the wallpaper, enabling features like having the wallpaper follow the cursor or change its perspective. If set to false, mouse input does not affect the wallpaper.
 
-`allFilesAllowed=false`
-  - Restricts the file types that can be chosen in the popup for selecting a wallpaper file. When set to true, all file types can be selected.
+`allFilesAllowed`
+  - When set to false, the application restricts the file types that can be chosen for selecting a wallpaper file. If set to true, all file types are allowed in the popup for choosing a wallpaper file.
 
-`askMultiScreen=true`
-  - Disables the popup for multi-screen configuration. When set to false, the application always runs in standalone mode, not considering multiple screens even if detected.
+`askMultiScreen`
+  - When set to true, the popup for multi-screen configuration is disabled. If set to false, the application considers multiple screens if detected and may prompt for multi-screen configuration.
 
-`forceWebview=false`
-  - Keeps the Autowall from using WebView for rendering unless necessary. When set to true, it forces the Autowall to always use WebView for rendering.
+`forceWebview`
+  - When set to false, Autowall uses WebView for rendering only when necessary. If set to true, Autowall is forced to always use WebView for rendering.
 
 ## Lives wallpapers for AutoWall 
 <details>
