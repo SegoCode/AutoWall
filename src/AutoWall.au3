@@ -275,28 +275,27 @@ EndFunc ;==>ReadIniKey
 
 
 Func GetLiteWebviewId()
-    Local $sFilePath = @TempDir & "\output.txt"
-    Local $sCommand = @WorkingDir & "\weebp\wp.exe ls > " & $sFilePath
-    Run(@ComSpec & " /c " & $sCommand, "", @SW_HIDE, $STDOUT_CHILD)
+    Local $sCommand = @WorkingDir & "\weebp\wp.exe ls"
+    Local $iPID = Run(@ComSpec & " /c " & $sCommand, "", @SW_HIDE, $STDOUT_CHILD)
 
-    ; Wait for the command to complete
-    Sleep(2000)
-
-    ; Read the file
-    Local $aLines
-    _FileReadToArray($sFilePath, $aLines)
+    ; Initialize variables for reading output
+    Local $sOutput = ""
+    Local $sRead
+    While 1
+        $sRead = StdoutRead($iPID)
+        If @error Then ExitLoop
+        $sOutput &= $sRead
+    WEnd
 
     ; Define the regular expression pattern to match the LiteWebview line and extract the ID
     Local $sPattern = "\[\K[0-9A-F]+\b(?=].*litewebview)"
 
-    ; Loop through each line to find and extract the LiteWebview ID
-    For $i = 1 To $aLines[0]
-        Local $sMatch = StringRegExp($aLines[$i], $sPattern, 1)
-        If IsArray($sMatch) And UBound($sMatch) > 0 Then
-            Return $sMatch[0]
-        EndIf
-    Next
+    ; Extract the LiteWebview ID using the regular expression
+    Local $aMatch = StringRegExp($sOutput, $sPattern, 1)
+    If IsArray($aMatch) And UBound($aMatch) > 0 Then
+        Return $aMatch[0]
+    EndIf
 
-    ; Return an error if the ID is not found
-    Return SetError(1, 0, "LiteWebview ID not found")
-EndFunc
+    Return SetError(1, 0, "0")
+EndFunc ;==>GetLiteWebviewId
+
