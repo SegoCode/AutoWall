@@ -41,8 +41,8 @@ _⚠️ This software has only been tested on Windows 10 and may not be fully co
 
 (1.12+)
 
-- [Send mouse to wallpaper](#)
-- [Config the features](#)
+- [Send mouse movement to the wallpaper](#)
+- [Config Autowall features](#)
 
 
 ## Web wallpaper
