@@ -1,4 +1,5 @@
-# AutoWall
+# AutoWall <a href="https://github.com/SegoCode/AutoWall/releases/download/1.11/AutoWall.zip" download><img align="right" width="102" height="40" alt="octocat" src="https://github.com/SegoCode/AutoWall/blob/master/media/downloadbtn.png"></a>
+
 
 <p align="center">
 <img src="https://github.com/SegoCode/AutoWall/blob/master/media/demo.gif">
