@@ -38,6 +38,11 @@ _⚠️ This software has only been tested on Windows 10 and may not be fully co
 
 - [Support for multiple screens (Beta)](#multiple-screens)
 
+(1.12+)
+
+- [Send mouse to wallpaper](#)
+- [Config the features](#)
+
 
 ## Web wallpaper
  Set any web to wallpaper, copy url and paste on text field, also Youtube videos.
