@@ -1,4 +1,6 @@
-# AutoWall <a href="https://github.com/SegoCode/AutoWall/releases/download/1.11/AutoWall.zip" download><img align="right" width="102" height="40" alt="octocat" src="https://github.com/SegoCode/AutoWall/blob/master/media/downloadbtn.png"></a>
+# AutoWall <a href="https://discord.gg/KpCtcXYsN5" download><img align="right" width="60" height="40" alt="octocat" src="https://iili.io/JccKcdP.png"></a><a href="https://github.com/SegoCode/AutoWall/releases/download/1.11/AutoWall.zip" download><img align="right" width="102" height="40" alt="octocat" src="https://github.com/SegoCode/AutoWall/blob/master/media/downloadbtn.png"></a>
+
+
 
 
 <p align="center">
