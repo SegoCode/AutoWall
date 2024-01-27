@@ -1,8 +1,7 @@
 #include <WinAPI.au3>
 #include <WindowsConstants.au3>
 
-Func TrackMouseInWindow($Window)
-    Local $hWnd = WinGetHandle($Window)
+Func TrackMouseInWindow($hWnd)
     If $hWnd = 0 Then
         MsgBox(0, "Error", "Unable to find the window.")
         Return

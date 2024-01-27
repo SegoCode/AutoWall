@@ -18,6 +18,7 @@
 #include <WinAPIShPath.au3>
 #include <GuiComboBox.au3>
 #include <Date.au3>
+#include ".\tools\LiteWebviewIDExtractor.au3"
 
 ; -------------------------
 ; KODA GUI FORM
@@ -198,15 +199,12 @@ Func setwallpaper()
 			MsgBox($MB_TOPMOST, "Download from workshop", "Sorry, AutoWall no longer support steamworkshop downloads.")
 		Else
 			killAll()
-			Run($weebp & " run " & '"' & $webview & '"' & ' "" "' & GUICtrlRead($inputPath) & '"', "", @SW_HIDE)
-			Sleep(1000) 
-			If $mouseWallpaper Then Run($oldWork & "\tools\mousesender.exe", "", @SW_HIDE)
-			Sleep(1000) 
-			Run($weebp & "add --wait --fullscreen --name litewebview", "", @SW_HIDE)
+			RunWait($weebp & "run " & '"' & $webview & '"' & ' "" "' & GUICtrlRead($inputPath) & '"', "", @SW_HIDE)
+			RunWait($weebp & "add --wait --fullscreen --name litewebview", "", @SW_HIDE)
 			
+			Local $sLiteWebviewId = GetLiteWebviewId()
+		    Run($oldWork & "\tools\mousesender.exe" & " 0x" & $sLiteWebviewId, "", @SW_HIDE)
 			
-
-
 			GUICtrlSetState($winStart, $GUI_ENABLE)
 		EndIf
 	EndIf
