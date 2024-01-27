@@ -1,4 +1,4 @@
-# AutoWall <a href="https://github.com/SegoCode/AutoWall/releases/download/1.11/AutoWall.zip" download><img align="right" width="250" height="60" alt="discord" src="https://discordapp.com/api/guilds/1199035380075331594/widget.png?style=banner2"></a>
+# AutoWall <a href="https://discord.gg/ugpefF7AUF" download><img align="right" width="250" height="60" alt="discord" src="https://discordapp.com/api/guilds/1199035380075331594/widget.png?style=banner2"></a>
 
 <p align="center">
 <img src="https://github.com/SegoCode/AutoWall/blob/master/media/demo.gif">
