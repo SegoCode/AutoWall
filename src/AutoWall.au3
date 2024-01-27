@@ -76,7 +76,7 @@ GUISetState(@SW_SHOW)
 GUICtrlSendMsg($inputPath, $EM_SETCUEBANNER, False, "Browse and select video")
 GUICtrlSetState($winStart, $GUI_DISABLE)
 
-If $multiScreen Then ;Init gui multiScreen
+If $multiScreen And ReadIniKey("askMultiScreen") Then ;Init gui multiScreen
 	GUICtrlSetState($applyb, $GUI_DISABLE)
 	GUICtrlSetState($browseb, $GUI_DISABLE)
 	_GUICtrlComboBox_SetItemHeight($comboScreens, 17)
@@ -189,7 +189,7 @@ Func setwallpaper()
 	If _WinAPI_UrlIs($inputUdf) == 0 And Not StringRegExp($inputUdf, "\.html?$", 0) Then
 		killAll()
 		FileChangeDir(@WorkingDir & "\mpv\")
-		Run($weebp & "run mpv " & '"' & GUICtrlRead($inputPath) & '"' & " --loop=inf --player-operation-mode=pseudo-gui --force-window=yes --input-ipc-server=\\.\pipe\mpvsocket", "", @SW_HIDE)
+		Run($weebp & "run mpv " & '"' & GUICtrlRead($inputPath) & '"' & " --input-ipc-server=\\.\pipe\mpvsocket", "", @SW_HIDE)
 		Run($weebp & "add --wait --fullscreen --class mpv", "", @SW_HIDE)
 	Else
 		If StringInStr(GUICtrlRead($inputPath), "steamcommunity.com") Then
@@ -204,9 +204,8 @@ Func setwallpaper()
 			RunWait($weebp & "add --wait --fullscreen --name litewebview", "", @SW_HIDE)
 			
 			Local $sLiteWebviewId = GetLiteWebviewId()
-		    Run($oldWork & "\tools\mousesender.exe" & " 0x" & $sLiteWebviewId, "", @SW_HIDE)
+		    If $mouseWallpaper Then Run($oldWork & "\tools\mousesender.exe" & " 0x" & $sLiteWebviewId, "", @SW_HIDE)
 			
-			GUICtrlSetState($winStart, $GUI_ENABLE)
 		EndIf
 	EndIf
 	FileChangeDir($oldWork)
@@ -217,7 +216,12 @@ EndFunc   ;==>setwallpaper
 
 Func browsefiles()
 	Local Const $sMessage = "Select the video for wallpaper"
-	Local $sFileOpenDialog = FileOpenDialog($sMessage, @WorkingDir & "\VideosHere" & "\", "Videos (*.avi;*.mp4;*.gif;*.mkv;*.webm;*.mts;*.wmv;*.flv;*.mov;*.html)", BitOR($FD_FILEMUSTEXIST, $FD_PATHMUSTEXIST))
+	If ReadIniKey("allFilesAllowed") Then
+		Local $sFileOpenDialog = FileOpenDialog($sMessage, @WorkingDir & "\VideosHere" & "\", "All Files (*.*)", BitOR($FD_FILEMUSTEXIST, $FD_PATHMUSTEXIST))
+	Else
+		Local $sFileOpenDialog = FileOpenDialog($sMessage, @WorkingDir & "\VideosHere" & "\", "Videos (*.avi;*.mp4;*.gif;*.mkv;*.webm;*.mts;*.wmv;*.flv;*.mov;*.html;*.mpeg;*.mpg;*.m4v;*.3gp;*.vob;*.ts;*.m2ts;*.divx;*.rm;*.rmvb;*.ogv)", BitOR($FD_FILEMUSTEXIST, $FD_PATHMUSTEXIST))
+	EndIf
+	
 	If @error Then
 		FileChangeDir(@ScriptDir)
 	Else
