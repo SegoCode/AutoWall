@@ -186,7 +186,7 @@ Func setwallpaper()
 	GUICtrlSetState($applyb, $GUI_DISABLE)
 
 	$inputUdf = GUICtrlRead($inputPath)
-	If _WinAPI_UrlIs($inputUdf) == 0 And Not StringRegExp($inputUdf, "\.html?$", 0) Then
+	If _WinAPI_UrlIs($inputUdf) == 0 And Not StringRegExp($inputUdf, "\.html?$", 0) And Not ReadIniKey("forceWebview") Then
 		killAll()
 		FileChangeDir(@WorkingDir & "\mpv\")
 		Run($weebp & "run mpv " & '"' & GUICtrlRead($inputPath) & '"' & " --input-ipc-server=\\.\pipe\mpvsocket", "", @SW_HIDE)
