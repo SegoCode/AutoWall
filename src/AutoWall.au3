@@ -60,7 +60,7 @@ EndIf
 
 ;Detect multiple screen 
 $multiScreen = False
-If int(_WinAPI_GetSystemMetrics($SM_CMONITORS)) > 1 Then
+If int(_WinAPI_GetSystemMetrics($SM_CMONITORS)) > 1 And ReadIniKey("askMultiScreen") Then
 	$aBox = MsgBox(4, "Multi-screen detected", "Do you want run AutoWall in multi-screen mode?")
 	If $aBox = 6 Then
 		$multiScreen = True
@@ -76,7 +76,7 @@ GUISetState(@SW_SHOW)
 GUICtrlSendMsg($inputPath, $EM_SETCUEBANNER, False, "Browse and select video")
 GUICtrlSetState($winStart, $GUI_DISABLE)
 
-If $multiScreen And ReadIniKey("askMultiScreen") Then ;Init gui multiScreen
+If $multiScreen Then ;Init gui multiScreen
 	GUICtrlSetState($applyb, $GUI_DISABLE)
 	GUICtrlSetState($browseb, $GUI_DISABLE)
 	_GUICtrlComboBox_SetItemHeight($comboScreens, 17)
