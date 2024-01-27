@@ -200,7 +200,7 @@ Func setwallpaper()
 			MsgBox($MB_TOPMOST, "Download from workshop", "Sorry, AutoWall no longer support steamworkshop downloads.")
 		Else
 			killAll()
-			RunWait($weebp & "run " & '"' & $webview & '"' & ' "" "' & GUICtrlRead($inputPath) & '"', "", @SW_HIDE)
+			Run($weebp & "run " & '"' & $webview & '"' & ' "" "' & GUICtrlRead($inputPath) & '"', "", @SW_HIDE)
 			RunWait($weebp & "add --wait --fullscreen --name litewebview", "", @SW_HIDE)
 			
 			Local $sLiteWebviewId = GetLiteWebviewId()
@@ -217,7 +217,7 @@ EndFunc   ;==>setwallpaper
 
 Func browsefiles()
 	Local Const $sMessage = "Select the video for wallpaper"
-	Local $sFileOpenDialog = FileOpenDialog($sMessage, @WorkingDir & "\VideosHere" & "\", "Videos (*.avi;*.mp4;*.gif;*.mkv;*.webm;*.mts;*.wmv;*.flv;*.mov)", BitOR($FD_FILEMUSTEXIST, $FD_PATHMUSTEXIST))
+	Local $sFileOpenDialog = FileOpenDialog($sMessage, @WorkingDir & "\VideosHere" & "\", "Videos (*.avi;*.mp4;*.gif;*.mkv;*.webm;*.mts;*.wmv;*.flv;*.mov;*.html)", BitOR($FD_FILEMUSTEXIST, $FD_PATHMUSTEXIST))
 	If @error Then
 		FileChangeDir(@ScriptDir)
 	Else
