@@ -40,8 +40,8 @@ _⚠️ This software has only been tested on Windows 10 and may not be fully co
 
 (1.12+)
 
-- [Send mouse movement to the wallpaper](#)
-- [Config Autowall features](#)
+- Send mouse movement to the wallpaper
+- [Modify the autowall behaviour](#Config-autowall)
 
 
 ## Web wallpaper
@@ -68,7 +68,30 @@ Follow the [official mpv documentation](https://mpv.io/manual/stable/#configurat
 
 ## Multiple screens
 
-Autowall 1.10+ now includes the highly anticipated multiscreen mode, which is currently in early beta and may have some bugs or issues. If you have multiple screens, Autowall will automatically detect this and offer you the option to run in multiscreen mode. Please note that this feature is a work in progress and may not support all single screen mode features, such as "Stop when Wallpaper is not visible" or "Web wallpaper." If you encounter any issues or have suggestions for improvement, please open an issue [following the guide.](https://github.com/SegoCode/AutoWall/blob/master/CONTRIBUTING.md#reporting-bugs)
+Autowall is sigle screen focused but Autowall 1.10+ now includes the highly anticipated multiscreen mode, which is currently in early beta and may have some bugs or issues. If you have multiple screens, Autowall will automatically detect this and offer you the option to run in multiscreen mode. Please note that this feature is a work in progress and may not support all single screen mode features, such as "Stop when Wallpaper is not visible" or "Web wallpaper." If you encounter any issues or have suggestions for improvement, please open an issue.
+
+
+## Config autowall
+
+Autowall uses a [configuration file](https://github.com/SegoCode/AutoWall/blob/master/src/config.ini) that can be easily modified to customise how the application behaves, allowing you to set the following values: 
+
+`redResetButton`
+  - When set to false, the "reset" button retains its default color. If set to true, it changes the color of the "reset" button to a cool red.
+
+`autoPauseFeature`
+  - When set to true, the auto-pause feature is enabled, causing videos to stop when the wallpaper is not visible. If set to false, this feature is disabled, allowing videos to continue playing regardless of wallpaper visibility.
+
+`mouseToWallpaper`
+  - When set to true, mouse input is allowed to interact with the wallpaper, enabling features like having the wallpaper follow the cursor or change its perspective. If set to false, mouse input does not affect the wallpaper.
+
+`allFilesAllowed`
+  - When set to false, the application restricts the file types that can be chosen for selecting a wallpaper file. If set to true, all file types are allowed in the popup for choosing a wallpaper file.
+
+`askMultiScreen`
+  - When set to true, the popup for multi-screen configuration is disabled. If set to false, the application considers multiple screens if detected and may prompt for multi-screen configuration.
+
+`forceWebview`
+  - When set to false, Autowall uses WebView for rendering only when necessary. If set to true, Autowall is forced to always use WebView for rendering.
 
 ## Lives wallpapers for AutoWall 
 <details>
