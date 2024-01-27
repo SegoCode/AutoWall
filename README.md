@@ -1,4 +1,5 @@
-# AutoWall
+# AutoWall <a href="https://github.com/SegoCode/AutoWall/releases/download/1.11/AutoWall.zip" download><img align="right" width="102" height="40" alt="octocat" src="https://github.com/SegoCode/AutoWall/blob/master/media/downloadbtn.png"></a>
+
 
 <p align="center">
 <img src="https://github.com/SegoCode/AutoWall/blob/master/media/demo.gif">
@@ -37,6 +38,11 @@ _⚠️ This software has only been tested on Windows 10 and may not be fully co
 (1.10+)
 
 - [Support for multiple screens (Beta)](#multiple-screens)
+
+(1.12+)
+
+- [Send mouse to wallpaper](#)
+- [Config the features](#)
 
 
 ## Web wallpaper
