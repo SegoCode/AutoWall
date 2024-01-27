@@ -41,7 +41,7 @@ _⚠️ This software has only been tested on Windows 10 and may not be fully co
 (1.12+)
 
 - Send mouse movement to the wallpaper
-- [Config Autowall features](#Config-Autowall-features)
+- [Modify the autowall behaviour](#Config-autowall)
 
 
 ## Web wallpaper
@@ -71,7 +71,7 @@ Follow the [official mpv documentation](https://mpv.io/manual/stable/#configurat
 Autowall 1.10+ now includes the highly anticipated multiscreen mode, which is currently in early beta and may have some bugs or issues. If you have multiple screens, Autowall will automatically detect this and offer you the option to run in multiscreen mode. Please note that this feature is a work in progress and may not support all single screen mode features, such as "Stop when Wallpaper is not visible" or "Web wallpaper." If you encounter any issues or have suggestions for improvement, please open an issue [following the guide.](https://github.com/SegoCode/AutoWall/blob/master/CONTRIBUTING.md#reporting-bugs)
 
 
-## Config Autowall features
+## Config autowall
 
 Autowall uses a Configuration File that can be easily modified to customise how the application behaves, allowing you to set the following values: 
 
