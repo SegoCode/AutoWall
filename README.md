@@ -73,7 +73,7 @@ Autowall 1.10+ now includes the highly anticipated multiscreen mode, which is cu
 
 ## Config autowall
 
-Autowall uses a Configuration File that can be easily modified to customise how the application behaves, allowing you to set the following values: 
+Autowall uses a [configuration file](https://github.com/SegoCode/AutoWall/blob/master/src/config.ini) that can be easily modified to customise how the application behaves, allowing you to set the following values: 
 
 `redResetButton`
   - When set to false, the "reset" button retains its default color. If set to true, it changes the color of the "reset" button to a cool red.
