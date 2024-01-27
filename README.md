@@ -40,8 +40,8 @@ _⚠️ This software has only been tested on Windows 10 and may not be fully co
 
 (1.12+)
 
-- [Send mouse movement to the wallpaper](#)
-- [Config Autowall features](#)
+- Send mouse movement to the wallpaper
+- [Config Autowall features](#Config-Autowall-features)
 
 
 ## Web wallpaper
@@ -69,6 +69,29 @@ Follow the [official mpv documentation](https://mpv.io/manual/stable/#configurat
 ## Multiple screens
 
 Autowall 1.10+ now includes the highly anticipated multiscreen mode, which is currently in early beta and may have some bugs or issues. If you have multiple screens, Autowall will automatically detect this and offer you the option to run in multiscreen mode. Please note that this feature is a work in progress and may not support all single screen mode features, such as "Stop when Wallpaper is not visible" or "Web wallpaper." If you encounter any issues or have suggestions for improvement, please open an issue [following the guide.](https://github.com/SegoCode/AutoWall/blob/master/CONTRIBUTING.md#reporting-bugs)
+
+
+## Config Autowall features
+
+Autowall uses a Configuration File that can be easily modified to customise how the application behaves, allowing you to set the following values: 
+
+`redResetButton=false`
+  - Keeps the "reset" button in its default color. When set to true, it changes the color of the "reset" button to a cool red.
+
+`autoPauseFeature=true`
+  - Enables the auto-pause feature. When set to true, videos will stop when the wallpaper is not visible.
+
+`mouseToWallpaper=true`
+  - Allows mouse input to interact with the wallpaper. When set to true, it enables features like having the wallpaper follow the cursor or change its perspective.
+
+`allFilesAllowed=false`
+  - Restricts the file types that can be chosen in the popup for selecting a wallpaper file. When set to true, all file types can be selected.
+
+`askMultiScreen=true`
+  - Disables the popup for multi-screen configuration. When set to false, the application always runs in standalone mode, not considering multiple screens even if detected.
+
+`forceWebview=false`
+  - Keeps the Autowall from using WebView for rendering unless necessary. When set to true, it forces the Autowall to always use WebView for rendering.
 
 ## Lives wallpapers for AutoWall 
 <details>
