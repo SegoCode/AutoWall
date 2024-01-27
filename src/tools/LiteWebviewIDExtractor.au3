@@ -1,4 +1,4 @@
-; LiteWebviewIDExtractor.au3
+
 #include <File.au3>
 #include <Array.au3>
 
@@ -15,7 +15,7 @@ Func GetLiteWebviewId()
     _FileReadToArray($sFilePath, $aLines)
 
     ; Define the regular expression pattern to match the LiteWebview line and extract the ID
-    Local $sPattern = "\[\K[0-9A-F]+\b(?=].*LiteWebview)"
+    Local $sPattern = "\[\K[0-9A-F]+\b(?=].*litewebview)"
 
     ; Loop through each line to find and extract the LiteWebview ID
     For $i = 1 To $aLines[0]
@@ -28,3 +28,4 @@ Func GetLiteWebviewId()
     ; Return an error if the ID is not found
     Return SetError(1, 0, "LiteWebview ID not found")
 EndFunc
+
