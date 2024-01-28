@@ -281,9 +281,9 @@ EndFunc ;==>ReadIniKey
 
 
 Func GetLiteWebviewId($oldWork)
-    Local $sCommand = $oldWork & "\weebp\wp.exe ls"
+    Local $sCommand = '"' & $oldWork & "\weebp\wp.exe" & '"' & " ls"	
     Local $iPID = Run(@ComSpec & " /c " & $sCommand, "", @SW_HIDE, $STDOUT_CHILD)
-
+	
     ; Initialize variables for reading output
     Local $sOutput = ""
     Local $sRead
