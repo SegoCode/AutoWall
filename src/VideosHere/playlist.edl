@@ -1,0 +1,15 @@
+# mpv EDL v0
+# This is an MPV-compatible EDL file.
+# Each line represents a media file to be played, with optional start and end times.
+# The format for each line is: file_path,start_time,end_time
+#   - file_path: The path to the media file.
+#   - start_time: The time (in seconds) to start playback. 0 means start from the beginning.
+#   - end_time: The time (in seconds) to end playback. 0 means play until the end of the file.
+# Example paths are given below. Replace these with the actual paths to your media files.
+
+# First media file (replace with actual file path)
+/example/path/to/your/video1.mp4,0,2
+# Second media file
+/example/path/to/your/video2.mp4,0,2
+# Third media file
+/example/path/to/your/video3.mp4,0,2
