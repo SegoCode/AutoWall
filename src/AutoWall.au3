@@ -105,6 +105,8 @@ While 1
 				GUICtrlSetState($applyb, $GUI_DISABLE)
 				setwallpaper()
 				GUICtrlSetState($applyb, $GUI_ENABLE)
+				GUICtrlSetState($winStart, $GUI_ENABLE)
+				GUICtrlSetState($winStart, $GUI_UNCHECKED)
 			EndIf
 		Case $browseb
 			browsefiles()
