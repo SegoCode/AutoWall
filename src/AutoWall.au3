@@ -102,7 +102,9 @@ While 1
 			If $multiScreen Then
 				setwallpaperMultiScreen()
 			Else
+				GUICtrlSetState($applyb, $GUI_DISABLE)
 				setwallpaper()
+				GUICtrlSetState($applyb, $GUI_ENABLE)
 			EndIf
 		Case $browseb
 			browsefiles()
@@ -184,8 +186,6 @@ Func setwallpaper()
 	$webview = @WorkingDir & "\tools\webView.exe"
 	$mouseWallpaper = ReadIniKey("mouseToWallpaper")
 	$forceMouseWallpaper = ReadIniKey("forceMouseToWallpaper")
-	
-	GUICtrlSetState($applyb, $GUI_DISABLE)
 
 	$inputUdf = GUICtrlRead($inputPath)
 	If _WinAPI_UrlIs($inputUdf) == 0 And Not StringRegExp($inputUdf, "\.html?$", 0) And Not ReadIniKey("forceWebview") Then
@@ -216,7 +216,6 @@ Func setwallpaper()
 	EndIf
 	FileChangeDir($oldWork)
 	If ReadIniKey("autoPauseFeature") Then Run(@WorkingDir & "\tools\autoPause.exe", "", @SW_HIDE)
-	GUICtrlSetState($applyb, $GUI_ENABLE)
 EndFunc   ;==>setwallpaper
 
 

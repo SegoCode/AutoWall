@@ -3,7 +3,7 @@
 
 Func TrackMouseInWindow($hWnd)
     If $hWnd = 0 Then
-        MsgBox(0, "Error", "Unable to find the window.")
+        MsgBox(0, "MouseSender", "Could not send the mouse input to the wallpaper, if the bug persists disable this function in the configuration file.")
         Return
     EndIf
 
