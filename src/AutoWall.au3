@@ -225,7 +225,7 @@ Func browsefiles()
 	If ReadIniKey("allFilesAllowed") Then
 		Local $sFileOpenDialog = FileOpenDialog($sMessage, @WorkingDir & "\VideosHere" & "\", "All Files (*.*)", BitOR($FD_FILEMUSTEXIST, $FD_PATHMUSTEXIST))
 	Else
-		Local $sFileOpenDialog = FileOpenDialog($sMessage, @WorkingDir & "\VideosHere" & "\", "Videos (*.avi;*.mp4;*.gif;*.mkv;*.webm;*.mts;*.wmv;*.flv;*.mov;*.html;*.mpeg;*.mpg;*.m4v;*.3gp;*.vob;*.ts;*.m2ts;*.divx;*.rm;*.rmvb;*.ogv)", BitOR($FD_FILEMUSTEXIST, $FD_PATHMUSTEXIST))
+		Local $sFileOpenDialog = FileOpenDialog($sMessage, @WorkingDir & "\VideosHere" & "\", "Videos (*.avi;*.mp4;*.gif;*.mkv;*.webm;*.mts;*.wmv;*.flv;*.mov;*.html;*.mpeg;*.mpg;*.m4v;*.3gp;*.vob;*.ts;*.m2ts;*.divx;*.rm;*.rmvb;*.ogv;*.edl)", BitOR($FD_FILEMUSTEXIST, $FD_PATHMUSTEXIST))
 	EndIf
 	
 	If @error Then
