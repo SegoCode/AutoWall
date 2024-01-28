@@ -206,7 +206,7 @@ Func setwallpaper()
 			Run($weebp & "run " & '"' & $webview & '"' & ' "" "' & $url & '"', "", @SW_HIDE)
 			RunWait($weebp & "add --wait --fullscreen --name litewebview", "", @SW_HIDE)
 			
-			Local $sLiteWebviewId = GetLiteWebviewId()
+			Local $sLiteWebviewId = GetLiteWebviewId($oldWork)
 		    If $mouseWallpaper And Not StringInStr($url, "youtube") Then
 				Run($oldWork & "\tools\mousesender.exe" & " 0x" & $sLiteWebviewId, "", @SW_HIDE)
 			Else
@@ -280,8 +280,8 @@ Func ReadIniKey($sKey)
 EndFunc ;==>ReadIniKey
 
 
-Func GetLiteWebviewId()
-    Local $sCommand = @WorkingDir & "\weebp\wp.exe ls"
+Func GetLiteWebviewId($oldWork)
+    Local $sCommand = $oldWork & "\weebp\wp.exe ls"
     Local $iPID = Run(@ComSpec & " /c " & $sCommand, "", @SW_HIDE, $STDOUT_CHILD)
 
     ; Initialize variables for reading output
