@@ -1,3 +1,4 @@
+#NoTrayIcon
 #include <MsgBoxConstants.au3>
 #include <WinAPISys.au3>
 

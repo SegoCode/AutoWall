@@ -1,10 +1,1 @@
-Videos here, supported formats;
-			- .avi
-			- .mp4
-			- .mov
-			- .gif
-			- .mkv
-			- .webm
-
-*You can insert absolute file paths in to the text area and try
-new video formats (Set on windows startup work for others formats)
+The videos will open in this folder by default. To set a video as wallpaper, drag it into this folder. You can also insert absolute file paths into the text area to try new video formats. Please note that setting videos to play on Windows startup may not work for all formats. Please check the mpv configuration.

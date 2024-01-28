@@ -1,3 +1,4 @@
+#NoTrayIcon
 #include <WinAPI.au3>
 #include <WindowsConstants.au3>
 
