@@ -119,6 +119,7 @@ While 1
 			onWinStart()
 		Case $resetb
 			reset()
+			GUICtrlSetState($winStart, $GUI_DISABLE)
 	EndSwitch
 WEnd
 
