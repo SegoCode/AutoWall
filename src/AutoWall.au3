@@ -163,12 +163,12 @@ Func setwallpaperMultiScreen($screenNumber = 0)
 		;This is a temporary solution, usefull to initialize the screens, the first video does not have loop which dying in the end
 		
 		;Init screen, fake video spawn dying in the end
-		RunWait($weebp & "run mpv " & '"' & GUICtrlRead($inputPath) & '"' & " --screen="& $screenNumber &" --player-operation-mode=pseudo-gui --force-window=yes --input-ipc-server=\\.\pipe\mpvsocket", "", @SW_HIDE)
+		RunWait($weebp & "run mpv " & '"' & GUICtrlRead($inputPath) & '"' & " --screen="& $screenNumber &" --input-ipc-server=\\.\pipe\mpvsocket", "", @SW_HIDE)
 		sleep(500)
 		Run($weebp & "add --wait --fullscreen --class mpv", "", @SW_HIDE)
 		
 		;Final video spawn 
-		RunWait($weebp & "run mpv " & '"' & GUICtrlRead($inputPath) & '"' & " --screen="& $screenNumber &" --loop=inf --player-operation-mode=pseudo-gui --force-window=yes --input-ipc-server=\\.\pipe\mpvsocket", "", @SW_HIDE)
+		RunWait($weebp & "run mpv " & '"' & GUICtrlRead($inputPath) & '"' & " --screen="& $screenNumber &" --input-ipc-server=\\.\pipe\mpvsocket", "", @SW_HIDE)
 		sleep(500)
 		Run($weebp & "add --wait --fullscreen --class mpv", "", @SW_HIDE)
 	Else
@@ -183,6 +183,8 @@ Func setwallpaper()
 	$weebp = @WorkingDir & "\weebp\wp.exe "
 	$webview = @WorkingDir & "\tools\webView.exe"
 	$mouseWallpaper = ReadIniKey("mouseToWallpaper")
+	$forceMouseWallpaper = ReadIniKey("forceMouseToWallpaper")
+	
 	GUICtrlSetState($applyb, $GUI_DISABLE)
 
 	$inputUdf = GUICtrlRead($inputPath)
@@ -200,12 +202,16 @@ Func setwallpaper()
 			MsgBox($MB_TOPMOST, "Download from workshop", "Sorry, AutoWall no longer support steamworkshop downloads.")
 		Else
 			killAll()
-			Run($weebp & "run " & '"' & $webview & '"' & ' "" "' & GUICtrlRead($inputPath) & '"', "", @SW_HIDE)
+			Local $url = ConvertYouTubeURL(GUICtrlRead($inputPath))
+			Run($weebp & "run " & '"' & $webview & '"' & ' "" "' & $url & '"', "", @SW_HIDE)
 			RunWait($weebp & "add --wait --fullscreen --name litewebview", "", @SW_HIDE)
 			
 			Local $sLiteWebviewId = GetLiteWebviewId()
-		    If $mouseWallpaper Then Run($oldWork & "\tools\mousesender.exe" & " 0x" & $sLiteWebviewId, "", @SW_HIDE)
-			
+		    If $mouseWallpaper And Not StringInStr($url, "youtube") Then
+				Run($oldWork & "\tools\mousesender.exe" & " 0x" & $sLiteWebviewId, "", @SW_HIDE)
+			Else
+				If $forceMouseWallpaper Then Run($oldWork & "\tools\mousesender.exe" & " 0x" & $sLiteWebviewId, "", @SW_HIDE)
+			EndIf
 		EndIf
 	EndIf
 	FileChangeDir($oldWork)
@@ -299,3 +305,17 @@ Func GetLiteWebviewId()
     Return SetError(1, 0, "0")
 EndFunc ;==>GetLiteWebviewId
 
+Func ConvertYouTubeURL($sURL)
+    ; Regular expression pattern for YouTube URL
+    Local $sPattern = "https?://(?:www\.)?youtube\.com/watch\?v=([a-zA-Z0-9_-]+)"
+
+    ; Check if the URL matches the pattern and extract the video ID
+    Local $aResult = StringRegExp($sURL, $sPattern, 1)
+    If @error Or Not ReadIniKey("autoYoutubeParse") Then Return $sURL ; Return original string if not a valid YouTube URL
+
+    ; Construct the new URL with the video ID
+    Local $sVideoID = $aResult[0]
+    Local $sNewURL = "https://www.youtube.com/embed/" & $sVideoID & "?autoplay=1&loop=1&mute=1&playlist=" & $sVideoID
+
+    Return $sNewURL
+EndFunc ;==>ConvertYouTubeURL

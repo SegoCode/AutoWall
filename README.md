@@ -93,6 +93,12 @@ Autowall uses a [configuration file](https://github.com/SegoCode/AutoWall/blob/m
 `forceWebview`
   - When set to false, Autowall uses WebView for rendering only when necessary. If set to true, Autowall is forced to always use WebView for rendering.
 
+`autoYoutubeParse`
+  - When set to false, Autowall does not automatically parse the YouTube URL in fullscreen mode. If set to true, it will be parsed.
+
+`forceMouseToWallpaper`
+  - When set to true, the mouse always be sent to the wallpaper when the webview was running. If set to false, only with youtube links, it will not launched.
+  
 ## Lives wallpapers for AutoWall 
 <details>
     <summary>List of sites to find and download the perfect live wallpaper for use in AutoWall;</summary>
@@ -132,6 +138,3 @@ Autowall uses a [configuration file](https://github.com/SegoCode/AutoWall/blob/m
 <a href="https://github.com/SegoCode/AutoWall/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=SegoCode/AutoWall" />
 </a>
-
-
-
