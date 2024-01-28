@@ -41,7 +41,8 @@ _⚠️ This software has only been tested on Windows 10 and may not be fully co
 (1.12+)
 
 - Send mouse movement to the wallpaper
-- [Modify the autowall behaviour](#Config-autowall)
+- [Create wallpaper playlist](https://github.com/SegoCode/AutoWall/blob/master/src/VideosHere/playlist.edl) 
+- [Configure autowall settings](#Config-autowall)
 
 
 ## Web wallpaper
