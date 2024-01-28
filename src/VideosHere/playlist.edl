@@ -6,6 +6,7 @@
 #   - start_time: The time (in seconds) to start playback. 0 means start from the beginning.
 #   - end_time: The time (in seconds) to end playback. 0 means play until the end of the file.
 # Example paths are given below. Replace these with the actual paths to your media files.
+# More info: https://github.com/mpv-player/mpv/blob/master/DOCS/edl-mpv.rst
 
 # First media file (replace with actual file path)
 /example/path/to/your/video1.mp4,0,2
