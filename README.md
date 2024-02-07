@@ -89,7 +89,7 @@ Autowall uses a [configuration file](https://github.com/SegoCode/AutoWall/blob/m
   - When set to false, the application restricts the file types that can be chosen for selecting a wallpaper file. If set to true, all file types are allowed in the popup for choosing a wallpaper file.
 
 `askMultiScreen`
-  - When set to true, the popup for multi-screen configuration is disabled. If set to false, the application considers multiple screens if detected and may prompt for multi-screen configuration.
+  - When set to false, the popup for multi-screen configuration is disabled. If set to true, the application considers multiple screens if detected and may prompt for multi-screen configuration.
 
 `forceWebview`
   - When set to false, Autowall uses WebView for rendering only when necessary. If set to true, Autowall is forced to always use WebView for rendering.
