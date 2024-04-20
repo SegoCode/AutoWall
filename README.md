@@ -121,6 +121,8 @@ Autowall uses a [configuration file](https://github.com/SegoCode/AutoWall/blob/m
     https://steamcommunity.com/workshop/browse/?appid=431960
 
     https://www.deviantart.com/rainwallpaper/gallery/
+
+    https://backgrounds.gallery/animated
  
 </details>
 
