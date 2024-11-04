@@ -9,7 +9,11 @@
 
 Turn videos, gifs and webs into windows live wallpapers. The most simple and useful [Weebp](src/weebp) implementation in autoit. 
 
-_⚠️ This software has only been tested on Windows 10 and may not be fully compatible with other versions of Windows. Some features may not be available. For Windows 7 users, please follow the guide at https://github.com/Francesco149/weebp#windows-7-prerequisites_
+> [!WARNING] 
+> This software has only been tested on Windows 10 and may not be fully compatible with other versions of Windows. Some features may not be available. For Windows 7 users, please follow the guide at https://github.com/Francesco149/weebp#windows-7-prerequisite
+
+> [!CAUTION]
+> New windows 11 updates are experiencing a bug where desktop icons disappear.
 
 ## Features
 - Portable.
