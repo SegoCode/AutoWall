@@ -208,7 +208,7 @@ Func setwallpaper()
 			Run($weebp & "run " & '"' & $webview & '"' & ' "" "' & $url & '"', "", @SW_HIDE)
 			RunWait($weebp & "add --wait --fullscreen --name litewebview", "", @SW_HIDE)
 			
-			Local $sLiteWebviewId = GetLiteWebviewId($oldWork)
+			Local $sLiteWebviewId = GetViewId($oldWork)
 		    If $mouseWallpaper And Not StringInStr($url, "youtube") Then
 				Run($oldWork & "\tools\mousesender.exe" & " 0x" & $sLiteWebviewId, "", @SW_HIDE)
 			Else
@@ -217,7 +217,12 @@ Func setwallpaper()
 		EndIf
 	EndIf
 	FileChangeDir($oldWork)
-	If ReadIniKey("autoPauseFeature") Then Run(@WorkingDir & "\tools\autoPause.exe", "", @SW_HIDE)
+	If @OSVersion = "WIN_11" Or ReadIniKey("forceAutorefresh") Then
+		Sleep(2000)
+   		Run(@WorkingDir & "\tools\refresh.exe" & " 0x" & GetViewId($oldWork), "", @SW_HIDE)
+	Else
+		If ReadIniKey("autoPauseFeature") Then Run(@WorkingDir & "\tools\autoPause.exe", "", @SW_HIDE)
+	EndIf
 EndFunc   ;==>setwallpaper
 
 
@@ -281,11 +286,12 @@ Func ReadIniKey($sKey)
 EndFunc ;==>ReadIniKey
 
 
-Func GetLiteWebviewId($oldWork)
-    Local $sCommand = '"' & $oldWork & "\weebp\wp.exe" & '"' & " ls"	
+Func GetViewId($oldWork)
+    ; Define the command to list
+    Local $sCommand = '"' & $oldWork & "\weebp\wp.exe" & '"' & " ls"
     Local $iPID = Run(@ComSpec & " /c " & $sCommand, "", @SW_HIDE, $STDOUT_CHILD)
-	
-    ; Initialize variables for reading output
+    
+    ; Initialize variables to read the output
     Local $sOutput = ""
     Local $sRead
     While 1
@@ -294,17 +300,23 @@ Func GetLiteWebviewId($oldWork)
         $sOutput &= $sRead
     WEnd
 
-    ; Define the regular expression pattern to match the LiteWebview line and extract the ID
-    Local $sPattern = "\[\K[0-9A-F]+\b(?=].*litewebview)"
+    ; Try to find a line containing "mpv"
+    Local $sMatch = StringRegExp($sOutput, ".*\[(\w+)\].*mpv.*", 1)
 
-    ; Extract the LiteWebview ID using the regular expression
-    Local $aMatch = StringRegExp($sOutput, $sPattern, 1)
-    If IsArray($aMatch) And UBound($aMatch) > 0 Then
-        Return $aMatch[0]
+    ; If "mpv" is not found, look for "litewebview"
+    If @extended = 0 Then
+        $sMatch = StringRegExp($sOutput, ".*\[(\w+)\].*litewebview.*", 1)
     EndIf
 
+    ; Check if a valid ID was found
+    If IsArray($sMatch) And UBound($sMatch) > 0 Then
+        Return $sMatch[0]
+    EndIf
+
+    ; If no ID is found, return an error
     Return SetError(1, 0, "0")
-EndFunc ;==>GetLiteWebviewId
+EndFunc ;==>GetViewId
+
 
 Func ConvertYouTubeURL($sURL)
     ; Regular expression pattern for YouTube URL
