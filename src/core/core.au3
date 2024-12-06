@@ -19,7 +19,7 @@
 ; We expect: PlaceBehindDesktop.exe run <exepath> [optional args...]
 ; -----------------------------------------------------------------------------
 If $CmdLine[0] < 2 Then
-    MsgBox(64, "Usage", "PlaceBehindDesktop.exe run <AppPath> [args...]")
+    MsgBox(64, "Usage", "core.exe run <AppPath> [args...]")
     Exit
 EndIf
 
