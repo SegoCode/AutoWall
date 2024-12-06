@@ -1,12 +1,12 @@
 ; -----------------------------------------------------------------------------
-; Script: PlaceBehindDesktop.au3
+; Script: core.au3
 ; Description: Places a given program window behind the desktop icons on Windows 11.
 ;
 ; Usage:
-; PlaceBehindDesktop.exe run "C:\Path\To\YourApp.exe" "arg1" "arg2" ...
+; core.exe run "C:\Path\To\YourApp.exe" "arg1" "arg2" ...
 ;
 ; Example (with mpv):
-; PlaceBehindDesktop.exe run "C:\Users\SegoCode\Desktop\AutoWall\mpv\mpv.exe" "--loop" "--no-border" "--fullscreen" "--ontop" "C:\Users\SegoCode\Desktop\AutoWall\VideosHere\demo2.mp4"
+; core.exe run "C:\Users\SegoCode\Desktop\AutoWall\mpv\mpv.exe" "--loop" "--no-border" "--fullscreen" "--ontop" "C:\Users\SegoCode\Desktop\AutoWall\VideosHere\demo2.mp4"
 ; -----------------------------------------------------------------------------
 
 #include <WinAPI.au3>
@@ -48,7 +48,7 @@ If $iPID = 0 Then
 EndIf
 
 ; Allow the application to start
-Sleep(2000)
+Sleep(1000)
 
 ; -----------------------------------------------------------------------------
 ; Step 2: Get the handle of the newly launched window by PID
@@ -95,11 +95,15 @@ _RemoveWindowBorders($hAppWnd)
 _LocalizeApp($hAppWnd, $hWorkerW)
 
 ; -----------------------------------------------------------------------------
-; Step 7: Refresh the desktop to apply changes
+; Step 7: Trigger a shell refresh similar to the desktop context menu "Refresh"
+; Use SHChangeNotify to tell the shell that something changed, prompting a refresh.
 ; -----------------------------------------------------------------------------
-DllCall("user32.dll", "int", "UpdateWindow", "hwnd", $hWorkerW)
-
-
+DllCall("shell32.dll", "none", "SHChangeNotify", _
+    "long", 0x8000000, _ ; SHCNE_ASSOCCHANGED: Notify that file type associations have changed
+    "uint", 0x0, _       ; SHCNF_IDLIST or SHCNF_PATH could be used; 0 is often sufficient for global refresh
+    "ptr", 0, _
+    "ptr", 0)
+    
 ; -----------------------------------------------------------------------------
 ; Function Definitions
 ; -----------------------------------------------------------------------------
