@@ -59,7 +59,7 @@ If $CmdLine[0] > 0 Then
 EndIf
 
 ;Detect multiple screen 
-$multiScreen = False
+$multiScreen = ReadIniKey("multiScreenDefault")
 If int(_WinAPI_GetSystemMetrics($SM_CMONITORS)) > 1 And ReadIniKey("askMultiScreen") Then
 	$aBox = MsgBox(4, "Multi-screen detected", "Do you want run AutoWall in multi-screen mode?")
 	If $aBox = 6 Then
