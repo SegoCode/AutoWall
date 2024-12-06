@@ -95,6 +95,9 @@ Autowall uses a [configuration file](https://github.com/SegoCode/AutoWall/blob/m
 `askMultiScreen`
   - When set to false, the popup for multi-screen configuration is disabled. If set to true, the application considers multiple screens if detected and may prompt for multi-screen configuration.
 
+`multiScreenDefault`
+  - When set to false, the multi-screen configuration is disabled by default. If set to true, force the application to run in multi-screen mode.
+
 `forceWebview`
   - When set to false, Autowall uses WebView for rendering only when necessary. If set to true, Autowall is forced to always use WebView for rendering.
 
@@ -104,6 +107,9 @@ Autowall uses a [configuration file](https://github.com/SegoCode/AutoWall/blob/m
 `forceMouseToWallpaper`
   - When set to true, the mouse always be sent to the wallpaper when the webview was running. If set to false, only with youtube links, it will not launched.
   
+`forceAutorefresh`
+  - If set to true, it will use an internal method to reset the wallpaper. Enabled if you are experiencing wallpaper display errors.
+
 ## Lives wallpapers for AutoWall 
 <details>
     <summary>List of sites to find and download the perfect live wallpaper for use in AutoWall;</summary>
