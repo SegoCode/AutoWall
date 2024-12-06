@@ -3,10 +3,10 @@
 ; Description: Places a given program window behind the desktop icons on Windows 11.
 ;
 ; Usage:
-; core.exe run "C:\Path\To\YourApp.exe" "arg1" "arg2" ...
+; core.exe run <AppPath> [args...]
 ;
 ; Example (with mpv):
-; core.exe run "C:\Users\SegoCode\Desktop\AutoWall\mpv\mpv.exe" "--loop" "--no-border" "--fullscreen" "--ontop" "C:\Users\SegoCode\Desktop\AutoWall\VideosHere\demo2.mp4"
+; core.exe run "C:\Path\To\mpv.exe" "--loop" "--no-border" "--fullscreen" "--ontop" "C:\Path\To\video.mp4"
 ; -----------------------------------------------------------------------------
 
 #include <WinAPI.au3>
@@ -16,7 +16,7 @@
 
 ; -----------------------------------------------------------------------------
 ; Parse command-line arguments:
-; We expect: PlaceBehindDesktop.exe run <exepath> [optional args...]
+; We expect: core.exe run <AppPath> [args...]
 ; -----------------------------------------------------------------------------
 If $CmdLine[0] < 2 Then
     MsgBox(64, "Usage", "core.exe run <AppPath> [args...]")
@@ -28,10 +28,7 @@ If $CmdLine[1] <> "run" Then
     Exit
 EndIf
 
-; The executable path is the second argument
 Local $sAppPath = $CmdLine[2]
-
-; Build the parameter string from the remaining arguments
 Local $sAppParams = ""
 For $i = 3 To $CmdLine[0]
     $sAppParams &= '"' & $CmdLine[$i] & '" '
@@ -47,22 +44,36 @@ If $iPID = 0 Then
     Exit
 EndIf
 
-; Allow the application to start
-Sleep(1000)
+; -----------------------------------------------------------------------------
+; Step 2: Wait up to 10 seconds for the application window to appear by PID OR
+; a window titled "litewebview" to appear. Whichever comes first.
+; -----------------------------------------------------------------------------
+Local $hAppWnd = 0
+Local $iStartTime = TimerInit()
+While True
+    ; Check by PID
+    $hAppWnd = _GetWindowHandleByPID($iPID)
+    If $hAppWnd <> 0 Then
+        ExitLoop
+    EndIf
+
+    ; Check by title
+    Local $hLiteWebView = WinGetHandle("[TITLE:litewebview]")
+    If Not @error And $hLiteWebView <> "" Then
+        $hAppWnd = $hLiteWebView
+        ExitLoop
+    EndIf
+
+    ; Check time
+    If TimerDiff($iStartTime) > 10000 Then
+        MsgBox(16, "Error", "Application window not found by PID or by title 'litewebview' within 10 seconds.")
+        Exit
+    EndIf
+    Sleep(100)
+WEnd
 
 ; -----------------------------------------------------------------------------
-; Step 2: Get the handle of the newly launched window by PID
-; This function searches all windows for one matching the given PID.
-; -----------------------------------------------------------------------------
-Local $hAppWnd = _GetWindowHandleByPID($iPID)
-If $hAppWnd = 0 Then
-    MsgBox(16, "Error", "Application window not found.")
-    Exit
-EndIf
-
-; -----------------------------------------------------------------------------
-; Step 3: Create or find the WorkerW window (the background layer)
-; Sending a message to Progman forces a WorkerW window to appear.
+; Step 3: Create or find the WorkerW window
 ; -----------------------------------------------------------------------------
 _CreateWorkerWWindow()
 Local $hWorkerW = _GetWorkerWHandle()
@@ -74,7 +85,7 @@ EndIf
 
 ; -----------------------------------------------------------------------------
 ; Step 4: Re-parent the application's window to the WorkerW window
-; This places it behind desktop icons.
+; This places it behind the desktop icons.
 ; -----------------------------------------------------------------------------
 Local $aResult = DllCall("user32.dll", "hwnd", "SetParent", "hwnd", $hAppWnd, "hwnd", $hWorkerW)
 If @error Then
@@ -83,9 +94,7 @@ If @error Then
 EndIf
 
 ; -----------------------------------------------------------------------------
-; Step 5: Remove window decorations (optional but recommended)
-; This ensures the application won't show borders or taskbar icons, making it
-; appear as a true background.
+; Step 5: Remove window decorations
 ; -----------------------------------------------------------------------------
 _RemoveWindowBorders($hAppWnd)
 
@@ -95,21 +104,21 @@ _RemoveWindowBorders($hAppWnd)
 _LocalizeApp($hAppWnd, $hWorkerW)
 
 ; -----------------------------------------------------------------------------
-; Step 7: Trigger a shell refresh similar to the desktop context menu "Refresh"
-; Use SHChangeNotify to tell the shell that something changed, prompting a refresh.
+; Step 7: Trigger a shell refresh similar to right-click "Refresh"
 ; -----------------------------------------------------------------------------
 DllCall("shell32.dll", "none", "SHChangeNotify", _
-    "long", 0x8000000, _ ; SHCNE_ASSOCCHANGED: Notify that file type associations have changed
-    "uint", 0x0, _       ; SHCNF_IDLIST or SHCNF_PATH could be used; 0 is often sufficient for global refresh
+    "long", 0x8000000, _ ; SHCNE_ASSOCCHANGED
+    "uint", 0x0, _
     "ptr", 0, _
     "ptr", 0)
-    
+
+
 ; -----------------------------------------------------------------------------
 ; Function Definitions
 ; -----------------------------------------------------------------------------
 
 ; _GetWindowHandleByPID:
-; Given a PID, scan all top-level windows for one owned by that process.
+; Given a PID, find a top-level window owned by that process.
 Func _GetWindowHandleByPID($iPID)
     Local $aWinList = WinList()
     For $i = 1 To $aWinList[0][0]
@@ -121,8 +130,7 @@ Func _GetWindowHandleByPID($iPID)
 EndFunc
 
 ; _CreateWorkerWWindow:
-; Sends a message to Progman, which causes it to spawn a WorkerW window
-; behind the desktop icons. This is a known trick for "animated wallpapers."
+; Sends a known message to Progman that forces a WorkerW window to appear.
 Func _CreateWorkerWWindow()
     Local $hProgman = WinGetHandle("[CLASS:Progman]")
     If $hProgman = 0 Then
@@ -130,7 +138,6 @@ Func _CreateWorkerWWindow()
         Exit
     EndIf
 
-    ; The message below triggers the creation of WorkerW.
     DllCall("user32.dll", "lresult", "SendMessageTimeoutW", _
         "hwnd", $hProgman, _
         "uint", 0x052C, _
@@ -143,8 +150,7 @@ Func _CreateWorkerWWindow()
 EndFunc
 
 ; _GetWorkerWHandle:
-; Enumerates windows to find the WorkerW window that sits behind desktop icons.
-; It looks for SHELLDLL_DefView and then finds WorkerW as a sibling.
+; Finds the WorkerW window by enumerating windows and looking for SHELLDLL_DefView.
 Func _GetWorkerWHandle()
     Local $hWorkerW = 0
     Local $aWinList = WinList()
@@ -172,7 +178,7 @@ Func _GetWorkerWHandle()
 EndFunc
 
 ; _FindWindowEx:
-; A wrapper for the Windows API FindWindowEx function.
+; A wrapper for the WinAPI FindWindowEx function.
 Func _FindWindowEx($hWndParent, $hWndChildAfter, $sClassName, $sWindowName)
     Local $aResult = DllCall("user32.dll", "hwnd", "FindWindowExW", _
         "hwnd", $hWndParent, _
@@ -184,22 +190,16 @@ Func _FindWindowEx($hWndParent, $hWndChildAfter, $sClassName, $sWindowName)
 EndFunc
 
 ; _RemoveWindowBorders:
-; Removes window styles that add borders, captions, or taskbar entries, making the
-; window appear as a pure background element.
+; Removes window styles so it's borderless and doesn't appear in the taskbar.
 Func _RemoveWindowBorders($hWnd)
     Local Const $GWL_STYLE = -16
     Local Const $GWL_EXSTYLE = -20
     Local $iStyle = _WinAPI_GetWindowLong($hWnd, $GWL_STYLE)
     Local $iExStyle = _WinAPI_GetWindowLong($hWnd, $GWL_EXSTYLE)
 
-    ; Remove caption and thickframe for no borders.
     $iStyle = BitAND($iStyle, BitNOT($WS_CAPTION))
     $iStyle = BitAND($iStyle, BitNOT($WS_THICKFRAME))
-
-    ; Remove WS_EX_APPWINDOW so it doesn't show in the taskbar.
     $iExStyle = BitAND($iExStyle, BitNOT($WS_EX_APPWINDOW))
-
-    ; Add WS_EX_TOOLWINDOW to avoid showing in Alt+Tab.
     $iExStyle = BitOR($iExStyle, $WS_EX_TOOLWINDOW)
 
     _WinAPI_SetWindowLong($hWnd, $GWL_STYLE, $iStyle)
@@ -209,8 +209,7 @@ Func _RemoveWindowBorders($hWnd)
 EndFunc
 
 ; _LocalizeApp:
-; Positions and resizes the application window to fill the entire WorkerW (desktop)
-; area, making it look like a fullscreen background.
+; Positions the app window to match the entire WorkerW (desktop) dimensions.
 Func _LocalizeApp($hAppWnd, $hWorkerW)
     Local $aWorkerWPos = WinGetPos($hWorkerW)
     _WinAPI_SetWindowPos($hAppWnd, 0, $aWorkerWPos[0], $aWorkerWPos[1], $aWorkerWPos[2], $aWorkerWPos[3], $SWP_NOZORDER)
