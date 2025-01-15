@@ -37,7 +37,7 @@ Turn videos, gifs and webs into windows live wallpapers. The most simple and use
 
 (1.10+)
 
-- [Support for multiple screens (Beta)](#multiple-screens)
+- [Support for multiple screens (Alpha, only in W10)](#multiple-screens)
 
 (1.12+)
 
