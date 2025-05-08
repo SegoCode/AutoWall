@@ -183,11 +183,10 @@ Func setwallpaper()
 	$mouseWallpaper = ReadIniKey("mouseToWallpaper")
 	$forceMouseWallpaper = ReadIniKey("forceMouseToWallpaper")
 
-	Run(@WorkingDir & "\tools\autoPause.exe", "", @SW_HIDE) ;TODO IDK WHY DONT LAUCH
-
 	$inputUdf = GUICtrlRead($inputPath)
 	If _WinAPI_UrlIs($inputUdf) == 0 And Not StringRegExp($inputUdf, "\.html?$", 0) And Not ReadIniKey("forceWebview") Then
 		killAll()
+		If ReadIniKey("autoPauseFeature") Then Run(@WorkingDir & "\tools\autoPause.exe", "", @SW_HIDE)
 		FileChangeDir(@WorkingDir & "\mpv\")
 		Run($core & "run " & '"mpv.exe" "--input-ipc-server=\\.\pipe\mpvsocket" "' & GUICtrlRead($inputPath) & '"', "", @SW_HIDE)
 	Else ; TODO THIS MSG STILL NECESARY?
