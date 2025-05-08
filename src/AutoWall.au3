@@ -183,12 +183,14 @@ Func setwallpaper()
 	$mouseWallpaper = ReadIniKey("mouseToWallpaper")
 	$forceMouseWallpaper = ReadIniKey("forceMouseToWallpaper")
 
+	Run(@WorkingDir & "\tools\autoPause.exe", "", @SW_HIDE) ;TODO IDK WHY DONT LAUCH
+
 	$inputUdf = GUICtrlRead($inputPath)
 	If _WinAPI_UrlIs($inputUdf) == 0 And Not StringRegExp($inputUdf, "\.html?$", 0) And Not ReadIniKey("forceWebview") Then
 		killAll()
 		FileChangeDir(@WorkingDir & "\mpv\")
-		Run($core & "run mpv " & '"' & GUICtrlRead($inputPath) & '"' & " --input-ipc-server=\\.\pipe\mpvsocket", "", @SW_HIDE)
-	Else
+		Run($core & "run " & '"mpv.exe" "--input-ipc-server=\\.\pipe\mpvsocket" "' & GUICtrlRead($inputPath) & '"', "", @SW_HIDE)
+	Else ; TODO THIS MSG STILL NECESARY?
 		If StringInStr(GUICtrlRead($inputPath), "steamcommunity.com") Then
 			$idSteam = StringSplit(GUICtrlRead($inputPath), "?id=", 1)
 			GUICtrlSetState($winStart, $GUI_UNCHECKED)
@@ -200,6 +202,9 @@ Func setwallpaper()
 			Local $url = ConvertYouTubeURL(GUICtrlRead($inputPath))
 			Run($core & "run " & '"' & $webview & '"' & ' "" "' & $url & '"', "", @SW_HIDE)
 			
+			;TODO CANT GET BY TITTLE BROKEN
+			Local $sLiteWebviewId = WinGetHandle("[TITLE:litewebview]")
+
 		    If $mouseWallpaper And Not StringInStr($url, "youtube") Then
 				Run($oldWork & "\tools\mousesender.exe" & " 0x" & $sLiteWebviewId, "", @SW_HIDE)
 			Else
@@ -210,6 +215,20 @@ Func setwallpaper()
 	FileChangeDir($oldWork)
 EndFunc   ;==>setwallpaper
 
+Func ReadIniKey($sKey)
+    ; Set the file path to the INI file in the working directory
+    $sFilePath = @WorkingDir & "\config.ini"
+    If Not FileExists($sFilePath) Then Return False
+
+    ; Attempt to read the value of the key
+    $sValue = IniRead($sFilePath, "Configurations", $sKey, "NotFound")
+    
+    If $sValue == "true" Then
+        Return True
+    Else
+        Return False
+    EndIf
+EndFunc ;==>ReadIniKey
 
 Func browsefiles()
 	Local Const $sMessage = "Select the video for wallpaper"
@@ -228,7 +247,6 @@ Func browsefiles()
 		GUICtrlSetState($winStart, $GUI_ENABLE)
 		GUICtrlSetState($winStart, $GUI_UNCHECKED)
 	EndIf
-
 EndFunc   ;==>browsefiles
 
 Func reset()
@@ -241,7 +259,6 @@ Func reset()
     GUICtrlSetData($inputPath, "")
 EndFunc   ;==>reset
 
-
 Func killAll()
     Local $aProcesses = ['mpv.exe', 'core.exe', 'litewebview.exe', 'Win32WebViewHost.exe', 'autopause.exe', 'mousesender.exe']
 
@@ -251,54 +268,6 @@ Func killAll()
         Until Not ProcessExists($sProcess)
     Next
 EndFunc   ;==>killAll
-
-Func ReadIniKey($sKey)
-    ; Set the file path to the INI file in the working directory
-    $sFilePath = @WorkingDir & "\config.ini"
-    If Not FileExists($sFilePath) Then Return False
-
-    ; Attempt to read the value of the key
-    $sValue = IniRead($sFilePath, "Configurations", $sKey, "NotFound")
-    
-    If $sValue == "true" Then
-        Return True
-    Else
-        Return False
-    EndIf
-EndFunc ;==>ReadIniKey
-
-
-Func GetViewId($oldWork)
-    ; Define the command to list
-    Local $sCommand = '"' & $oldWork & "\core\core.exe" & '"' & " ls"
-    Local $iPID = Run(@ComSpec & " /c " & $sCommand, "", @SW_HIDE, $STDOUT_CHILD)
-    
-    ; Initialize variables to read the output
-    Local $sOutput = ""
-    Local $sRead
-    While 1
-        $sRead = StdoutRead($iPID)
-        If @error Then ExitLoop
-        $sOutput &= $sRead
-    WEnd
-
-    ; Try to find a line containing "mpv"
-    Local $sMatch = StringRegExp($sOutput, ".*\[(\w+)\].*mpv.*", 1)
-
-    ; If "mpv" is not found, look for "litewebview"
-    If @extended = 0 Then
-        $sMatch = StringRegExp($sOutput, ".*\[(\w+)\].*litewebview.*", 1)
-    EndIf
-
-    ; Check if a valid ID was found
-    If IsArray($sMatch) And UBound($sMatch) > 0 Then
-        Return $sMatch[0]
-    EndIf
-
-    ; If no ID is found, return an error
-    Return SetError(1, 0, "0")
-EndFunc ;==>GetViewId
-
 
 Func ConvertYouTubeURL($sURL)
     ; Regular expression pattern for YouTube URL
