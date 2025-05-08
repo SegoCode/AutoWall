@@ -18,8 +18,21 @@ While 1
 	$aPos = WinGetPos($Actwin)
 	$wText = WinGetTitle($Actwin)
 
-	; check GUI fill the screen and real gui
-	If ($aPos <> 0 And $aPos[2] >= $iW And $aPos[3] >= $iH And StringLen($wText) > 0) Or BitAND(WinGetState($Actwin), $WIN_STATE_MAXIMIZED) Then
+	; Check if window should be excluded from detection
+	$bExcludeWindow = False
+
+	; Exclude "Program Manager"
+	If $wText = "Program Manager" Then
+		$bExcludeWindow = True
+	EndIf
+
+	; Exclude any mpv windows (containing "mpv" in title)
+	If StringInStr($wText, "mpv") Then
+		$bExcludeWindow = True
+	EndIf
+
+	; check GUI fill the screen and real gui, but only if it's not excluded
+	If Not $bExcludeWindow And (($aPos <> 0 And $aPos[2] >= $iW And $aPos[3] >= $iH And StringLen($wText) > 0) Or BitAND(WinGetState($Actwin), $WIN_STATE_MAXIMIZED)) Then
 		If Not $pause Then
 			; FullScreen
 			Run(@ComSpec & " /c " & "echo cycle pause >\\.\pipe\mpvsocket", "", @SW_HIDE)
