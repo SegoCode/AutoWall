@@ -4,7 +4,7 @@
  Author:         SegoCode
 
  Script Function:
-	Set live wallpapers on your Windows desktop usig mpv and weebp.
+	Set live wallpapers on your Windows desktop usig mpv and core.
 
 #ce ----------------------------------------------------------------------------
 
@@ -153,7 +153,7 @@ EndFunc   ;==>onWinStart
 
 Func setwallpaperMultiScreen($screenNumber = 0)
 	$oldWork = @WorkingDir
-	$weebp = @WorkingDir & "\weebp\wp.exe "
+	$core = @WorkingDir & "\core\core.exe "
 	$webview = @WorkingDir & "\tools\webview.exe"
 	
 	If Not $autoRunState Then
@@ -164,17 +164,11 @@ Func setwallpaperMultiScreen($screenNumber = 0)
 	
 	$inputUdf = GUICtrlRead($inputPath)
 	If _WinAPI_UrlIs($inputUdf) == 0 Then
-		;This is a temporary solution, usefull to initialize the screens, the first video does not have loop which dying in the end
-		
-		;Init screen, fake video spawn dying in the end
-		RunWait($weebp & "run mpv " & '"' & GUICtrlRead($inputPath) & '"' & " --screen="& $screenNumber &" --input-ipc-server=\\.\pipe\mpvsocket", "", @SW_HIDE)
-		sleep(500)
-		Run($weebp & "add --wait --fullscreen --class mpv", "", @SW_HIDE)
 		
 		;Final video spawn 
-		RunWait($weebp & "run mpv " & '"' & GUICtrlRead($inputPath) & '"' & " --screen="& $screenNumber &" --input-ipc-server=\\.\pipe\mpvsocket", "", @SW_HIDE)
+		RunWait($core & "run mpv " & '"' & GUICtrlRead($inputPath) & '"' & " --screen="& $screenNumber &" --input-ipc-server=\\.\pipe\mpvsocket", "", @SW_HIDE)
 		sleep(500)
-		Run($weebp & "add --wait --fullscreen --class mpv", "", @SW_HIDE)
+		Run($core & "add --wait --fullscreen --class mpv", "", @SW_HIDE)
 	Else
 		MsgBox(0, "AutoWall Multi-screen mode", "Web wallpaper is not supported in multi-screen mode")
 		GUICtrlSetData($inputPath, "")
@@ -184,7 +178,7 @@ EndFunc   ;==>setwallpaperMultiScreen
 
 Func setwallpaper()
 	$oldWork = @WorkingDir
-	$weebp = @WorkingDir & "\weebp\wp.exe "
+	$core = @WorkingDir & "\core\core.exe "
 	$webview = @WorkingDir & "\tools\webView.exe"
 	$mouseWallpaper = ReadIniKey("mouseToWallpaper")
 	$forceMouseWallpaper = ReadIniKey("forceMouseToWallpaper")
@@ -193,8 +187,7 @@ Func setwallpaper()
 	If _WinAPI_UrlIs($inputUdf) == 0 And Not StringRegExp($inputUdf, "\.html?$", 0) And Not ReadIniKey("forceWebview") Then
 		killAll()
 		FileChangeDir(@WorkingDir & "\mpv\")
-		Run($weebp & "run mpv " & '"' & GUICtrlRead($inputPath) & '"' & " --input-ipc-server=\\.\pipe\mpvsocket", "", @SW_HIDE)
-		Run($weebp & "add --wait --fullscreen --class mpv", "", @SW_HIDE)
+		Run($core & "run mpv " & '"' & GUICtrlRead($inputPath) & '"' & " --input-ipc-server=\\.\pipe\mpvsocket", "", @SW_HIDE)
 	Else
 		If StringInStr(GUICtrlRead($inputPath), "steamcommunity.com") Then
 			$idSteam = StringSplit(GUICtrlRead($inputPath), "?id=", 1)
@@ -205,10 +198,8 @@ Func setwallpaper()
 		Else
 			killAll()
 			Local $url = ConvertYouTubeURL(GUICtrlRead($inputPath))
-			Run($weebp & "run " & '"' & $webview & '"' & ' "" "' & $url & '"', "", @SW_HIDE)
-			RunWait($weebp & "add --wait --fullscreen --name litewebview", "", @SW_HIDE)
+			Run($core & "run " & '"' & $webview & '"' & ' "" "' & $url & '"', "", @SW_HIDE)
 			
-			Local $sLiteWebviewId = GetViewId($oldWork)
 		    If $mouseWallpaper And Not StringInStr($url, "youtube") Then
 				Run($oldWork & "\tools\mousesender.exe" & " 0x" & $sLiteWebviewId, "", @SW_HIDE)
 			Else
@@ -217,12 +208,6 @@ Func setwallpaper()
 		EndIf
 	EndIf
 	FileChangeDir($oldWork)
-	If @OSVersion = "WIN_11" Or ReadIniKey("forceAutorefresh") Then
-		Sleep(2000)
-   		Run(@WorkingDir & "\tools\refresh.exe" & " 0x" & GetViewId($oldWork), "", @SW_HIDE)
-	Else
-		If ReadIniKey("autoPauseFeature") Then Run(@WorkingDir & "\tools\autoPause.exe", "", @SW_HIDE)
-	EndIf
 EndFunc   ;==>setwallpaper
 
 
@@ -258,16 +243,13 @@ EndFunc   ;==>reset
 
 
 Func killAll()
-    Local $aProcesses = ['mpv.exe', 'wp.exe', 'litewebview.exe', 'Win32WebViewHost.exe', 'autopause.exe', 'mousesender.exe']
+    Local $aProcesses = ['mpv.exe', 'core.exe', 'litewebview.exe', 'Win32WebViewHost.exe', 'autopause.exe', 'mousesender.exe']
 
     For $sProcess In $aProcesses
         Do
             ProcessClose($sProcess)
         Until Not ProcessExists($sProcess)
     Next
-
-    ; Refresh
-    Run(@WorkingDir & "\weebp\wp.exe ls", "", @SW_HIDE)
 EndFunc   ;==>killAll
 
 Func ReadIniKey($sKey)
@@ -288,7 +270,7 @@ EndFunc ;==>ReadIniKey
 
 Func GetViewId($oldWork)
     ; Define the command to list
-    Local $sCommand = '"' & $oldWork & "\weebp\wp.exe" & '"' & " ls"
+    Local $sCommand = '"' & $oldWork & "\core\core.exe" & '"' & " ls"
     Local $iPID = Run(@ComSpec & " /c " & $sCommand, "", @SW_HIDE, $STDOUT_CHILD)
     
     ; Initialize variables to read the output
