@@ -1,16 +1,16 @@
 # AutoWall 
 
 <p align="center">
-<img src="https://github.com/SegoCode/AutoWall/blob/master/media/demo2.gif">
-<img src="https://img.shields.io/badge/core-weebp & mpv-red?style=flat-square"> <img src="https://img.shields.io/badge/-%20Made%20with%20Autoit%20❤-blue.svg?style=flat-square"> <img src="https://img.shields.io/badge/Platform%20%26%20Version%20Support-Windows%2010-green?style=flat-square"> <img src="https://img.shields.io/github/languages/code-size/segocode/autowall?style=flat-square">
+<img src="https://github.com/SegoCode/AutoWall/blob/master/media/demo.gif">
+<img src="https://img.shields.io/badge/core-weebp & mpv-red?style=flat-square"> <img src="https://img.shields.io/badge/-%20Made%20with%20Autoit%20❤-blue.svg?style=flat-square"> <img src="https://img.shields.io/badge/Platform%20%26%20Version%20Support-Windows%2011-green?style=flat-square"> <img src="https://img.shields.io/github/languages/code-size/segocode/autowall?style=flat-square">
 </p>
 
 ## About
 
-Turn videos, gifs and webs into windows live wallpapers. The most simple and useful [Weebp](src/weebp) implementation in autoit. 
+Turn videos, gifs and webs into windows live wallpapers. The most simple and useful [Weebp](src/weebp) implementation in autoit. Now compatible with windows 11.
 
-> [!WARNING] 
-> This software has only been tested on Windows 10 and may not be fully compatible with other versions of Windows. Some features may not be available. For Windows 7 users, please follow the guide at https://github.com/Francesco149/weebp#windows-7-prerequisite
+> [!WARNING]
+> For Windows 7 users, please follow the guide at https://github.com/Francesco149/weebp#windows-7-prerequisite
 
 ## Features
 - Portable.
