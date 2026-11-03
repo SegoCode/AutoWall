@@ -1,7 +1,8 @@
 # AutoWall 
 
 <p align="center">
-<img src="https://github.com/SegoCode/AutoWall/blob/master/media/demo.gif">
+<img src="https://github.com/adarshcsea/AutoWall/blob/master/media/autowall.gif">
+ 
 <img src="https://img.shields.io/badge/core-weebp & mpv-red?style=flat-square"> <img src="https://img.shields.io/badge/-%20Made%20with%20Autoit%20❤-blue.svg?style=flat-square"> <img src="https://img.shields.io/badge/Platform%20%26%20Version%20Support-Windows%2011-green?style=flat-square"> <img src="https://img.shields.io/github/languages/code-size/segocode/autowall?style=flat-square">
 </p>
 
@@ -135,7 +136,7 @@ Autowall uses a [configuration file](https://github.com/SegoCode/AutoWall/blob/m
 
 ## Direct download
 
-[https://github.com/SegoCode/AutoWall/releases/](https://github.com/SegoCode/AutoWall/releases/download/1.11/AutoWall.zip)
+[https://github.com/SegoCode/AutoWall/releases/](https://github.com//AutoWall/releases/download/1.11/AutoWall.zip)
 
 ## Articles about AutoWall
 
