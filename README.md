@@ -1,3 +1,19 @@
+
+## Direct download
+
+```
+Original version from SegoCode -
+```
+[https://github.com/SegoCode/AutoWall/releases/]
+
+(https://github.com//AutoWall/releases/download/1.11/AutoWall.zip)
+
+```
+Latest Version 2.0 optimized by us - compatible with windows 11 -
+```
+https://github.com/adarshcsea/AutoWall/releases/download/v2.1.0/AutoWall.2.0.zip
+
+
 # AutoWall 
 
 <p align="center">
@@ -46,6 +62,9 @@ Turn videos, gifs and webs into windows live wallpapers. The most simple and use
 - [Create wallpaper playlist](https://github.com/SegoCode/AutoWall/blob/master/src/VideosHere/playlist.edl) 
 - [Configure autowall settings](#Config-autowall)
 
+(v2.1.0+)
+
+- Optimized the mpv.conf to minimize resource usage on windows
 
 ## Web wallpaper
  Set any web to wallpaper, copy url and paste on text field, also Youtube videos.
@@ -133,20 +152,6 @@ Autowall uses a [configuration file](https://github.com/SegoCode/AutoWall/blob/m
     https://backgrounds.gallery/animated
  
 </details>
-
-## Direct download
-
-```
-Original version-
-```
-[https://github.com/SegoCode/AutoWall/releases/]
-
-(https://github.com//AutoWall/releases/download/1.11/AutoWall.zip)
-
-```
-Version 2.0 - compatible with windows 11 -
-```
-https://github.com/adarshcsea/AutoWall/releases/download/v2.1.0/AutoWall.2.0.zip
 
 ## Articles about AutoWall
 
