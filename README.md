@@ -136,7 +136,17 @@ Autowall uses a [configuration file](https://github.com/SegoCode/AutoWall/blob/m
 
 ## Direct download
 
-[https://github.com/SegoCode/AutoWall/releases/](https://github.com//AutoWall/releases/download/1.11/AutoWall.zip)
+```
+Original version-
+```
+[https://github.com/SegoCode/AutoWall/releases/]
+
+(https://github.com//AutoWall/releases/download/1.11/AutoWall.zip)
+
+```
+Version 2.0 - compatible with windows 11 -
+```
+https://github.com/adarshcsea/AutoWall/releases/download/v2.1.0/AutoWall.2.0.zip
 
 ## Articles about AutoWall
 
